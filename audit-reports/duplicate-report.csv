@@ -1,0 +1,5 @@
+DuplicateGroupId,Filename,RelativePath,SizeBytes,SHA256,Status,ActionTaken
+1,"MODULE 4 (1).pdf","MODULE 4 (1).pdf",6826586,"044326ea871fe04f6ae9a561d31b3b7bcd1c816b4faa571009a78ff8b19268d4","Exact SHA256 Match","Retained primary source"
+1,"MODULE 4 (2).pdf","MODULE 4 (2).pdf",6826586,"044326ea871fe04f6ae9a561d31b3b7bcd1c816b4faa571009a78ff8b19268d4","Exact SHA256 Match","Marked redundant duplicate (preserved in backup)"
+1,"MODULE 4 (3).pdf","MODULE 4 (3).pdf",6826586,"044326ea871fe04f6ae9a561d31b3b7bcd1c816b4faa571009a78ff8b19268d4","Exact SHA256 Match","Marked redundant duplicate (preserved in backup)"
+1,"MODULE 4 (4).pdf","MODULE 4 (4).pdf",6826586,"044326ea871fe04f6ae9a561d31b3b7bcd1c816b4faa571009a78ff8b19268d4","Exact SHA256 Match","Marked redundant duplicate (preserved in backup)"

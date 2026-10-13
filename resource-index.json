@@ -1,0 +1,1235 @@
+{
+  "metadata": {
+    "generatedAt": "2026-10-13T12:00:41.795Z",
+    "totalFilesIndexed": 153,
+    "institution": "APJ Abdul Kalam Technological University (KTU)",
+    "department": "Department of Computer Science and Engineering (CSE)",
+    "faculty": "Jane Rose | Assistant Professor"
+  },
+  "inventory": [
+    {
+      "path": ".superpowers/sdd/2026-10-13-ktu-smart-learning-ecosystem/progress.md",
+      "filename": "progress.md",
+      "ext": ".md",
+      "sizeBytes": 2272,
+      "modified": "2026-10-13T11:47:35.725Z",
+      "sha256": "c67e1cc14b1711c84f9303dac25d07f32483b253c248728a84fbad337bb1a881"
+    },
+    {
+      "path": "audit-reports/duplicate-report.csv",
+      "filename": "duplicate-report.csv",
+      "ext": ".csv",
+      "sizeBytes": 797,
+      "modified": "2026-10-13T11:02:37.572Z",
+      "sha256": "ef80ae754c9c0658723ecc4d781c9f1b6b14c56c98028272ef8b9a6d9344904b"
+    },
+    {
+      "path": "audit-reports/file-inventory.csv",
+      "filename": "file-inventory.csv",
+      "ext": ".csv",
+      "sizeBytes": 14500,
+      "modified": "2026-10-13T11:02:37.569Z",
+      "sha256": "91c8e1ecfdaa5ff7bbfa91caf6b468aba48d2548e7bf94327841a68820300ed8"
+    },
+    {
+      "path": "audit-reports/final-audit-report.md",
+      "filename": "final-audit-report.md",
+      "ext": ".md",
+      "sizeBytes": 8931,
+      "modified": "2026-10-13T11:47:26.388Z",
+      "sha256": "642053bb05b9625a9aa2bf0358181c9e3dfc04a0fd16a8a14c92354e6d07dc2f"
+    },
+    {
+      "path": "audit-reports/validation-report.md",
+      "filename": "validation-report.md",
+      "ext": ".md",
+      "sizeBytes": 4346,
+      "modified": "2026-10-13T11:02:37.642Z",
+      "sha256": "3735d8f2cc440716e90caa21cf25c0b6046038a7975e68bcbe709d1d0cb8f3e5"
+    },
+    {
+      "path": "dashboard/index.html",
+      "filename": "index.html",
+      "ext": ".html",
+      "sizeBytes": 948,
+      "modified": "2026-10-13T11:04:27.507Z",
+      "sha256": "4dcb2cfb7126e1ec477207fd56c4c74b5129cb528f786ebd4b3c790a787c69ff"
+    },
+    {
+      "path": "dashboard/package-lock.json",
+      "filename": "package-lock.json",
+      "ext": ".json",
+      "sizeBytes": 118326,
+      "modified": "2026-10-13T11:05:51.076Z",
+      "sha256": "895ad7cb7b8d1bf2dad2d592999c6cd264bf7210f57f7cd81c07a705937170c9"
+    },
+    {
+      "path": "dashboard/package.json",
+      "filename": "package.json",
+      "ext": ".json",
+      "sizeBytes": 774,
+      "modified": "2026-10-13T11:03:39.533Z",
+      "sha256": "50fd08107a3b74ed34d3ebf92a55c5096117a3e5686aeae8914f7fca778f712b"
+    },
+    {
+      "path": "dashboard/postcss.config.js",
+      "filename": "postcss.config.js",
+      "ext": ".js",
+      "sizeBytes": 80,
+      "modified": "2026-10-13T11:04:19.487Z",
+      "sha256": "190c877db466995bf1482f4a16abd06e04a89ede3119341e2a86ff96e1737b27"
+    },
+    {
+      "path": "dashboard/src/App.tsx",
+      "filename": "App.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 5128,
+      "modified": "2026-10-13T11:36:00.475Z",
+      "sha256": "46a9b15be2aa092a82dd234047444935e5743e796bef1670a1224b2537c02f90"
+    },
+    {
+      "path": "dashboard/src/components/Footer.tsx",
+      "filename": "Footer.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 2349,
+      "modified": "2026-10-13T11:08:06.401Z",
+      "sha256": "483e19925130c2a145bb72e70500666a130d7483e7d7da02aaffb664eb7d02eb"
+    },
+    {
+      "path": "dashboard/src/components/games/BuildAComputer.tsx",
+      "filename": "BuildAComputer.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 4884,
+      "modified": "2026-10-13T11:25:54.286Z",
+      "sha256": "a5b1fcff425f300610a28bd65d87f450c1a9d21ba242be20aed8e2e32901e564"
+    },
+    {
+      "path": "dashboard/src/components/games/MemoryMatch.tsx",
+      "filename": "MemoryMatch.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 4345,
+      "modified": "2026-10-13T11:25:32.361Z",
+      "sha256": "f910975ef38ab880fc8ee8d20fa09d3c14ce8781d6f206b7d2d27fab3375d733"
+    },
+    {
+      "path": "dashboard/src/components/games/PatternGarden.tsx",
+      "filename": "PatternGarden.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 4348,
+      "modified": "2026-10-13T11:24:43.916Z",
+      "sha256": "3bc15c1716ca22e68934323b225d43e0434872d547708be546e3b803297ffd9a"
+    },
+    {
+      "path": "dashboard/src/components/games/RobotPathAdventure.tsx",
+      "filename": "RobotPathAdventure.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 4900,
+      "modified": "2026-10-13T11:25:01.007Z",
+      "sha256": "59aa2275832f8af709c7049c2cae8a0a1288c5266421234c295b7affeddd3038"
+    },
+    {
+      "path": "dashboard/src/components/games/ShapeColorLab.tsx",
+      "filename": "ShapeColorLab.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 4736,
+      "modified": "2026-10-13T11:25:16.694Z",
+      "sha256": "f3add13cb7057fa577aa579d1f454b1b381336203c85b2d7f0638c99ffa5848f"
+    },
+    {
+      "path": "dashboard/src/components/GraphCanvas.tsx",
+      "filename": "GraphCanvas.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 8463,
+      "modified": "2026-10-13T11:22:35.382Z",
+      "sha256": "e110af45b264a2ad8314ebd5f4efa0e8e013b44307bd9d57dc386cf06a6124dc"
+    },
+    {
+      "path": "dashboard/src/components/Header.tsx",
+      "filename": "Header.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 3878,
+      "modified": "2026-10-13T11:08:20.591Z",
+      "sha256": "734c53059692345ab95fa02221c51592e972fd602022fd3880a72cae04530173"
+    },
+    {
+      "path": "dashboard/src/components/PdfViewerModal.tsx",
+      "filename": "PdfViewerModal.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 4810,
+      "modified": "2026-10-13T11:10:00.629Z",
+      "sha256": "f92eadb82576cc8dd6dbf890df778163acc2eb678d683d834cf4584af9d6ce06"
+    },
+    {
+      "path": "dashboard/src/components/QuizEngine.tsx",
+      "filename": "QuizEngine.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 16353,
+      "modified": "2026-10-13T11:19:13.591Z",
+      "sha256": "13cc77b671a2eb4924c8167a02c636a1c742d4b1124be95475f30c4049eab4b4"
+    },
+    {
+      "path": "dashboard/src/components/Sidebar.tsx",
+      "filename": "Sidebar.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 8953,
+      "modified": "2026-10-13T11:08:44.918Z",
+      "sha256": "34be2abe3591cab2b22d97504c564ed3a3aaf5d8711210737d97e1a3f732dc41"
+    },
+    {
+      "path": "dashboard/src/components/simulations/CpuSchedulingLab.tsx",
+      "filename": "CpuSchedulingLab.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 5105,
+      "modified": "2026-10-13T11:28:48.685Z",
+      "sha256": "6f04508c9ad431700447483d61607a45082f8fb4b65ef9c72c6e7d4135baf4a7"
+    },
+    {
+      "path": "dashboard/src/components/simulations/NeuralNetwork3D.tsx",
+      "filename": "NeuralNetwork3D.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 7496,
+      "modified": "2026-10-13T11:27:27.366Z",
+      "sha256": "56630a224ac7984da0c5c2a233abd037523a33c45f209b19fe88c3279f557c10"
+    },
+    {
+      "path": "dashboard/src/components/simulations/PacketRoutingSimulation.tsx",
+      "filename": "PacketRoutingSimulation.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 6440,
+      "modified": "2026-10-13T11:28:05.601Z",
+      "sha256": "b0d82bfa77804c788864c6d82f64ed5fae4751484d1a8684ec81a902c5a3e2c7"
+    },
+    {
+      "path": "dashboard/src/components/simulations/SqlSandboxLab.tsx",
+      "filename": "SqlSandboxLab.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 4895,
+      "modified": "2026-10-13T11:29:27.113Z",
+      "sha256": "3a3d7c3000acab5c74f82b7a0bf95a28fae93877a266a3d3e3453d84dcdab1d4"
+    },
+    {
+      "path": "dashboard/src/components/TeachingProgressTracker.tsx",
+      "filename": "TeachingProgressTracker.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 2637,
+      "modified": "2026-10-13T11:16:02.805Z",
+      "sha256": "597e53a76318bc60feab82f01f091a63b1295c722f8be94f2d7ee022b13cfd4e"
+    },
+    {
+      "path": "dashboard/src/components/ThemeSelector.tsx",
+      "filename": "ThemeSelector.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 5484,
+      "modified": "2026-10-13T11:06:07.523Z",
+      "sha256": "000fe92352cce039909bd982079d9596da01a096b648973796dd344f8cd7de00"
+    },
+    {
+      "path": "dashboard/src/context/ThemeContext.tsx",
+      "filename": "ThemeContext.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 2266,
+      "modified": "2026-10-13T11:05:50.242Z",
+      "sha256": "c9d915f7e63cfa501ee3c60c1cd28940e3ab7754cc4adf873622d401a84cd9d5"
+    },
+    {
+      "path": "dashboard/src/data/academicData.ts",
+      "filename": "academicData.ts",
+      "ext": ".ts",
+      "sizeBytes": 26674,
+      "modified": "2026-10-13T11:07:44.116Z",
+      "sha256": "df4bd4c361cdb4d55e056dada1c9e17aa7f16f09e36773c29b7c2fc65c377bce"
+    },
+    {
+      "path": "dashboard/src/data/industryCareerData.ts",
+      "filename": "industryCareerData.ts",
+      "ext": ".ts",
+      "sizeBytes": 6740,
+      "modified": "2026-10-13T11:33:57.781Z",
+      "sha256": "94153fbca17839a64ae7c10d22c51fbf512cb12d8a6082f9040456da5b25f952"
+    },
+    {
+      "path": "dashboard/src/data/knowledgeGraphData.ts",
+      "filename": "knowledgeGraphData.ts",
+      "ext": ".ts",
+      "sizeBytes": 7108,
+      "modified": "2026-10-13T11:21:28.606Z",
+      "sha256": "bc850f675dadbb5eb82541a973fab66015b7bb3554adc738330a81571be47b36"
+    },
+    {
+      "path": "dashboard/src/data/quizQuestions.ts",
+      "filename": "quizQuestions.ts",
+      "ext": ".ts",
+      "sizeBytes": 9758,
+      "modified": "2026-10-13T11:18:30.558Z",
+      "sha256": "032570c9c1035b040c05408d6e92f7899b6e13e7734981878618ea8f1f25bc73"
+    },
+    {
+      "path": "dashboard/src/data/researchData.ts",
+      "filename": "researchData.ts",
+      "ext": ".ts",
+      "sizeBytes": 6115,
+      "modified": "2026-10-13T11:37:04.042Z",
+      "sha256": "822e0686c7ae9b36c065f3593c1f28e0a3726a9db48fcccda589b313f8a3f635"
+    },
+    {
+      "path": "dashboard/src/data/teachingPlans.ts",
+      "filename": "teachingPlans.ts",
+      "ext": ".ts",
+      "sizeBytes": 21680,
+      "modified": "2026-10-13T11:14:40.620Z",
+      "sha256": "4554dce490df02d9f332f9aca10940a8c210b946b4eb6887c07f1ff8bfeb06a4"
+    },
+    {
+      "path": "dashboard/src/index.css",
+      "filename": "index.css",
+      "ext": ".css",
+      "sizeBytes": 8947,
+      "modified": "2026-10-13T11:05:39.957Z",
+      "sha256": "3e2f8706762c28eb4f78f81392174312332f49bd8f4d67a56774187bdebb2e51"
+    },
+    {
+      "path": "dashboard/src/main.tsx",
+      "filename": "main.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 339,
+      "modified": "2026-10-13T11:36:08.655Z",
+      "sha256": "564bd99d70e6b478436a91c2ab40b72c3a97c2fdc5ccc724ce80627a1f0a49a2"
+    },
+    {
+      "path": "dashboard/src/pages/AnswerKeySolutions.tsx",
+      "filename": "AnswerKeySolutions.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 8197,
+      "modified": "2026-10-13T11:11:12.246Z",
+      "sha256": "3bd58a19aaadf9d78c13c7e16a0178cc3889eb0e3c8a34367b33095b94a9b215"
+    },
+    {
+      "path": "dashboard/src/pages/AssessmentCenter.tsx",
+      "filename": "AssessmentCenter.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 5948,
+      "modified": "2026-10-13T11:19:51.671Z",
+      "sha256": "0d8cc4d3dd04e5a6e600499f4329caeb512414f4c276d2a60fdb264d8c80a62e"
+    },
+    {
+      "path": "dashboard/src/pages/CareerSalaryExplorer.tsx",
+      "filename": "CareerSalaryExplorer.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 5398,
+      "modified": "2026-10-13T11:34:53.920Z",
+      "sha256": "5302de9f461217e7b85d233fdb009913d10d2defd62dbbc05fd3a0d2aaa2027a"
+    },
+    {
+      "path": "dashboard/src/pages/EarlyLearningMode.tsx",
+      "filename": "EarlyLearningMode.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 8530,
+      "modified": "2026-10-13T11:26:17.163Z",
+      "sha256": "d4b31cf5a329814c7f26f3bbdfa40919c782c3eb8499326cb1e23d9437493df8"
+    },
+    {
+      "path": "dashboard/src/pages/FacultyManagement.tsx",
+      "filename": "FacultyManagement.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 7010,
+      "modified": "2026-10-13T11:35:43.608Z",
+      "sha256": "5818b1c3a6da7771fbae2e2fbc93527ba642f973cafd65ce11814d5f28dc4601"
+    },
+    {
+      "path": "dashboard/src/pages/IndustryApplications.tsx",
+      "filename": "IndustryApplications.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 6039,
+      "modified": "2026-10-13T11:34:34.735Z",
+      "sha256": "23e4ecb224f283d64a55290b85f88c712279bbe43bf60d7c11cf445e7bc857df"
+    },
+    {
+      "path": "dashboard/src/pages/KnowledgeGraphExplorer.tsx",
+      "filename": "KnowledgeGraphExplorer.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 7992,
+      "modified": "2026-10-13T11:23:01.814Z",
+      "sha256": "64c1b34b147f7c680d425b1fbd566334a406c3a8f32a706e7d54bb61fdc97cee"
+    },
+    {
+      "path": "dashboard/src/pages/ModuleLearning.tsx",
+      "filename": "ModuleLearning.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 10616,
+      "modified": "2026-10-13T11:10:25.857Z",
+      "sha256": "38631ed892a7c54767a82ab518713a6a4d51d93b0a1f47820623ce366e94509d"
+    },
+    {
+      "path": "dashboard/src/pages/QuestionPaperBank.tsx",
+      "filename": "QuestionPaperBank.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 8841,
+      "modified": "2026-10-13T11:10:49.163Z",
+      "sha256": "c2a1649ca5f795576e6246ef564638492bc6cee56bc06bd30b24dbff0971b2bb"
+    },
+    {
+      "path": "dashboard/src/pages/ResearchExplorer.tsx",
+      "filename": "ResearchExplorer.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 6305,
+      "modified": "2026-10-13T11:34:17.893Z",
+      "sha256": "d91b2a31d5f00e970b77c8c060807395629fe6be36431ff15a6ded635c1b6927"
+    },
+    {
+      "path": "dashboard/src/pages/SlideDownloadCenter.tsx",
+      "filename": "SlideDownloadCenter.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 9390,
+      "modified": "2026-10-13T11:12:59.087Z",
+      "sha256": "b8fa01d3d8a687718a1a87e7e2f15ea50435f20a8845751b6f44f62218938917"
+    },
+    {
+      "path": "dashboard/src/pages/SubjectExplorer.tsx",
+      "filename": "SubjectExplorer.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 9921,
+      "modified": "2026-10-13T11:09:08.465Z",
+      "sha256": "714f344a36ca82d17cbaa9ed97b115ccf8b7b3c2d577496dbef8a416c59040bc"
+    },
+    {
+      "path": "dashboard/src/pages/TeachingPlanExplorer.tsx",
+      "filename": "TeachingPlanExplorer.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 11241,
+      "modified": "2026-10-13T11:16:39.423Z",
+      "sha256": "4ae8f3082d18c1cdfb96b4613b41f30baa6f487bcd210070dc00e560ccc5357d"
+    },
+    {
+      "path": "dashboard/src/pages/VirtualLabs.tsx",
+      "filename": "VirtualLabs.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 3114,
+      "modified": "2026-10-13T11:29:57.405Z",
+      "sha256": "233f6357ddd01d4bfc64c922b3137ea398c12f61b5b0047b2c23e86d1dd0fe0b"
+    },
+    {
+      "path": "dashboard/src/services/excelGenerator.ts",
+      "filename": "excelGenerator.ts",
+      "ext": ".ts",
+      "sizeBytes": 2469,
+      "modified": "2026-10-13T11:15:19.642Z",
+      "sha256": "5485a43477f8d7aa901954204eb1ab5fd959cfd1082effab7e0f5b3423419295"
+    },
+    {
+      "path": "dashboard/src/services/pptxGenerator.ts",
+      "filename": "pptxGenerator.ts",
+      "ext": ".ts",
+      "sizeBytes": 11932,
+      "modified": "2026-10-13T11:12:33.671Z",
+      "sha256": "4ebaff650c4ba3cc5d696e5025de42b1568e7c6d7efc205719cf8048a326b884"
+    },
+    {
+      "path": "dashboard/src/services/speechNarration.ts",
+      "filename": "speechNarration.ts",
+      "ext": ".ts",
+      "sizeBytes": 1346,
+      "modified": "2026-10-13T11:24:25.978Z",
+      "sha256": "49ac4f86b3419e5123a3aa342a3965c3796d95c5695ffb32f2218edee01a60eb"
+    },
+    {
+      "path": "dashboard/src/tests/EarlyLearningGames.test.ts",
+      "filename": "EarlyLearningGames.test.ts",
+      "ext": ".ts",
+      "sizeBytes": 689,
+      "modified": "2026-10-13T11:26:26.582Z",
+      "sha256": "d2145f23ea0f7541ad5fa5579ea2299ce80f0936c367abe3a08ae27a681e1bae"
+    },
+    {
+      "path": "dashboard/src/tests/KnowledgeGraph.test.ts",
+      "filename": "KnowledgeGraph.test.ts",
+      "ext": ".ts",
+      "sizeBytes": 949,
+      "modified": "2026-10-13T11:23:45.911Z",
+      "sha256": "f27b28a610d4b1286390b1a899fa5d07c3a56f217997dd8de97808a883a6216e"
+    },
+    {
+      "path": "dashboard/src/tests/pptxGenerator.test.ts",
+      "filename": "pptxGenerator.test.ts",
+      "ext": ".ts",
+      "sizeBytes": 752,
+      "modified": "2026-10-13T11:13:08.738Z",
+      "sha256": "d5e803de461361aa1dbc12300d4086e8e87e8e97e132057e12a0502a6306ad8a"
+    },
+    {
+      "path": "dashboard/src/tests/QuestionPaperBank.test.ts",
+      "filename": "QuestionPaperBank.test.ts",
+      "ext": ".ts",
+      "sizeBytes": 1218,
+      "modified": "2026-10-13T11:11:22.520Z",
+      "sha256": "1e164c6e3c2190c4c844e8a31741deca62259c0bb8c28a13c49829ac91377a64"
+    },
+    {
+      "path": "dashboard/src/tests/QuizEngine.test.ts",
+      "filename": "QuizEngine.test.ts",
+      "ext": ".ts",
+      "sizeBytes": 1144,
+      "modified": "2026-10-13T11:20:03.522Z",
+      "sha256": "da2ef55d0a648d15e7b0e61af24d522a9bbeae4103e23db63dd7ef81586b2438"
+    },
+    {
+      "path": "dashboard/src/tests/ResearchAndCareer.test.ts",
+      "filename": "ResearchAndCareer.test.ts",
+      "ext": ".ts",
+      "sizeBytes": 1078,
+      "modified": "2026-10-13T11:35:04.176Z",
+      "sha256": "3340feb7e5189d771d9157759f5807c6c01ed5c03fc8c41b3580810661a08da5"
+    },
+    {
+      "path": "dashboard/src/tests/Simulations.test.ts",
+      "filename": "Simulations.test.ts",
+      "ext": ".ts",
+      "sizeBytes": 568,
+      "modified": "2026-10-13T11:30:50.641Z",
+      "sha256": "18e167849abf65234b54d6067ff52751b881996723ffaddaf4359a3ef92246b8"
+    },
+    {
+      "path": "dashboard/src/tests/SubjectExplorer.test.ts",
+      "filename": "SubjectExplorer.test.ts",
+      "ext": ".ts",
+      "sizeBytes": 1283,
+      "modified": "2026-10-13T11:09:16.748Z",
+      "sha256": "afcf4725b03d4ab219ad610e417376a27e8b57013dcdabf8f37a79590199ceef"
+    },
+    {
+      "path": "dashboard/src/tests/teachingPlanValidation.test.ts",
+      "filename": "teachingPlanValidation.test.ts",
+      "ext": ".ts",
+      "sizeBytes": 1499,
+      "modified": "2026-10-13T11:16:57.602Z",
+      "sha256": "ae8af644463b9f9e6318279e84358a5fad43a773b7e8ff95865fd438f2ed06d3"
+    },
+    {
+      "path": "dashboard/src/tests/ThemeContext.test.ts",
+      "filename": "ThemeContext.test.ts",
+      "ext": ".ts",
+      "sizeBytes": 994,
+      "modified": "2026-10-13T11:06:15.810Z",
+      "sha256": "5c24364ce7bb1bfb3ca9edae00ea76d8012da53d1bbd08aa4123f7e4a8d5859e"
+    },
+    {
+      "path": "dashboard/src/types/academic.ts",
+      "filename": "academic.ts",
+      "ext": ".ts",
+      "sizeBytes": 1252,
+      "modified": "2026-10-13T11:06:39.831Z",
+      "sha256": "1fa05df7ff2536420ac1b3a611e9d64e24dbd409b4c91b876c9c550dcec89660"
+    },
+    {
+      "path": "dashboard/src/types/theme.ts",
+      "filename": "theme.ts",
+      "ext": ".ts",
+      "sizeBytes": 2731,
+      "modified": "2026-10-13T11:05:06.260Z",
+      "sha256": "9bb0321f173c27cc88be164cf01ee906a91c8bb6e4bdb4fa711aa0bd906a79e7"
+    },
+    {
+      "path": "dashboard/tailwind.config.js",
+      "filename": "tailwind.config.js",
+      "ext": ".js",
+      "sizeBytes": 570,
+      "modified": "2026-10-13T11:04:12.789Z",
+      "sha256": "afe5fcf44489370698f2466d5f1c4d0af12e233198d097615d91d877da037494"
+    },
+    {
+      "path": "dashboard/tsconfig.json",
+      "filename": "tsconfig.json",
+      "ext": ".json",
+      "sizeBytes": 511,
+      "modified": "2026-10-13T11:04:03.296Z",
+      "sha256": "aba9f74f69078d70698da5307a9c4551db26fff2bf60502a225baf0dee19930d"
+    },
+    {
+      "path": "dashboard/vite.config.ts",
+      "filename": "vite.config.ts",
+      "ext": ".ts",
+      "sizeBytes": 183,
+      "modified": "2026-10-13T11:03:47.577Z",
+      "sha256": "566f79187342485d814f305a91ad2198f245bdcd6352ab397f029f46cda4f46d"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-10-13-ktu-smart-learning-ecosystem.md",
+      "filename": "2026-10-13-ktu-smart-learning-ecosystem.md",
+      "ext": ".md",
+      "sizeBytes": 20508,
+      "modified": "2026-10-13T11:00:22.019Z",
+      "sha256": "c9d5799cee1203b8b4df7457739e33e55e3e875a8c874828b45493706f36b392"
+    },
+    {
+      "path": "README.md",
+      "filename": "README.md",
+      "ext": ".md",
+      "sizeBytes": 2940,
+      "modified": "2026-10-13T11:02:37.644Z",
+      "sha256": "7b464f44e8b17204e2265ed64bc7c1a8ef676f46f7557b48993408d172b7d651"
+    },
+    {
+      "path": "resource-index.json",
+      "filename": "resource-index.json",
+      "ext": ".json",
+      "sizeBytes": 33420,
+      "modified": "2026-10-13T11:02:37.575Z",
+      "sha256": "aefd3c6b83d7b714c3461cae5ec8320d3477ebcefaece878ae680649dd0952c2"
+    },
+    {
+      "path": "scripts/create_subject_structure.js",
+      "filename": "create_subject_structure.js",
+      "ext": ".js",
+      "sizeBytes": 1732,
+      "modified": "2026-10-13T11:02:45.877Z",
+      "sha256": "34df02795f5399a6742348172bdd0d46837e1fc74c27ae8e9d193ba4ebc66329"
+    },
+    {
+      "path": "scripts/generate_audit_and_reorganize.js",
+      "filename": "generate_audit_and_reorganize.js",
+      "ext": ".js",
+      "sizeBytes": 17581,
+      "modified": "2026-10-13T11:02:28.869Z",
+      "sha256": "9db6e6d7d8e46144aaae526f07a9776184311fafd1d3ee886d6301dbc4b0ff00"
+    },
+    {
+      "path": "scripts/organize_repository.js",
+      "filename": "organize_repository.js",
+      "ext": ".js",
+      "sizeBytes": 7337,
+      "modified": "2026-10-13T12:00:09.547Z",
+      "sha256": "cf47d376a80b13c6590e9759f79ec1f138013929faffce581e4318cbcd5c0b4e"
+    },
+    {
+      "path": "scripts/security_audit.js",
+      "filename": "security_audit.js",
+      "ext": ".js",
+      "sizeBytes": 2377,
+      "modified": "2026-10-13T11:58:38.895Z",
+      "sha256": "f6e8475f4bfdee2ecb5111dace1540c48956aa2671eda52add76172948237836"
+    },
+    {
+      "path": "scripts/update_index.js",
+      "filename": "update_index.js",
+      "ext": ".js",
+      "sizeBytes": 2032,
+      "modified": "2026-10-13T12:00:33.222Z",
+      "sha256": "666229b8311ee9efa22925b2f87e5b27bed750afec234812745e07bf1e0971cc"
+    },
+    {
+      "path": "shared-assets/career-certifications/Most Asked 50 MCP Interview Questions and Answers.pdf",
+      "filename": "Most Asked 50 MCP Interview Questions and Answers.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 194875,
+      "modified": "2026-10-12T11:13:46.557Z",
+      "sha256": "d67592d6a6366cfd1c0766692d906899c028a59d181108dae74464665d5bf44c"
+    },
+    {
+      "path": "shared-assets/career-certifications/NVIDIA-Certified Professional Al Operations.pdf",
+      "filename": "NVIDIA-Certified Professional Al Operations.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 1636443,
+      "modified": "2026-10-12T11:14:12.997Z",
+      "sha256": "83bd141ffa3d7790f2d31668dbf0b4e39536a5a8644d03a1a608079ea1d85e66"
+    },
+    {
+      "path": "shared-assets/documents/DOC-20260610-WA0025..pdf",
+      "filename": "DOC-20260610-WA0025..pdf",
+      "ext": ".pdf",
+      "sizeBytes": 9470019,
+      "modified": "2026-10-13T09:24:38.876Z",
+      "sha256": "741cb4df5800cf29e2039fe876cdfef955ff637f8e7a0762cd031687ae613d1b"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.1 Basic OOP concepts.ppt",
+      "filename": "1.1 Basic OOP concepts.ppt",
+      "ext": ".ppt",
+      "sizeBytes": 2411520,
+      "modified": "2026-10-13T09:26:52.441Z",
+      "sha256": "655031dc6bc02947e155feda7c96decadbf6479566b219b461619e388107c746"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.10 Array, String and Vector classes.pptx",
+      "filename": "1.10 Array, String and Vector classes.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 226582,
+      "modified": "2026-10-13T09:26:19.156Z",
+      "sha256": "4104ef27ba541089d58d7b173d95729628cae8277024499ef50e8afebd9beff9"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.11 class,object,refernce, method(editted).ppt",
+      "filename": "1.11 class,object,refernce, method(editted).ppt",
+      "ext": ".ppt",
+      "sizeBytes": 558592,
+      "modified": "2026-10-13T09:26:16.062Z",
+      "sha256": "064125fa12f83f242756d046e7f40df453e487ae32ed0e41a0ff9f443ddd9b5c"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.12 constructor this.ppt",
+      "filename": "1.12 constructor this.ppt",
+      "ext": ".ppt",
+      "sizeBytes": 290816,
+      "modified": "2026-10-13T09:26:29.249Z",
+      "sha256": "203f6ec1ba697463471a4763c6655f7ca858af212912e2ba6bdad993ee0a45ee"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.13 accerss specifiers.pptx",
+      "filename": "1.13 accerss specifiers.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 191319,
+      "modified": "2026-10-13T09:26:13.670Z",
+      "sha256": "40aabcc0c478b050284688e81510db6491c03730fa680e957383cd4d39e2e14a"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.14  ABSTRACT CLASS.pptx",
+      "filename": "1.14  ABSTRACT CLASS.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 178630,
+      "modified": "2026-10-13T09:26:28.334Z",
+      "sha256": "6e597ddf861d87b3f44e7cb7cf9ac966676cd976d9cfa4b25c7ec8cd582204b7"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.15 interface.ppt",
+      "filename": "1.15 interface.ppt",
+      "ext": ".ppt",
+      "sizeBytes": 253440,
+      "modified": "2026-10-13T09:26:26.087Z",
+      "sha256": "57e8b58adabafd6c34c00db6b0874ad6585fbf3b116c29bfd17119fadaf6bd7f"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.16 command line arguments.ppt",
+      "filename": "1.16 command line arguments.ppt",
+      "ext": ".ppt",
+      "sizeBytes": 240640,
+      "modified": "2026-10-13T09:26:23.719Z",
+      "sha256": "855eda737f288ce8e6c15ca7c0873e70cb2768c721172f092893e751fba358db"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.17 class loader.pptx",
+      "filename": "1.17 class loader.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 43879,
+      "modified": "2026-10-13T09:26:12.651Z",
+      "sha256": "17b894d582a159b2eb9966b2a731a52ba00edfe2761d7c34b24a1353e4c09817"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.2 Introduction java (upto JVM).ppt",
+      "filename": "1.2 Introduction java (upto JVM).ppt",
+      "ext": ".ppt",
+      "sizeBytes": 686592,
+      "modified": "2026-10-13T09:26:48.453Z",
+      "sha256": "9501d177db93c07aca3b92cef77c6bc98f3c1322e26b265900c2ea95090e2f48"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.3  PRIMITIVE DATATYPE.pptx",
+      "filename": "1.3  PRIMITIVE DATATYPE.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 132527,
+      "modified": "2026-10-13T09:26:46.276Z",
+      "sha256": "2781c050ce19f8c91f7123efe43f7d07a0a8c2243e46875d90394a7be20fd2ab"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.4 Wrapper types.pptx",
+      "filename": "1.4 Wrapper types.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 50362,
+      "modified": "2026-10-13T09:26:43.779Z",
+      "sha256": "051a950a0ec6c97109758a937474d61c9fc82f44a0be3c2a227729d65c42eba8"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.5 Autoboxing.pptx",
+      "filename": "1.5 Autoboxing.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 53145,
+      "modified": "2026-10-13T09:26:42.663Z",
+      "sha256": "92b11320efac474acdc0090194b573a6f937a5d52dde53defe488fa024e481ce"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.6 OPERATORS.pptx",
+      "filename": "1.6 OPERATORS.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 582799,
+      "modified": "2026-10-13T09:26:44.454Z",
+      "sha256": "5542acffc076ae4e27212910e032096d7f4e1ede0ec482d7e3886c0c8eccad79"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.7 CONROL STATEMENTS.pptx",
+      "filename": "1.7 CONROL STATEMENTS.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 466095,
+      "modified": "2026-10-13T09:26:37.889Z",
+      "sha256": "6f1877df07b4bf290b404348bef2a30c759e1c590bbdb23975c84442c1b485a3"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.8 LITERALS.pptx",
+      "filename": "1.8 LITERALS.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 132364,
+      "modified": "2026-10-13T09:26:32.749Z",
+      "sha256": "71d8ccc9ab3de34a2dd01226de69338b4a7d39cf27dcd1dd3a25ad268d074202"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/1.9 Type casting.pptx",
+      "filename": "1.9 Type casting.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 91974,
+      "modified": "2026-10-13T09:26:19.481Z",
+      "sha256": "c5d6f57d0ee3f437e417f220af6a6a3195a77432d4366b0eb26de59fd260d868"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-01/presentations/Introduction OOP- procedure oriented object oriented.pptx",
+      "filename": "Introduction OOP- procedure oriented object oriented.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 332660,
+      "modified": "2026-10-13T09:26:54.348Z",
+      "sha256": "b4e89407656eef2a147ea39a4ce6a91cc30ae086e90bc8700257e3daf73ca422"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-02/presentations/2.1 POLYMORPHISM-METHOD OVERLOADING, USING OBJECT AS PARAMETER.pptx",
+      "filename": "2.1 POLYMORPHISM-METHOD OVERLOADING, USING OBJECT AS PARAMETER.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 150743,
+      "modified": "2026-10-13T09:27:12.791Z",
+      "sha256": "1aea3618d2e0efefc39ea6f00c7a9fd8991478166cdacbc10a6e11ce89d07a24"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-02/presentations/2.2 returning objects,recursion static member.pptx",
+      "filename": "2.2 returning objects,recursion static member.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 312582,
+      "modified": "2026-10-13T09:27:16.047Z",
+      "sha256": "9b1ee3bbbf00f4ef7cd7de32b825cd076cfea19093ec86bedd3ea6f166fbfd5a"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-02/presentations/2.3 final variables inner class.pptx",
+      "filename": "2.3 final variables inner class.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 193220,
+      "modified": "2026-10-13T09:27:14.258Z",
+      "sha256": "310ef27f36843d3b904867e544f6c960fc399c612c091793da2b5d6e1cf1fb49"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-02/presentations/2.4 inheritance.pptx",
+      "filename": "2.4 inheritance.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 314430,
+      "modified": "2026-10-13T09:27:17.321Z",
+      "sha256": "8cd9f807088218952ec3264aa6a81c9d831ee4f1f0ca56e14e0e19dc9eddafc4"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-02/presentations/2.5 calling order of constructor.pptx",
+      "filename": "2.5 calling order of constructor.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 220486,
+      "modified": "2026-10-13T09:27:19.341Z",
+      "sha256": "21984bf2557bca6672375e44ca6e5c844abb1a9234e7764f3daee2543c17efc6"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-03/presentations/M3 - 2 - Interfaces REVISED.ppt",
+      "filename": "M3 - 2 - Interfaces REVISED.ppt",
+      "ext": ".ppt",
+      "sizeBytes": 258048,
+      "modified": "2026-10-13T09:27:36.427Z",
+      "sha256": "e997decfcb5e7d68eee8d4ec8d3f6387327611fe51778748fcf0dd181a35ff46"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-03/presentations/M3 - 3 (rev)EXCEPTION HANDLING(checked, unchecked, try,catch).pptx",
+      "filename": "M3 - 3 (rev)EXCEPTION HANDLING(checked, unchecked, try,catch).pptx",
+      "ext": ".pptx",
+      "sizeBytes": 671600,
+      "modified": "2026-10-13T09:27:42.248Z",
+      "sha256": "97063620a5c45b27bfcfb369a054a2b4e4657eb49f3948ebfab16a4f4c73f2e9"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-03/presentations/M3 - 5 throw, throws and finally.ppt",
+      "filename": "M3 - 5 throw, throws and finally.ppt",
+      "ext": ".ppt",
+      "sizeBytes": 277504,
+      "modified": "2026-10-13T09:27:44.443Z",
+      "sha256": "5022d8bc7514a3ccaf92be459ca0971beff199d1bf370388db3cf60850071b32"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-03/presentations/M3-6 l create new user defined exception OOP.pptx",
+      "filename": "M3-6 l create new user defined exception OOP.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 49067,
+      "modified": "2026-10-13T09:27:42.555Z",
+      "sha256": "5e38ec8dbf6930ac6e80105cd517f1f86f7dae66603aa5bb7c4dac575876dc49"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-04/presentations/M4 -1 -Overview AWT  Swings fundamentals, Swing Key Features.pptx",
+      "filename": "M4 -1 -Overview AWT  Swings fundamentals, Swing Key Features.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 329798,
+      "modified": "2026-10-13T09:28:30.144Z",
+      "sha256": "903ccaa417928b07e682ed25f6ade3cf8bfbe84c80255672dc0a023d4571e885"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-04/presentations/M4 -2 - MVC, Swing Controls, Components and Containers.pptx",
+      "filename": "M4 -2 - MVC, Swing Controls, Components and Containers.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 293601,
+      "modified": "2026-10-13T09:28:28.401Z",
+      "sha256": "953633259e2b48648ad0c0c8f9ceab105db90132f1e15835dbaf5faab5d2dfef"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-04/presentations/M4 -3 - Swing packagesExploring Swings –JFrame, JLabel, The Swing Buttons, JTextField - Copy.pptx",
+      "filename": "M4 -3 - Swing packagesExploring Swings –JFrame, JLabel, The Swing Buttons, JTextField - Copy.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 500109,
+      "modified": "2026-10-13T09:28:27.880Z",
+      "sha256": "39b49535a8a8de42df56b40b485eb2c21ae89019bb053e20bfd5b45f4c6148b2"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-04/presentations/M4 -4-  Event Handling in Swings..pptx",
+      "filename": "M4 -4-  Event Handling in Swings..pptx",
+      "ext": ".pptx",
+      "sizeBytes": 138529,
+      "modified": "2026-10-13T09:28:23.801Z",
+      "sha256": "6e3aa44196ace6c0b3bf2f83a941afb1586d649e2288525dad9aa0aae983825a"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-04/presentations/M4 -5 Swing Layout Managers.pptx",
+      "filename": "M4 -5 Swing Layout Managers.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 399425,
+      "modified": "2026-10-13T09:28:22.150Z",
+      "sha256": "3dc990f4306a40dd0f7fae973089c6419a873c307b6f1b0cbe00fd7ea3fb4e3c"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-04/presentations/M4 -6 -Event handling Event Handling Mechanisms Delegation Event.pptx",
+      "filename": "M4 -6 -Event handling Event Handling Mechanisms Delegation Event.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 215787,
+      "modified": "2026-10-13T09:28:21.329Z",
+      "sha256": "0d176722dca678e12c9b599e31b1f484aecdf61afed527d07e82bab0aa5fb235"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-04/presentations/M4 -7-Event Classes.pptx",
+      "filename": "M4 -7-Event Classes.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 255894,
+      "modified": "2026-10-13T09:28:19.939Z",
+      "sha256": "f1b384f5c828f45e41b5bc866bd9ef209ac761772eaa70ec3b924c4c786e1ab2"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-04/presentations/M4 -8 REVISED -Sources of Events, Event Listener Interfaces, Using the Delegation.pptx",
+      "filename": "M4 -8 REVISED -Sources of Events, Event Listener Interfaces, Using the Delegation.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 268313,
+      "modified": "2026-10-13T09:28:17.117Z",
+      "sha256": "0aade3c4183f8585193f34e0a412a53de9428040983301f3c59fcc676d3601a3"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/modules/module-05/presentations/M5 - 9(revised)- JDBC overview, Creating and Executing Queries – create table,.pptx",
+      "filename": "M5 - 9(revised)- JDBC overview, Creating and Executing Queries – create table,.pptx",
+      "ext": ".pptx",
+      "sizeBytes": 738233,
+      "modified": "2026-10-13T09:28:13.991Z",
+      "sha256": "859207b7b04e97850ac78d0ba7c2c56b52b2a3f191cd8f493c61bc4865b06d12"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/supplementary/design patteens.pdf",
+      "filename": "design patteens.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 4708638,
+      "modified": "2026-10-13T09:27:37.969Z",
+      "sha256": "bea06f76dbe595cfb3e893016d64aef52895a8ffd093b157aa3d3d8687c33cdf"
+    },
+    {
+      "path": "subjects/cst205-object-oriented-programming/supplementary/SOLID principles module 4 oops.pdf",
+      "filename": "SOLID principles module 4 oops.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 5567005,
+      "modified": "2026-10-13T09:28:16.425Z",
+      "sha256": "2dd6f8470f466eed02968c0eb8dd350203e1771220aa4135eecfb8fdd990bd72"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/industry-applications/MOGO_FINAL_Project_Report.pdf",
+      "filename": "MOGO_FINAL_Project_Report.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 398466,
+      "modified": "2026-10-13T08:29:31.517Z",
+      "sha256": "45969d15b5027f9b75318eb0af0e0d2016d0757fc85f93a4c0237968fe111c3b"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/laboratory/OSPF_Routing.pdf",
+      "filename": "OSPF_Routing.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 79946,
+      "modified": "2026-10-13T08:39:54.744Z",
+      "sha256": "c2b9d4f62e7065d2f973d86337aa29ac7b0898c5aa9fcb123c1f1a573e0319c3"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/laboratory/RIPv2_Routing.pdf",
+      "filename": "RIPv2_Routing.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 77515,
+      "modified": "2026-10-13T08:39:58.123Z",
+      "sha256": "41cf45e24dbf190a6aa3b31c812e0bf1e9bd03e69b001ef50b25e33164f1c2a2"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/modules/module-04/notes/MODULE 4 (1).pdf",
+      "filename": "MODULE 4 (1).pdf",
+      "ext": ".pdf",
+      "sizeBytes": 6826586,
+      "modified": "2026-10-13T08:40:10.246Z",
+      "sha256": "044326ea871fe04f6ae9a561d31b3b7bcd1c816b4faa571009a78ff8b19268d4"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/modules/module-04/notes/module 4.docx",
+      "filename": "module 4.docx",
+      "ext": ".docx",
+      "sizeBytes": 347736,
+      "modified": "2026-10-13T08:30:20.294Z",
+      "sha256": "61ec4b6dfb66beed2343dafee899c0df445a8933e38573cb5074829e99915f40"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/modules/module-04/notes/MODULE IV Notes FINAL.pdf",
+      "filename": "MODULE IV Notes FINAL.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 3243324,
+      "modified": "2026-10-13T09:23:17.821Z",
+      "sha256": "65407da9a912ae2907f7b4a9ff3f2d8119e01e5f5ed2b0c1159f0b3ea0c7d1f3"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/modules/module-04/presentations/MODULE 4 .pptx.pdf",
+      "filename": "MODULE 4 .pptx.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 3186635,
+      "modified": "2026-10-13T08:42:47.807Z",
+      "sha256": "55e3db52de34dcd4f47d6bab6ced8e2ca1877c40b2d608a4c0c96deb7b861ad8"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/modules/module-04/presentations/module 4 mc (1).pptx",
+      "filename": "module 4 mc (1).pptx",
+      "ext": ".pptx",
+      "sizeBytes": 3431734,
+      "modified": "2026-10-13T08:30:20.244Z",
+      "sha256": "e9f90f0f2c0248736efd108867ceda53b76e9973536aeb06cee9962b1667fc4b"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/modules/module-04/question-bank/second series question bank.pdf",
+      "filename": "second series question bank.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 86883,
+      "modified": "2026-10-13T08:30:00.332Z",
+      "sha256": "b6d92d21a8221ff76f7593b98f8863995d620ee04779207de4b84b9a3f1c239e"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/answer-keys/B2 CST303 CN QP SCHEME1-Dec 2022.pdf",
+      "filename": "B2 CST303 CN QP SCHEME1-Dec 2022.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 779143,
+      "modified": "2026-10-13T08:41:25.073Z",
+      "sha256": "eb394c9fa840faf002fca5ca95d5c175c755cbfaebba92cddfc6a3809c3a94ce"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/answer-keys/CST303-DRAFT SCHEME1.pdf",
+      "filename": "CST303-DRAFT SCHEME1.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 697731,
+      "modified": "2026-10-13T08:41:16.986Z",
+      "sha256": "aaeec913431ce27f3e423f546c1a4c470f8dd5c01598089ec695d5e84724e0b4"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/model-papers/PCCST501_Computer_Networks_Model_Paper_Set_1.pdf",
+      "filename": "PCCST501_Computer_Networks_Model_Paper_Set_1.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 36948,
+      "modified": "2026-10-13T08:39:10.272Z",
+      "sha256": "efe03b8e1bfe3df059a2ada310dea1e305d2b0834060bb80875a62712cd093c1"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/model-papers/PCCST501_Computer_Networks_Model_Paper_Set_2.pdf",
+      "filename": "PCCST501_Computer_Networks_Model_Paper_Set_2.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 36234,
+      "modified": "2026-10-13T08:39:15.021Z",
+      "sha256": "b1d718afe4213aad3cb6c9cffd98b751dcead77ed4b1580139c9bbaf44ecfa2f"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/model-papers/PCCST501_Computer_Networks_Model_Paper_Set_3.pdf",
+      "filename": "PCCST501_Computer_Networks_Model_Paper_Set_3.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 36238,
+      "modified": "2026-10-13T08:39:18.559Z",
+      "sha256": "77efc16b27c2a04d1e1e45a1360cacd328a88b65d5ec574bf0afc630a6f9b928"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/model-papers/PCCST501_Computer_Networks_Model_Paper_Set_4.pdf",
+      "filename": "PCCST501_Computer_Networks_Model_Paper_Set_4.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 36440,
+      "modified": "2026-10-13T08:39:22.622Z",
+      "sha256": "b191173138c9bb41cf5cdab65052515e1977e73be4ab554019bdc74a403d84fc"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/model-papers/PCCST501_Computer_Networks_Model_Paper_Set_5.pdf",
+      "filename": "PCCST501_Computer_Networks_Model_Paper_Set_5.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 36121,
+      "modified": "2026-10-13T08:39:26.595Z",
+      "sha256": "4564fa54e0f5a23a0793b9b96f2af513e57711e5663ccfc9a8a1b1a2f4d31cdc"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/previous-year/B1 CST303 CN QP - Dec 2022.pdf",
+      "filename": "B1 CST303 CN QP - Dec 2022.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 70825,
+      "modified": "2026-10-13T08:41:07.984Z",
+      "sha256": "b0e0db10b496eb94eee93ab73ba05257c1accbf12e1d9e219067a9882dd98b00"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/previous-year/B1 CST303 CN QP1 - Dec 2022.pdf",
+      "filename": "B1 CST303 CN QP1 - Dec 2022.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 70826,
+      "modified": "2026-10-13T08:41:00.539Z",
+      "sha256": "3e746000b538586c4592756ae764244e08e2bfa809fff82909a5b1c21a0a135c"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/previous-year/CST303 COMPUTER NETWORKS, DECEMBER 2021 (1).pdf",
+      "filename": "CST303 COMPUTER NETWORKS, DECEMBER 2021 (1).pdf",
+      "ext": ".pdf",
+      "sizeBytes": 1868109,
+      "modified": "2026-10-13T08:41:03.647Z",
+      "sha256": "463a15aeee208effd8aa52e45b5ef4921caedfcaae536e22e83a11a57181da00"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/previous-year/CST303-QP (2).pdf",
+      "filename": "CST303-QP (2).pdf",
+      "ext": ".pdf",
+      "sizeBytes": 67774,
+      "modified": "2026-10-13T08:41:18.589Z",
+      "sha256": "a1e8c51e5c953a746668626c8fa7ddbe29dbb2b8598c9e3ec3fd67bcee4c8815"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/previous-year/CST303-QP (4).pdf",
+      "filename": "CST303-QP (4).pdf",
+      "ext": ".pdf",
+      "sizeBytes": 495582,
+      "modified": "2026-10-13T08:41:11.842Z",
+      "sha256": "b5dda8eeb0da152ae706e5add2aa8802d9e774b5c04d1240c55b5d027dc68968"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/previous-year/CST303-QP.pdf",
+      "filename": "CST303-QP.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 48540,
+      "modified": "2026-10-13T08:41:32.728Z",
+      "sha256": "bfd0feb54a73f73f53445207bbc7f0b2bc2425a0302f8009c6ffbc2a7dc7bc63"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/previous-year/q3.pdf",
+      "filename": "q3.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 236906,
+      "modified": "2026-10-13T08:41:13.383Z",
+      "sha256": "73e324665fc72df27d61c7ad14a2c5c63a30001ae804bcda9c1d83dfb538a686"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/previous-year/Qp-2022.pdf",
+      "filename": "Qp-2022.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 103950,
+      "modified": "2026-10-13T08:41:26.491Z",
+      "sha256": "702be296fc688d179b22e9f6056155306563b6cb820298f727d450514847095c"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/previous-year/qstn 1.pdf",
+      "filename": "qstn 1.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 172745,
+      "modified": "2026-10-13T08:41:42.595Z",
+      "sha256": "f488ad5226ac0d463cbaf59f234316a45fff7b6e5e4d297d9cb2c38cbffc2f3d"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/previous-year/qstn2.pdf",
+      "filename": "qstn2.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 172744,
+      "modified": "2026-10-13T08:41:29.564Z",
+      "sha256": "026b38bfa38099b55c84a64c8fb7673d75291820e990f1af90f1228df6955cee"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/previous-year/qstn3.pdf",
+      "filename": "qstn3.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 236906,
+      "modified": "2026-10-13T08:41:21.568Z",
+      "sha256": "2b0e727a2a428cdaa3234008aa77d395a821304204ceb854a36efcca94d7f9fb"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/previous-year/s6-b-tech-computer-networks-april-2018.pdf",
+      "filename": "s6-b-tech-computer-networks-april-2018.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 71035,
+      "modified": "2026-10-13T08:41:39.446Z",
+      "sha256": "1b8e8ac64ca4df56563843d7f943cef8861fc866e7e9c383c02114c30b5eac48"
+    },
+    {
+      "path": "subjects/cst303-computer-networks/question-papers/previous-year/s6-cs-computer-networks-may-2019-1.pdf",
+      "filename": "s6-cs-computer-networks-may-2019-1.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 69399,
+      "modified": "2026-10-13T08:41:05.356Z",
+      "sha256": "7ad179676398701abe1f6641428a3039d1432ec43f90040f41778cf17d9a60c5"
+    },
+    {
+      "path": "subjects/cst305-artificial-intelligence/references/AI Guide Textbook .pdf",
+      "filename": "AI Guide Textbook .pdf",
+      "ext": ".pdf",
+      "sizeBytes": 22420362,
+      "modified": "2026-10-13T09:19:40.736Z",
+      "sha256": "83e3ce254176539b17aa5e69049216c3e82f73f225032948a7124e7e9b13d251"
+    },
+    {
+      "path": "subjects/cst305-artificial-intelligence/references/AI Textbook.pdf",
+      "filename": "AI Textbook.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 20876815,
+      "modified": "2026-10-13T09:20:52.941Z",
+      "sha256": "0609d012bf123d210c3587d1c1610074f5079217a996299123a2f7872f28a8e9"
+    },
+    {
+      "path": "subjects/cst307-data-mining/modules/module-01/FP GROWTH Mining.pdf",
+      "filename": "FP GROWTH Mining.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 1067092,
+      "modified": "2026-10-13T09:23:02.260Z",
+      "sha256": "68542fcd721c135a6569396be10421e8e22cf22208553ada0531c2c830209e6a"
+    },
+    {
+      "path": "subjects/embedded-systems-stm32/references/Mastering STM32.pdf",
+      "filename": "Mastering STM32.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 38994922,
+      "modified": "2026-10-13T08:31:15.933Z",
+      "sha256": "35d4e7deb8fa877cdf719c5a9bfbe9c36eb35d86283d57b8ca537dc9186597eb"
+    },
+    {
+      "path": "subjects/pcadt502-robotics/modules/module-01/notes/S5 PCADT502 Robotics Module 1.pdf",
+      "filename": "S5 PCADT502 Robotics Module 1.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 655767,
+      "modified": "2026-10-13T08:24:31.331Z",
+      "sha256": "25018a0ba04959587c8025ee356cc0ac4c1233f55b36649e62fc5dfce9904560"
+    },
+    {
+      "path": "subjects/pecst521-software-project-management/modules/module-01/notes/S5 PECST521 SPM Module 1.pdf",
+      "filename": "S5 PECST521 SPM Module 1.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 551115,
+      "modified": "2026-10-13T08:25:06.419Z",
+      "sha256": "ab3face06301acc926c40bfb0689aef1a113d6c1ee4e1541fed65b9dd7e372aa"
+    },
+    {
+      "path": "tests/audit-verification.test.js",
+      "filename": "audit-verification.test.js",
+      "ext": ".js",
+      "sizeBytes": 2075,
+      "modified": "2026-10-13T11:03:13.540Z",
+      "sha256": "2d453bd1c0ad1d078373d237209096c6493bb49df0fb749ae57a88ff177e92a1"
+    }
+  ]
+}
