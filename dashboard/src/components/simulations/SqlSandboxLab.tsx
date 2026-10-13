@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Database, Play, RotateCcw, CheckCircle2 } from 'lucide-react';
 
 const SAMPLE_STUDENTS = [
-  { id: 101, name: 'Aravind Nair', course: 'CST303 Networks', gpa: 8.9, semester: 'S5' },
-  { id: 102, name: 'Ananya Menon', course: 'CST205 Java OOP', gpa: 9.4, semester: 'S3' },
-  { id: 103, name: 'Rahul Varma', course: 'CST303 Networks', gpa: 7.8, semester: 'S5' },
-  { id: 104, name: 'Devika Pillai', course: 'PCADT502 Robotics', gpa: 9.1, semester: 'S5' },
-  { id: 105, name: 'Karthik S', course: 'CST205 Java OOP', gpa: 8.5, semester: 'S3' }
+  { id: 101, name: 'Student 101', course: 'CST303 Networks', gpa: 8.9, semester: 'S5' },
+  { id: 102, name: 'Student 102', course: 'CST205 Java OOP', gpa: 9.4, semester: 'S3' },
+  { id: 103, name: 'Student 103', course: 'CST303 Networks', gpa: 7.8, semester: 'S5' },
+  { id: 104, name: 'Student 104', course: 'PCADT502 Robotics', gpa: 9.1, semester: 'S5' },
+  { id: 105, name: 'Student 105', course: 'CST205 Java OOP', gpa: 8.5, semester: 'S3' }
 ];
 
 export const SqlSandboxLab: React.FC = () => {

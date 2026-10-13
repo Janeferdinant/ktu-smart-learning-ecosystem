@@ -1,12 +1,20 @@
 {
   "metadata": {
-    "generatedAt": "2026-10-13T12:00:41.795Z",
-    "totalFilesIndexed": 153,
+    "generatedAt": "2026-10-13T12:38:08.292Z",
+    "totalFilesIndexed": 194,
     "institution": "APJ Abdul Kalam Technological University (KTU)",
     "department": "Department of Computer Science and Engineering (CSE)",
     "faculty": "Jane Rose | Assistant Professor"
   },
   "inventory": [
+    {
+      "path": ".gitignore",
+      "filename": ".gitignore",
+      "ext": "",
+      "sizeBytes": 400,
+      "modified": "2026-10-13T12:01:42.978Z",
+      "sha256": "c1d97784f42c2f616924019ad3be4593a1a56f0d5e0e175ceab896b37e59f343"
+    },
     {
       "path": ".superpowers/sdd/2026-10-13-ktu-smart-learning-ecosystem/progress.md",
       "filename": "progress.md",
@@ -27,9 +35,9 @@
       "path": "audit-reports/file-inventory.csv",
       "filename": "file-inventory.csv",
       "ext": ".csv",
-      "sizeBytes": 14500,
-      "modified": "2026-10-13T11:02:37.569Z",
-      "sha256": "91c8e1ecfdaa5ff7bbfa91caf6b468aba48d2548e7bf94327841a68820300ed8"
+      "sizeBytes": 32368,
+      "modified": "2026-10-13T12:00:41.796Z",
+      "sha256": "25d8d393e8d485f934e8d991e2fd17bcd5fcafad46a458a4c575da9fabaed1f1"
     },
     {
       "path": "audit-reports/final-audit-report.md",
@@ -48,6 +56,14 @@
       "sha256": "3735d8f2cc440716e90caa21cf25c0b6046038a7975e68bcbe709d1d0cb8f3e5"
     },
     {
+      "path": "dashboard/.gitignore",
+      "filename": ".gitignore",
+      "ext": "",
+      "sizeBytes": 9,
+      "modified": "2026-10-13T12:06:57.961Z",
+      "sha256": "319c3304702d205b9fba52d0f12ce3d388bacdade80ad223c550935fadaa20a6"
+    },
+    {
       "path": "dashboard/index.html",
       "filename": "index.html",
       "ext": ".html",
@@ -59,17 +75,17 @@
       "path": "dashboard/package-lock.json",
       "filename": "package-lock.json",
       "ext": ".json",
-      "sizeBytes": 118326,
-      "modified": "2026-10-13T11:05:51.076Z",
-      "sha256": "895ad7cb7b8d1bf2dad2d592999c6cd264bf7210f57f7cd81c07a705937170c9"
+      "sizeBytes": 127175,
+      "modified": "2026-10-13T12:16:11.862Z",
+      "sha256": "cde4aadc3c629797763dc543d57874119d4d7ab668b3861487b629d02b375d24"
     },
     {
       "path": "dashboard/package.json",
       "filename": "package.json",
       "ext": ".json",
-      "sizeBytes": 774,
-      "modified": "2026-10-13T11:03:39.533Z",
-      "sha256": "50fd08107a3b74ed34d3ebf92a55c5096117a3e5686aeae8914f7fca778f712b"
+      "sizeBytes": 797,
+      "modified": "2026-10-13T12:16:11.717Z",
+      "sha256": "1c19a07cb6664877be75e7e8c720c595a94ef3f07b4213a47124cf60b4319138"
     },
     {
       "path": "dashboard/postcss.config.js",
@@ -78,6 +94,278 @@
       "sizeBytes": 80,
       "modified": "2026-10-13T11:04:19.487Z",
       "sha256": "190c877db466995bf1482f4a16abd06e04a89ede3119341e2a86ff96e1737b27"
+    },
+    {
+      "path": "dashboard/public/academic-resources/B1 CST303 CN QP - Dec 2022.pdf",
+      "filename": "B1 CST303 CN QP - Dec 2022.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 70825,
+      "modified": "2026-10-13T08:41:07.984Z",
+      "sha256": "b0e0db10b496eb94eee93ab73ba05257c1accbf12e1d9e219067a9882dd98b00"
+    },
+    {
+      "path": "dashboard/public/academic-resources/B1 CST303 CN QP1 - Dec 2022.pdf",
+      "filename": "B1 CST303 CN QP1 - Dec 2022.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 70826,
+      "modified": "2026-10-13T08:41:00.539Z",
+      "sha256": "3e746000b538586c4592756ae764244e08e2bfa809fff82909a5b1c21a0a135c"
+    },
+    {
+      "path": "dashboard/public/academic-resources/B2 CST303 CN QP SCHEME1-Dec 2022.pdf",
+      "filename": "B2 CST303 CN QP SCHEME1-Dec 2022.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 779143,
+      "modified": "2026-10-13T08:41:25.073Z",
+      "sha256": "eb394c9fa840faf002fca5ca95d5c175c755cbfaebba92cddfc6a3809c3a94ce"
+    },
+    {
+      "path": "dashboard/public/academic-resources/CST303 COMPUTER NETWORKS, DECEMBER 2021 (1).pdf",
+      "filename": "CST303 COMPUTER NETWORKS, DECEMBER 2021 (1).pdf",
+      "ext": ".pdf",
+      "sizeBytes": 1868109,
+      "modified": "2026-10-13T08:41:03.647Z",
+      "sha256": "463a15aeee208effd8aa52e45b5ef4921caedfcaae536e22e83a11a57181da00"
+    },
+    {
+      "path": "dashboard/public/academic-resources/CST303-DRAFT SCHEME1.pdf",
+      "filename": "CST303-DRAFT SCHEME1.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 697731,
+      "modified": "2026-10-13T08:41:16.986Z",
+      "sha256": "aaeec913431ce27f3e423f546c1a4c470f8dd5c01598089ec695d5e84724e0b4"
+    },
+    {
+      "path": "dashboard/public/academic-resources/CST303-QP (2).pdf",
+      "filename": "CST303-QP (2).pdf",
+      "ext": ".pdf",
+      "sizeBytes": 67774,
+      "modified": "2026-10-13T08:41:18.589Z",
+      "sha256": "a1e8c51e5c953a746668626c8fa7ddbe29dbb2b8598c9e3ec3fd67bcee4c8815"
+    },
+    {
+      "path": "dashboard/public/academic-resources/CST303-QP (4).pdf",
+      "filename": "CST303-QP (4).pdf",
+      "ext": ".pdf",
+      "sizeBytes": 495582,
+      "modified": "2026-10-13T08:41:11.842Z",
+      "sha256": "b5dda8eeb0da152ae706e5add2aa8802d9e774b5c04d1240c55b5d027dc68968"
+    },
+    {
+      "path": "dashboard/public/academic-resources/CST303-QP.pdf",
+      "filename": "CST303-QP.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 48540,
+      "modified": "2026-10-13T08:41:32.728Z",
+      "sha256": "bfd0feb54a73f73f53445207bbc7f0b2bc2425a0302f8009c6ffbc2a7dc7bc63"
+    },
+    {
+      "path": "dashboard/public/academic-resources/design patteens.pdf",
+      "filename": "design patteens.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 4708638,
+      "modified": "2026-10-13T09:27:37.969Z",
+      "sha256": "bea06f76dbe595cfb3e893016d64aef52895a8ffd093b157aa3d3d8687c33cdf"
+    },
+    {
+      "path": "dashboard/public/academic-resources/FP GROWTH Mining.pdf",
+      "filename": "FP GROWTH Mining.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 1067092,
+      "modified": "2026-10-13T09:23:02.260Z",
+      "sha256": "68542fcd721c135a6569396be10421e8e22cf22208553ada0531c2c830209e6a"
+    },
+    {
+      "path": "dashboard/public/academic-resources/MODULE 4 (1).pdf",
+      "filename": "MODULE 4 (1).pdf",
+      "ext": ".pdf",
+      "sizeBytes": 6826586,
+      "modified": "2026-10-13T08:40:10.246Z",
+      "sha256": "044326ea871fe04f6ae9a561d31b3b7bcd1c816b4faa571009a78ff8b19268d4"
+    },
+    {
+      "path": "dashboard/public/academic-resources/MODULE 4 .pptx.pdf",
+      "filename": "MODULE 4 .pptx.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 3186635,
+      "modified": "2026-10-13T08:42:47.807Z",
+      "sha256": "55e3db52de34dcd4f47d6bab6ced8e2ca1877c40b2d608a4c0c96deb7b861ad8"
+    },
+    {
+      "path": "dashboard/public/academic-resources/MODULE IV Notes FINAL.pdf",
+      "filename": "MODULE IV Notes FINAL.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 3243324,
+      "modified": "2026-10-13T09:23:17.821Z",
+      "sha256": "65407da9a912ae2907f7b4a9ff3f2d8119e01e5f5ed2b0c1159f0b3ea0c7d1f3"
+    },
+    {
+      "path": "dashboard/public/academic-resources/MOGO_FINAL_Project_Report.pdf",
+      "filename": "MOGO_FINAL_Project_Report.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 369236,
+      "modified": "2026-10-13T12:36:54.979Z",
+      "sha256": "c29571dc3811826f2badb4aa62f0a26a8c611c8366903c7b6dba107eb94ce974"
+    },
+    {
+      "path": "dashboard/public/academic-resources/Most Asked 50 MCP Interview Questions and Answers.pdf",
+      "filename": "Most Asked 50 MCP Interview Questions and Answers.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 194875,
+      "modified": "2026-10-12T11:13:46.557Z",
+      "sha256": "d67592d6a6366cfd1c0766692d906899c028a59d181108dae74464665d5bf44c"
+    },
+    {
+      "path": "dashboard/public/academic-resources/NVIDIA-Certified Professional Al Operations.pdf",
+      "filename": "NVIDIA-Certified Professional Al Operations.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 1636443,
+      "modified": "2026-10-12T11:14:12.997Z",
+      "sha256": "83bd141ffa3d7790f2d31668dbf0b4e39536a5a8644d03a1a608079ea1d85e66"
+    },
+    {
+      "path": "dashboard/public/academic-resources/OSPF_Routing.pdf",
+      "filename": "OSPF_Routing.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 79946,
+      "modified": "2026-10-13T08:39:54.744Z",
+      "sha256": "c2b9d4f62e7065d2f973d86337aa29ac7b0898c5aa9fcb123c1f1a573e0319c3"
+    },
+    {
+      "path": "dashboard/public/academic-resources/PCCST501_Computer_Networks_Model_Paper_Set_1.pdf",
+      "filename": "PCCST501_Computer_Networks_Model_Paper_Set_1.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 36948,
+      "modified": "2026-10-13T08:39:10.272Z",
+      "sha256": "efe03b8e1bfe3df059a2ada310dea1e305d2b0834060bb80875a62712cd093c1"
+    },
+    {
+      "path": "dashboard/public/academic-resources/PCCST501_Computer_Networks_Model_Paper_Set_2.pdf",
+      "filename": "PCCST501_Computer_Networks_Model_Paper_Set_2.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 36234,
+      "modified": "2026-10-13T08:39:15.021Z",
+      "sha256": "b1d718afe4213aad3cb6c9cffd98b751dcead77ed4b1580139c9bbaf44ecfa2f"
+    },
+    {
+      "path": "dashboard/public/academic-resources/PCCST501_Computer_Networks_Model_Paper_Set_3.pdf",
+      "filename": "PCCST501_Computer_Networks_Model_Paper_Set_3.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 36238,
+      "modified": "2026-10-13T08:39:18.559Z",
+      "sha256": "77efc16b27c2a04d1e1e45a1360cacd328a88b65d5ec574bf0afc630a6f9b928"
+    },
+    {
+      "path": "dashboard/public/academic-resources/PCCST501_Computer_Networks_Model_Paper_Set_4.pdf",
+      "filename": "PCCST501_Computer_Networks_Model_Paper_Set_4.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 36440,
+      "modified": "2026-10-13T08:39:22.622Z",
+      "sha256": "b191173138c9bb41cf5cdab65052515e1977e73be4ab554019bdc74a403d84fc"
+    },
+    {
+      "path": "dashboard/public/academic-resources/PCCST501_Computer_Networks_Model_Paper_Set_5.pdf",
+      "filename": "PCCST501_Computer_Networks_Model_Paper_Set_5.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 36121,
+      "modified": "2026-10-13T08:39:26.595Z",
+      "sha256": "4564fa54e0f5a23a0793b9b96f2af513e57711e5663ccfc9a8a1b1a2f4d31cdc"
+    },
+    {
+      "path": "dashboard/public/academic-resources/q3.pdf",
+      "filename": "q3.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 236906,
+      "modified": "2026-10-13T08:41:13.383Z",
+      "sha256": "73e324665fc72df27d61c7ad14a2c5c63a30001ae804bcda9c1d83dfb538a686"
+    },
+    {
+      "path": "dashboard/public/academic-resources/Qp-2022.pdf",
+      "filename": "Qp-2022.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 103950,
+      "modified": "2026-10-13T08:41:26.491Z",
+      "sha256": "702be296fc688d179b22e9f6056155306563b6cb820298f727d450514847095c"
+    },
+    {
+      "path": "dashboard/public/academic-resources/qstn 1.pdf",
+      "filename": "qstn 1.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 172745,
+      "modified": "2026-10-13T08:41:42.595Z",
+      "sha256": "f488ad5226ac0d463cbaf59f234316a45fff7b6e5e4d297d9cb2c38cbffc2f3d"
+    },
+    {
+      "path": "dashboard/public/academic-resources/qstn2.pdf",
+      "filename": "qstn2.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 172744,
+      "modified": "2026-10-13T08:41:29.564Z",
+      "sha256": "026b38bfa38099b55c84a64c8fb7673d75291820e990f1af90f1228df6955cee"
+    },
+    {
+      "path": "dashboard/public/academic-resources/qstn3.pdf",
+      "filename": "qstn3.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 236906,
+      "modified": "2026-10-13T08:41:21.568Z",
+      "sha256": "2b0e727a2a428cdaa3234008aa77d395a821304204ceb854a36efcca94d7f9fb"
+    },
+    {
+      "path": "dashboard/public/academic-resources/RIPv2_Routing.pdf",
+      "filename": "RIPv2_Routing.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 77515,
+      "modified": "2026-10-13T08:39:58.123Z",
+      "sha256": "41cf45e24dbf190a6aa3b31c812e0bf1e9bd03e69b001ef50b25e33164f1c2a2"
+    },
+    {
+      "path": "dashboard/public/academic-resources/S5 PCADT502 Robotics Module 1.pdf",
+      "filename": "S5 PCADT502 Robotics Module 1.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 655767,
+      "modified": "2026-10-13T08:24:31.331Z",
+      "sha256": "25018a0ba04959587c8025ee356cc0ac4c1233f55b36649e62fc5dfce9904560"
+    },
+    {
+      "path": "dashboard/public/academic-resources/S5 PECST521 SPM Module 1.pdf",
+      "filename": "S5 PECST521 SPM Module 1.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 551115,
+      "modified": "2026-10-13T08:25:06.419Z",
+      "sha256": "ab3face06301acc926c40bfb0689aef1a113d6c1ee4e1541fed65b9dd7e372aa"
+    },
+    {
+      "path": "dashboard/public/academic-resources/s6-b-tech-computer-networks-april-2018.pdf",
+      "filename": "s6-b-tech-computer-networks-april-2018.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 71035,
+      "modified": "2026-10-13T08:41:39.446Z",
+      "sha256": "1b8e8ac64ca4df56563843d7f943cef8861fc866e7e9c383c02114c30b5eac48"
+    },
+    {
+      "path": "dashboard/public/academic-resources/s6-cs-computer-networks-may-2019-1.pdf",
+      "filename": "s6-cs-computer-networks-may-2019-1.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 69399,
+      "modified": "2026-10-13T08:41:05.356Z",
+      "sha256": "7ad179676398701abe1f6641428a3039d1432ec43f90040f41778cf17d9a60c5"
+    },
+    {
+      "path": "dashboard/public/academic-resources/second series question bank.pdf",
+      "filename": "second series question bank.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 86883,
+      "modified": "2026-10-13T08:30:00.332Z",
+      "sha256": "b6d92d21a8221ff76f7593b98f8863995d620ee04779207de4b84b9a3f1c239e"
+    },
+    {
+      "path": "dashboard/public/academic-resources/SOLID principles module 4 oops.pdf",
+      "filename": "SOLID principles module 4 oops.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 5567005,
+      "modified": "2026-10-13T09:28:16.425Z",
+      "sha256": "2dd6f8470f466eed02968c0eb8dd350203e1771220aa4135eecfb8fdd990bd72"
     },
     {
       "path": "dashboard/src/App.tsx",
@@ -155,9 +443,9 @@
       "path": "dashboard/src/components/PdfViewerModal.tsx",
       "filename": "PdfViewerModal.tsx",
       "ext": ".tsx",
-      "sizeBytes": 4810,
-      "modified": "2026-10-13T11:10:00.629Z",
-      "sha256": "f92eadb82576cc8dd6dbf890df778163acc2eb678d683d834cf4584af9d6ce06"
+      "sizeBytes": 4463,
+      "modified": "2026-10-13T12:17:05.981Z",
+      "sha256": "c349196403d810063b24cb2fbedeb2dbbd51f3e64870423d9ad98ed92d41b396"
     },
     {
       "path": "dashboard/src/components/QuizEngine.tsx",
@@ -203,9 +491,9 @@
       "path": "dashboard/src/components/simulations/SqlSandboxLab.tsx",
       "filename": "SqlSandboxLab.tsx",
       "ext": ".tsx",
-      "sizeBytes": 4895,
-      "modified": "2026-10-13T11:29:27.113Z",
-      "sha256": "3a3d7c3000acab5c74f82b7a0bf95a28fae93877a266a3d3e3453d84dcdab1d4"
+      "sizeBytes": 4893,
+      "modified": "2026-10-13T12:37:25.890Z",
+      "sha256": "c9dc1910421920b63fc747abfde8900f2c49975a0db1673db5de8709677239f8"
     },
     {
       "path": "dashboard/src/components/TeachingProgressTracker.tsx",
@@ -299,9 +587,9 @@
       "path": "dashboard/src/pages/AnswerKeySolutions.tsx",
       "filename": "AnswerKeySolutions.tsx",
       "ext": ".tsx",
-      "sizeBytes": 8197,
-      "modified": "2026-10-13T11:11:12.246Z",
-      "sha256": "3bd58a19aaadf9d78c13c7e16a0178cc3889eb0e3c8a34367b33095b94a9b215"
+      "sizeBytes": 8802,
+      "modified": "2026-10-13T12:19:10.133Z",
+      "sha256": "11e0e6ff949f25712e3c9cfd42d537823d852449efb7f4ad93063c3e5b0ae99c"
     },
     {
       "path": "dashboard/src/pages/AssessmentCenter.tsx",
@@ -355,17 +643,17 @@
       "path": "dashboard/src/pages/ModuleLearning.tsx",
       "filename": "ModuleLearning.tsx",
       "ext": ".tsx",
-      "sizeBytes": 10616,
-      "modified": "2026-10-13T11:10:25.857Z",
-      "sha256": "38631ed892a7c54767a82ab518713a6a4d51d93b0a1f47820623ce366e94509d"
+      "sizeBytes": 11138,
+      "modified": "2026-10-13T12:19:43.233Z",
+      "sha256": "71c8bca523053f6b99253bd62f57fa037bd48a86465061d483b2b0c354ea00f7"
     },
     {
       "path": "dashboard/src/pages/QuestionPaperBank.tsx",
       "filename": "QuestionPaperBank.tsx",
       "ext": ".tsx",
-      "sizeBytes": 8841,
-      "modified": "2026-10-13T11:10:49.163Z",
-      "sha256": "c2a1649ca5f795576e6246ef564638492bc6cee56bc06bd30b24dbff0971b2bb"
+      "sizeBytes": 9421,
+      "modified": "2026-10-13T12:18:40.712Z",
+      "sha256": "4a88445a69ec73bc16df9143ac4fadbb89523ef2548c42d29d8d2beb8f9f8289"
     },
     {
       "path": "dashboard/src/pages/ResearchExplorer.tsx",
@@ -379,9 +667,9 @@
       "path": "dashboard/src/pages/SlideDownloadCenter.tsx",
       "filename": "SlideDownloadCenter.tsx",
       "ext": ".tsx",
-      "sizeBytes": 9390,
-      "modified": "2026-10-13T11:12:59.087Z",
-      "sha256": "b8fa01d3d8a687718a1a87e7e2f15ea50435f20a8845751b6f44f62218938917"
+      "sizeBytes": 10971,
+      "modified": "2026-10-13T12:17:52.087Z",
+      "sha256": "9f30918ee64011ad71865bcf5ccf708a9ec6bf918fa5f4bcc21a135c72627d3d"
     },
     {
       "path": "dashboard/src/pages/SubjectExplorer.tsx",
@@ -416,6 +704,14 @@
       "sha256": "5485a43477f8d7aa901954204eb1ab5fd959cfd1082effab7e0f5b3423419295"
     },
     {
+      "path": "dashboard/src/services/pdfService.ts",
+      "filename": "pdfService.ts",
+      "ext": ".ts",
+      "sizeBytes": 11371,
+      "modified": "2026-10-13T12:16:52.971Z",
+      "sha256": "acce3e670b6908bbeadd812bf01849811ea5f6f18e6ea4fa2953699400e874c7"
+    },
+    {
       "path": "dashboard/src/services/pptxGenerator.ts",
       "filename": "pptxGenerator.ts",
       "ext": ".ts",
@@ -446,6 +742,14 @@
       "sizeBytes": 949,
       "modified": "2026-10-13T11:23:45.911Z",
       "sha256": "f27b28a610d4b1286390b1a899fa5d07c3a56f217997dd8de97808a883a6216e"
+    },
+    {
+      "path": "dashboard/src/tests/pdfService.test.ts",
+      "filename": "pdfService.test.ts",
+      "ext": ".ts",
+      "sizeBytes": 875,
+      "modified": "2026-10-13T12:19:56.639Z",
+      "sha256": "65a2b0460c722e8319816093de441693ae6de04b751946684d73662cd1383082"
     },
     {
       "path": "dashboard/src/tests/pptxGenerator.test.ts",
@@ -544,6 +848,14 @@
       "sha256": "aba9f74f69078d70698da5307a9c4551db26fff2bf60502a225baf0dee19930d"
     },
     {
+      "path": "dashboard/vercel.json",
+      "filename": "vercel.json",
+      "ext": ".json",
+      "sizeBytes": 173,
+      "modified": "2026-10-13T12:01:31.387Z",
+      "sha256": "9349bfd587c2aa837ebba494fde3b54e324a9f1276b1843d98bc2d11679485f3"
+    },
+    {
       "path": "dashboard/vite.config.ts",
       "filename": "vite.config.ts",
       "ext": ".ts",
@@ -563,17 +875,25 @@
       "path": "README.md",
       "filename": "README.md",
       "ext": ".md",
-      "sizeBytes": 2940,
-      "modified": "2026-10-13T11:02:37.644Z",
-      "sha256": "7b464f44e8b17204e2265ed64bc7c1a8ef676f46f7557b48993408d172b7d651"
+      "sizeBytes": 9100,
+      "modified": "2026-10-13T12:01:12.599Z",
+      "sha256": "0e5c5f9af86f4333cd54393ff9579c1b77f9ff173c77410b79e38f8fc0a0e98b"
     },
     {
       "path": "resource-index.json",
       "filename": "resource-index.json",
       "ext": ".json",
-      "sizeBytes": 33420,
-      "modified": "2026-10-13T11:02:37.575Z",
-      "sha256": "aefd3c6b83d7b714c3461cae5ec8320d3477ebcefaece878ae680649dd0952c2"
+      "sizeBytes": 49858,
+      "modified": "2026-10-13T12:00:41.802Z",
+      "sha256": "9983f90f4d07e41a2572bb80517b786565f58c7ade9d8a58091ad238002c96da"
+    },
+    {
+      "path": "scripts/copy_academic_pdfs.js",
+      "filename": "copy_academic_pdfs.js",
+      "ext": ".js",
+      "sizeBytes": 1422,
+      "modified": "2026-10-13T12:15:28.753Z",
+      "sha256": "3cf25a335ad0d0f95f99d1167e9bfaa892b8e522bfa46e1e6d51343111222a64"
     },
     {
       "path": "scripts/create_subject_structure.js",
@@ -947,9 +1267,9 @@
       "path": "subjects/cst303-computer-networks/industry-applications/MOGO_FINAL_Project_Report.pdf",
       "filename": "MOGO_FINAL_Project_Report.pdf",
       "ext": ".pdf",
-      "sizeBytes": 398466,
-      "modified": "2026-10-13T08:29:31.517Z",
-      "sha256": "45969d15b5027f9b75318eb0af0e0d2016d0757fc85f93a4c0237968fe111c3b"
+      "sizeBytes": 369236,
+      "modified": "2026-10-13T12:36:54.695Z",
+      "sha256": "226be6ac2a954e9939412d9a7ab2066360621a9097de803da61bd462371b3e51"
     },
     {
       "path": "subjects/cst303-computer-networks/laboratory/OSPF_Routing.pdf",
@@ -1230,6 +1550,14 @@
       "sizeBytes": 2075,
       "modified": "2026-10-13T11:03:13.540Z",
       "sha256": "2d453bd1c0ad1d078373d237209096c6493bb49df0fb749ae57a88ff177e92a1"
+    },
+    {
+      "path": "vercel.json",
+      "filename": "vercel.json",
+      "ext": ".json",
+      "sizeBytes": 263,
+      "modified": "2026-10-13T12:01:22.749Z",
+      "sha256": "c6efc1f8fd7f59f29cc2fc7165d905b12b1909dab59395e8c9f2e2d6799287f4"
     }
   ]
 }
