@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { ACADEMIC_SUBJECTS } from '../data/academicData';
 import { Subject, SubjectModule } from '../types/academic';
 import { generateModulePresentation } from '../services/pptxGenerator';
+import { generateModuleSlidePdf } from '../services/pdfService';
 import { Presentation, Download, CheckCircle, Sun, Sparkles, ShieldCheck, FileText, ArrowDownToLine, Loader2 } from 'lucide-react';
 
 export const SlideDownloadCenter: React.FC = () => {
   const [selectedSubjectId, setSelectedSubjectId] = useState<string>('cst303-computer-networks');
   const [downloadingModule, setDownloadingModule] = useState<number | null>(null);
+  const [downloadingPdfModule, setDownloadingPdfModule] = useState<number | null>(null);
   const [downloadingAll, setDownloadingAll] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
@@ -22,6 +24,19 @@ export const SlideDownloadCenter: React.FC = () => {
       console.error('PPTX generation error:', err);
     } finally {
       setDownloadingModule(null);
+    }
+  };
+
+  const handleDownloadModulePdf = (mod: SubjectModule) => {
+    try {
+      setDownloadingPdfModule(mod.id);
+      generateModuleSlidePdf(currentSubject, mod);
+      setSuccessMessage(`Successfully generated and downloaded: ${currentSubject.code} Module 0${mod.moduleNumber} Light Slides PDF!`);
+      setTimeout(() => setSuccessMessage(null), 5000);
+    } catch (err) {
+      console.error('PDF generation error:', err);
+    } finally {
+      setDownloadingPdfModule(null);
     }
   };
 
@@ -166,23 +181,43 @@ export const SlideDownloadCenter: React.FC = () => {
                   <span className="font-mono">16:9 HD</span>
                 </div>
 
-                <button
-                  onClick={() => handleDownloadModule(mod)}
-                  disabled={isDownloading}
-                  className="w-full py-2.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 flex items-center justify-center gap-2 transition-all disabled:opacity-50"
-                >
-                  {isDownloading ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Generating PPTX...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Download className="w-4 h-4" />
-                      <span>Download Module {mod.moduleNumber} PPTX</span>
-                    </>
-                  )}
-                </button>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    onClick={() => handleDownloadModule(mod)}
+                    disabled={isDownloading}
+                    className="py-2.5 px-3 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 flex items-center justify-center gap-1.5 transition-all disabled:opacity-50"
+                  >
+                    {isDownloading ? (
+                      <>
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        <span>PPTX...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Download className="w-3.5 h-3.5" />
+                        <span>PPTX Deck</span>
+                      </>
+                    )}
+                  </button>
+
+                  <button
+                    onClick={() => handleDownloadModulePdf(mod)}
+                    disabled={downloadingPdfModule === mod.id}
+                    className="py-2.5 px-3 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-700 text-white shadow-md shadow-amber-500/20 flex items-center justify-center gap-1.5 transition-all disabled:opacity-50"
+                  >
+                    {downloadingPdfModule === mod.id ? (
+                      <>
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        <span>PDF...</span>
+                      </>
+                    ) : (
+                      <>
+                        <FileText className="w-3.5 h-3.5" />
+                        <span>PDF Slides</span>
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
           );

@@ -3,6 +3,7 @@ import { ACADEMIC_SUBJECTS } from '../data/academicData';
 import { Subject, QuestionPaper } from '../types/academic';
 import { HelpCircle, Download, CheckCircle, Search, FileText, ArrowRight, ShieldCheck, Filter } from 'lucide-react';
 import { PdfViewerModal } from '../components/PdfViewerModal';
+import { downloadAcademicPdf } from '../services/pdfService';
 
 interface QuestionPaperBankProps {
   onNavigateSection: (sectionId: string) => void;
@@ -149,7 +150,7 @@ export const QuestionPaperBank: React.FC<QuestionPaperBankProps> = ({ onNavigate
                         <span className="text-slate-400 text-[11px]">Unsolved</span>
                       )}
                     </td>
-                    <td className="py-3 px-4 text-right space-x-2">
+                    <td className="py-3 px-4 text-right space-x-2 whitespace-nowrap">
                       {qp.hasSolution && (
                         <button
                           onClick={() => onNavigateSection('answer-keys')}
@@ -160,9 +161,16 @@ export const QuestionPaperBank: React.FC<QuestionPaperBankProps> = ({ onNavigate
                       )}
                       <button
                         onClick={() => setModalPaper(qp)}
-                        className="px-3 py-1 rounded-lg text-[11px] font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-xs"
+                        className="px-2.5 py-1 rounded-lg text-[11px] font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-colors"
                       >
-                        Download PDF
+                        Preview
+                      </button>
+                      <button
+                        onClick={() => downloadAcademicPdf(qp.filename, qp.title, qp.scheme)}
+                        className="px-3 py-1 rounded-lg text-[11px] font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-xs inline-flex items-center gap-1"
+                      >
+                        <Download className="w-3 h-3" />
+                        <span>Download PDF</span>
                       </button>
                     </td>
                   </tr>

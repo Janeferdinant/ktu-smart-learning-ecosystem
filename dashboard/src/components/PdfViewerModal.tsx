@@ -1,6 +1,8 @@
 import React from 'react';
 import { X, FileText, Download, ShieldCheck, ExternalLink } from 'lucide-react';
 
+import { downloadAcademicPdf } from '../services/pdfService';
+
 interface PdfViewerModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -26,17 +28,8 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({
     ? `${(sizeBytes / 1024 / 1024).toFixed(2)} MB`
     : 'Academic Document';
 
-  const handleDownload = () => {
-    // Generate a dummy downloadable blob or link for verified academic resource
-    const blob = new Blob([`%PDF-1.4\n% KTU Academic Resource: ${title}\n% Filename: ${filename}\n% Curated by Jane Rose | Assistant Professor CSE`], { type: 'application/pdf' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  const handleDownload = async () => {
+    await downloadAcademicPdf(filename, title, scheme || 'KTU 2019 Scheme', highlights);
   };
 
   return (

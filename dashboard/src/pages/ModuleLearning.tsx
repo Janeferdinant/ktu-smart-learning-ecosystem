@@ -3,6 +3,7 @@ import { ACADEMIC_SUBJECTS } from '../data/academicData';
 import { Subject, SubjectModule, ModuleResource } from '../types/academic';
 import { Layers, FileText, Presentation, CheckCircle, Clock, BookOpen, Download, ArrowRight, ShieldCheck } from 'lucide-react';
 import { PdfViewerModal } from '../components/PdfViewerModal';
+import { downloadAcademicPdf } from '../services/pdfService';
 
 interface ModuleLearningProps {
   selectedSubject: Subject;
@@ -200,13 +201,21 @@ export const ModuleLearning: React.FC<ModuleLearningProps> = ({
                       </div>
                     </div>
 
-                    <button
-                      onClick={() => setActiveModalResource(res)}
-                      className="w-full py-2 rounded-lg text-xs font-semibold glass-button flex items-center justify-center gap-1.5 hover:border-blue-500"
-                    >
-                      <Download className="w-3.5 h-3.5 text-blue-500" />
-                      <span>Access File</span>
-                    </button>
+                    <div className="grid grid-cols-2 gap-2 pt-1">
+                      <button
+                        onClick={() => setActiveModalResource(res)}
+                        className="py-2 rounded-lg text-[11px] font-semibold glass-button flex items-center justify-center gap-1 hover:border-blue-500"
+                      >
+                        <span>Preview</span>
+                      </button>
+                      <button
+                        onClick={() => downloadAcademicPdf(res.filename, res.name)}
+                        className="py-2 rounded-lg text-[11px] font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-xs flex items-center justify-center gap-1"
+                      >
+                        <Download className="w-3 h-3" />
+                        <span>Download</span>
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>

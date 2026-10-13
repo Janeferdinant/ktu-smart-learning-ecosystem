@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { ACADEMIC_SUBJECTS } from '../data/academicData';
 import { AnswerKeyScheme } from '../types/academic';
-import { CheckCircle2, ShieldCheck, Download, FileText, Award, HelpCircle, Layers } from 'lucide-react';
+import { CheckCircle2, ShieldCheck, Download, FileText, Award, HelpCircle, Layers, Eye } from 'lucide-react';
 import { PdfViewerModal } from '../components/PdfViewerModal';
+import { downloadAcademicPdf } from '../services/pdfService';
 
 export const AnswerKeySolutions: React.FC = () => {
   const [selectedSchemeId, setSelectedSchemeId] = useState<string>('scheme-dec2022');
@@ -80,13 +81,22 @@ export const AnswerKeySolutions: React.FC = () => {
               </div>
             </div>
 
-            <button
-              onClick={() => setModalScheme(activeScheme)}
-              className="px-4 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-500/20 flex items-center gap-2 self-start sm:self-auto"
-            >
-              <Download className="w-4 h-4" />
-              <span>Download Valuation PDF</span>
-            </button>
+            <div className="flex items-center gap-2 self-start sm:self-auto">
+              <button
+                onClick={() => setModalScheme(activeScheme)}
+                className="px-3.5 py-2.5 rounded-xl text-xs font-semibold glass-button flex items-center gap-1.5 hover:border-emerald-500"
+              >
+                <Eye className="w-4 h-4 text-emerald-600" />
+                <span>Rubrics & Preview</span>
+              </button>
+              <button
+                onClick={() => downloadAcademicPdf(activeScheme.filename, activeScheme.title, 'KTU 2019 Scheme', activeScheme.keyHighlights)}
+                className="px-4 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-500/20 flex items-center gap-2"
+              >
+                <Download className="w-4 h-4" />
+                <span>Download Valuation PDF</span>
+              </button>
+            </div>
           </div>
 
           {/* Key Evaluation Highlights */}
