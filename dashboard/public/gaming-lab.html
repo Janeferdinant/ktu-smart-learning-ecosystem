@@ -181,12 +181,12 @@
           <span class="faculty-dept">Department of Computer Science and Engineering (CSE)</span>
         </div>
         <p class="copyright-text">
-          KTU Smart Learning Ecosystem © 2026. Academic Excellence & Open Access. Protected Faculty Intellectual Property.
+          KTU Smart Learning Ecosystem © 2026. Licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)</a>.
         </p>
       </div>
     </footer>
 
-    <!-- Floating Holographic IP Authenticity Seal & Watermark -->
+    <!-- Floating Creative Commons CC BY-NC-ND 4.0 Academic License Badge -->
     <div id="faculty-ip-badge" style="position: fixed; bottom: 20px; right: 20px; z-index: 999; background: rgba(5, 8, 22, 0.92); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 14px; padding: 10px 16px; display: flex; align-items: center; gap: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.6); backdrop-filter: blur(12px); font-family: var(--font-sans); cursor: pointer;" onclick="toggleIpModal()">
       <svg width="34" height="34" viewBox="0 0 120 120" fill="none">
         <polygon points="60,6 106,32 106,88 60,114 14,88 14,32" stroke="#38bdf8" stroke-width="3" stroke-dasharray="6 4"/>
@@ -194,13 +194,15 @@
         <text x="35" y="70" fill="#38bdf8" font-family="monospace" font-weight="900" font-size="28">JRF</text>
       </svg>
       <div>
-        <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #38bdf8; text-transform: uppercase; font-weight: 800; letter-spacing: 0.05em;">Verified Faculty IP</div>
+        <div style="display: flex; gap: 4px; align-items: center; margin-bottom: 2px;">
+          <span style="background: #1e293b; color: #38bdf8; font-family: var(--font-mono); font-size: 0.65rem; font-weight: 800; padding: 1px 4px; border-radius: 4px;">CC BY-NC-ND 4.0</span>
+        </div>
         <div style="font-size: 0.85rem; font-weight: 800; color: #fff;">Jane Rose Ferdinant</div>
         <div style="font-size: 0.72rem; color: #94a3b8;">Asst Professor • CSE</div>
       </div>
     </div>
 
-    <!-- Security IP Modal -->
+    <!-- Creative Commons Academic License Modal -->
     <div id="ip-modal" style="display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.75); backdrop-filter: blur(8px); justify-content: center; align-items: center; padding: 20px;">
       <div style="background: rgba(10, 15, 30, 0.96); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 16px; padding: 32px; max-width: 520px; width: 100%; box-shadow: 0 16px 48px rgba(0,0,0,0.8); position: relative;">
         <button onclick="toggleIpModal()" style="position: absolute; top: 16px; right: 16px; background: none; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer;">✕</button>
@@ -211,27 +213,33 @@
             <text x="35" y="70" fill="#38bdf8" font-family="monospace" font-weight="900" font-size="28">JRF</text>
           </svg>
           <div>
-            <span style="font-family: var(--font-mono); font-size: 0.7rem; color: #34d399; text-transform: uppercase; font-weight: 800;">Cryptographic IP Certificate</span>
+            <span style="font-family: var(--font-mono); font-size: 0.7rem; color: #34d399; text-transform: uppercase; font-weight: 800;">Academic License Deed</span>
             <h3 style="font-size: 1.3rem; font-weight: 900; color: #fff; margin-top: 2px;">Jane Rose Ferdinant</h3>
-            <p style="font-size: 0.78rem; color: #94a3b8;">Assistant Professor | Department of CSE</p>
+            <p style="font-size: 0.78rem; color: #94a3b8;">Assistant Professor | Department of Computer Science & Engineering</p>
           </div>
         </div>
-        <div style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.6; space-y-3;">
-          <div style="background: rgba(255,255,255,0.04); padding: 12px; border-radius: 8px; margin-bottom: 10px;">
-            <strong style="color: #f59e0b; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;">Intellectual Property Notice:</strong>
-            <p style="margin-top: 4px;">All curriculum designs, interactive simulators, and solved problems in this ecosystem are the intellectual property of <strong>Jane Rose Ferdinant</strong>. Open academic use is granted for study; unauthorized scraping, commercial redistribution, or removal of watermark is strictly prohibited.</p>
+        <div style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.6;">
+          <div style="background: rgba(255,255,255,0.04); padding: 14px; border-radius: 8px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 800; color: #38bdf8; margin-bottom: 4px;">
+              Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International
+            </div>
+            <p style="margin-top: 4px; font-size: 0.82rem;">
+              You are free to view and share this academic material for educational purposes under the following terms:
+            </p>
+            <ul style="margin-top: 6px; padding-left: 18px; font-size: 0.8rem; color: #94a3b8;">
+              <li><strong style="color: #34d399;">Attribution (BY):</strong> Must give appropriate credit to Jane Rose Ferdinant and KTU CSE.</li>
+              <li><strong style="color: #f59e0b;">NonCommercial (NC):</strong> You may not use this material for commercial monetization.</li>
+              <li><strong style="color: #f43f5e;">NoDerivatives (ND):</strong> If you remix, transform, or build upon the material, you may not distribute the modified material.</li>
+            </ul>
           </div>
-          <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #64748b;">
-            Provenance SHA-256: <span style="color: #38bdf8;">a94b31f7c2...e8103</span><br>
-            APJ Abdul Kalam Technological University (KTU)
+          <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 0.75rem; color: #64748b;">
+            <span>APJ Abdul Kalam Technological University (KTU)</span>
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: underline;">Read Full Legal Deed ↗</a>
           </div>
         </div>
         <button onclick="toggleIpModal()" style="margin-top: 20px; width: 100%; padding: 10px; border-radius: 8px; background: #38bdf8; color: #020617; font-weight: 800; font-size: 0.85rem; border: none; cursor: pointer;">Close & Continue</button>
       </div>
     </div>
-
-    <!-- Repeating Watermark CSS Overlay -->
-    <div style="pointer-events: none; position: fixed; inset: 0; z-index: 1; opacity: 0.03; background-image: url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='360' height='200' viewBox='0 0 360 200'><text x='20' y='100' fill='%2338bdf8' font-family='monospace' font-weight='bold' font-size='12' transform='rotate(-22 180 100)'>JANE ROSE FERDINANT • ASST PROF CSE • © 2026</text></svg>&quot;); background-repeat: repeat;"></div>
 
   </div>
 
@@ -1046,23 +1054,6 @@
       modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
       sfx.click();
     }
-
-    // Anti-piracy context menu & copy citation handlers
-    document.addEventListener('contextmenu', (e) => {
-      if (e.target && (e.target.tagName === 'CANVAS' || e.target.closest('.game-arena-box'))) {
-        e.preventDefault();
-        alert('🔒 Protected Faculty IP — Jane Rose Ferdinant, Assistant Professor CSE.');
-      }
-    });
-
-    document.addEventListener('copy', (e) => {
-      const sel = window.getSelection().toString();
-      if (sel && sel.length > 80 && e.clipboardData) {
-        const citation = '\n\n/* [KTU Smart Learning Ecosystem] Sourced from Jane Rose Ferdinant, Assistant Professor CSE. © 2026. */';
-        e.clipboardData.setData('text/plain', sel + citation);
-        e.preventDefault();
-      }
-    });
 
     // Initializer
     window.addEventListener('DOMContentLoaded', () => {

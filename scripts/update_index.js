@@ -52,7 +52,9 @@ const resourceIndex = {
     totalFilesIndexed: allFiles.length,
     institution: "APJ Abdul Kalam Technological University (KTU)",
     department: "Department of Computer Science and Engineering (CSE)",
-    faculty: "Jane Rose | Assistant Professor"
+    faculty: "Jane Rose Ferdinant | Assistant Professor",
+    license: "CC BY-NC-ND 4.0 (Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International)",
+    licenseUrl: "https://creativecommons.org/licenses/by-nc-nd/4.0/"
   },
   inventory: allFiles
 };

@@ -1,8 +1,8 @@
 # KTU Smart Learning Ecosystem
 
 > **APJ Abdul Kalam Technological University (KTU) — Computer Science and Engineering**  
-> **Faculty Lead:** Jane Rose | Assistant Professor | Department of Computer Science and Engineering (CSE)  
-> **License:** Academic & Educational Open Access
+> **Faculty Lead:** Jane Rose Ferdinant | Assistant Professor | Department of Computer Science and Engineering (CSE)  
+> **License:** [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ---
 
@@ -152,11 +152,21 @@ npx vercel --prod
 ---
 
 ## 🏛️ Academic Leadership & Citation
+ 
+ ```
+ Jane Rose Ferdinant
+ Assistant Professor, Department of Computer Science and Engineering (CSE)
+ APJ Abdul Kalam Technological University (KTU)
+ ```
+ 
+---
 
-```
-Jane Rose
-Assistant Professor, Department of Computer Science and Engineering (CSE)
-APJ Abdul Kalam Technological University (KTU)
-```
+## 📜 Intellectual Property & Licensing
+
+This work is licensed under the **[Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/)**.
+
+- **Attribution (BY):** You must give appropriate credit to **Jane Rose Ferdinant, Assistant Professor, Department of CSE**, provide a link to the license, and indicate if changes were made.
+- **NonCommercial (NC):** You may not use the material for commercial purposes, paid courses, or monetized platforms.
+- **NoDerivatives (ND):** If you remix, transform, or build upon the material, you may not distribute the modified material.
 
 *For educational inquiries, academic curriculum contributions, or collaborative research, refer to the institution faculty directory.*

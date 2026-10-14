@@ -28,6 +28,14 @@ export const Footer: React.FC = () => {
           <p className="text-xs text-slate-500 dark:text-slate-400">
             APJ Abdul Kalam Technological University (KTU) — Official Course Delivery & Learning Portal
           </p>
+          <div className="pt-1 flex flex-wrap items-center justify-center md:justify-start gap-2 text-[11px] text-slate-500">
+            <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono font-bold text-cyan-400">
+              CC BY-NC-ND 4.0
+            </span>
+            <span>
+              Licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International</a>.
+            </span>
+          </div>
         </div>
 
         <div className="flex flex-col sm:flex-row items-center gap-4 text-xs text-slate-600 dark:text-slate-400">
