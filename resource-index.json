@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "generatedAt": "2026-10-14T02:47:38.264Z",
-    "totalFilesIndexed": 231,
+    "generatedAt": "2026-10-14T03:32:22.435Z",
+    "totalFilesIndexed": 233,
     "institution": "APJ Abdul Kalam Technological University (KTU)",
     "department": "Department of Computer Science and Engineering (CSE)",
     "faculty": "Jane Rose Ferdinant | Assistant Professor",
@@ -37,9 +37,9 @@
       "path": "audit-reports/file-inventory.csv",
       "filename": "file-inventory.csv",
       "ext": ".csv",
-      "sizeBytes": 47408,
-      "modified": "2026-10-14T02:38:17.048Z",
-      "sha256": "67ebf44858dd7613ff60493f2b9491064d5b0939f800229459a21aa6474d20e1"
+      "sizeBytes": 47407,
+      "modified": "2026-10-14T02:47:38.264Z",
+      "sha256": "ac18661119140264f4d077770be389ab13428cedbfba4e5660cb4ab88c1825ac"
     },
     {
       "path": "audit-reports/final-audit-report.md",
@@ -70,8 +70,8 @@
       "filename": "CST303_Module_01_Slides_Light.pdf",
       "ext": ".pdf",
       "sizeBytes": 16697,
-      "modified": "2026-10-14T02:40:24.798Z",
-      "sha256": "bb8fa679c9bb900d1694e6b4a7ef6edfe5f7ea48bb45dbfec7acf77deda65745"
+      "modified": "2026-10-14T03:29:07.019Z",
+      "sha256": "5397ba753c4f27fbac5aa42c688f6d91f50805e09f4d3888e5880ec830054e5e"
     },
     {
       "path": "dashboard/index.html",
@@ -389,9 +389,9 @@
       "path": "dashboard/public/subjects/common/showcase-engine.js",
       "filename": "showcase-engine.js",
       "ext": ".js",
-      "sizeBytes": 11376,
-      "modified": "2026-10-13T15:57:00.918Z",
-      "sha256": "2098be2c716d5a4f75d435c47b9fb6c77419dd06801e3b64921bb04ccf061950"
+      "sizeBytes": 11948,
+      "modified": "2026-10-14T03:31:22.717Z",
+      "sha256": "408bb1f1c1c0f9f18f86268d472cd4c354e7430aba0d5b109a67079e89471a65"
     },
     {
       "path": "dashboard/public/subjects/common/showcase-theme.css",
@@ -613,9 +613,9 @@
       "path": "dashboard/src/components/simulations/NeuralNetwork3D.tsx",
       "filename": "NeuralNetwork3D.tsx",
       "ext": ".tsx",
-      "sizeBytes": 7496,
-      "modified": "2026-10-13T11:27:27.366Z",
-      "sha256": "56630a224ac7984da0c5c2a233abd037523a33c45f209b19fe88c3279f557c10"
+      "sizeBytes": 33469,
+      "modified": "2026-10-14T03:30:14.115Z",
+      "sha256": "9bded2aeaf025024911bfbe7631a02614328ef754669491bbabc0e60943d2aed"
     },
     {
       "path": "dashboard/src/components/simulations/PacketRoutingSimulation.tsx",
@@ -629,9 +629,9 @@
       "path": "dashboard/src/components/simulations/SqlSandboxLab.tsx",
       "filename": "SqlSandboxLab.tsx",
       "ext": ".tsx",
-      "sizeBytes": 4893,
-      "modified": "2026-10-13T12:37:25.890Z",
-      "sha256": "c9dc1910421920b63fc747abfde8900f2c49975a0db1673db5de8709677239f8"
+      "sizeBytes": 8035,
+      "modified": "2026-10-14T03:30:51.673Z",
+      "sha256": "23c34d1f09932995fb5227ce8f25509d476fe142fb8ea503854814098eb99716"
     },
     {
       "path": "dashboard/src/components/TeachingProgressTracker.tsx",
@@ -858,6 +858,14 @@
       "sha256": "5485a43477f8d7aa901954204eb1ab5fd959cfd1082effab7e0f5b3423419295"
     },
     {
+      "path": "dashboard/src/services/neuralMath.ts",
+      "filename": "neuralMath.ts",
+      "ext": ".ts",
+      "sizeBytes": 6101,
+      "modified": "2026-10-14T03:28:11.129Z",
+      "sha256": "4e3a72861e2d88fa09a8fb9da067c4cc1e5fbfa869b93450f1bc991312914634"
+    },
+    {
       "path": "dashboard/src/services/pdfService.ts",
       "filename": "pdfService.ts",
       "ext": ".ts",
@@ -880,6 +888,14 @@
       "sizeBytes": 1346,
       "modified": "2026-10-13T11:24:25.978Z",
       "sha256": "49ac4f86b3419e5123a3aa342a3965c3796d95c5695ffb32f2218edee01a60eb"
+    },
+    {
+      "path": "dashboard/src/services/sqlEngine.ts",
+      "filename": "sqlEngine.ts",
+      "ext": ".ts",
+      "sizeBytes": 7506,
+      "modified": "2026-10-14T03:28:35.776Z",
+      "sha256": "bf74881c24fe20191fabd382f1f95ecf025eaa8999e0218bdbe046bd881ca869"
     },
     {
       "path": "dashboard/src/tests/EarlyLearningGames.test.ts",
@@ -949,9 +965,9 @@
       "path": "dashboard/src/tests/Simulations.test.ts",
       "filename": "Simulations.test.ts",
       "ext": ".ts",
-      "sizeBytes": 568,
-      "modified": "2026-10-13T11:30:50.641Z",
-      "sha256": "18e167849abf65234b54d6067ff52751b881996723ffaddaf4359a3ef92246b8"
+      "sizeBytes": 2728,
+      "modified": "2026-10-14T03:28:55.791Z",
+      "sha256": "e3efe8f0b3e6b856564e16d288258888fbb7a9b7e49d21acab037b6661441a2e"
     },
     {
       "path": "dashboard/src/tests/SubjectExplorer.test.ts",
@@ -1006,8 +1022,8 @@
       "filename": "test_qp.pdf",
       "ext": ".pdf",
       "sizeBytes": 7953,
-      "modified": "2026-10-14T02:40:24.789Z",
-      "sha256": "e959a68396163310fbfdc58c08c01513ec7cd0e9a187123a664ac88e14b9c22f"
+      "modified": "2026-10-14T03:29:07.009Z",
+      "sha256": "16b91de2c7f803594b5f0544c3c817220529077abae4cbbf149ef88a5c8513e9"
     },
     {
       "path": "dashboard/tsconfig.json",
@@ -1085,9 +1101,9 @@
       "path": "resource-index.json",
       "filename": "resource-index.json",
       "ext": ".json",
-      "sizeBytes": 73827,
-      "modified": "2026-10-14T02:38:17.048Z",
-      "sha256": "c058364f56a49daa0c4f7401e512795a4596a108a0dd27bd97072812afda0d9b"
+      "sizeBytes": 73826,
+      "modified": "2026-10-14T02:47:38.268Z",
+      "sha256": "5d858c5170599f920961e427daab3d4d4693780c217d29644f63fc89943b525f"
     },
     {
       "path": "scripts/copy_academic_pdfs.js",
@@ -1181,17 +1197,17 @@
       "path": "subjects/common/gaming-lab.html",
       "filename": "gaming-lab.html",
       "ext": ".html",
-      "sizeBytes": 60315,
-      "modified": "2026-10-14T02:47:30.848Z",
-      "sha256": "50d40514014155e155f109fdc273a470c2d141a2ec0e7dd85d2ca58af3f5c53b"
+      "sizeBytes": 60283,
+      "modified": "2026-10-14T03:32:09.599Z",
+      "sha256": "4e1102dbcfd6958ca6c42a0e36f71e9035fc185cbe6c1a4ae9779618da041e68"
     },
     {
       "path": "subjects/common/showcase-engine.js",
       "filename": "showcase-engine.js",
       "ext": ".js",
-      "sizeBytes": 11376,
-      "modified": "2026-10-13T15:57:00.918Z",
-      "sha256": "2098be2c716d5a4f75d435c47b9fb6c77419dd06801e3b64921bb04ccf061950"
+      "sizeBytes": 11948,
+      "modified": "2026-10-14T03:31:10.306Z",
+      "sha256": "408bb1f1c1c0f9f18f86268d472cd4c354e7430aba0d5b109a67079e89471a65"
     },
     {
       "path": "subjects/common/showcase-theme.css",

@@ -93,6 +93,19 @@ function init3DBackground() {
   function animate() {
     ctx.clearRect(0, 0, width, height);
 
+    // Dynamic Mouse Spotlight Light Effect
+    if (mouse.x !== null) {
+      const radialGlow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, mouse.radius * 1.6);
+      radialGlow.addColorStop(0, 'rgba(56, 189, 248, 0.22)');
+      radialGlow.addColorStop(0.4, 'rgba(168, 85, 247, 0.12)');
+      radialGlow.addColorStop(0.8, 'rgba(16, 185, 129, 0.04)');
+      radialGlow.addColorStop(1, 'transparent');
+      ctx.fillStyle = radialGlow;
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, mouse.radius * 1.6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
       p.x += p.vx;
