@@ -13,11 +13,15 @@ import { OopRoboArenaGame } from '../components/games/OopRoboArenaGame';
 import { SubnetDijkstraRushGame } from '../components/games/SubnetDijkstraRushGame';
 import { DistributedDeadlockCommandGame } from '../components/games/DistributedDeadlockCommandGame';
 
-type ActiveTab = 'simulation' | 'theory' | 'numerical' | 'workbench' | 'vivavoce' | 'enterprise';
+import { BILINGUAL_GAMING_LAB_DATA } from '../data/gamingLabBilingualData';
+import { AnimatedAcademicAvatar } from '../components/games/AnimatedAcademicAvatar';
+
+type ActiveTab = 'simulation' | 'theory' | 'algorithm' | 'numerical' | 'workbench' | 'application' | 'vivavoce' | 'enterprise';
 
 export const GamingLab: React.FC = () => {
   const [selectedAge, setSelectedAge] = useState<number>(10);
   const [activeTab, setActiveTab] = useState<ActiveTab>('simulation');
+  const [activeLanguage, setActiveLanguage] = useState<'en' | 'ml'>('en');
   const [expandedViva, setExpandedViva] = useState<number | null>(1);
 
   // Workbench state for Age 10
@@ -92,6 +96,15 @@ export const GamingLab: React.FC = () => {
         </div>
       </div>
 
+      {/* Interactive Animated Guide Avatar with Bilingual Voiceover */}
+      <AnimatedAcademicAvatar
+        data={BILINGUAL_GAMING_LAB_DATA[selectedAge] || BILINGUAL_GAMING_LAB_DATA[10]}
+        activeLanguage={activeLanguage}
+        onLanguageChange={setActiveLanguage}
+        onExploreAlgorithm={() => setActiveTab('algorithm')}
+        onExploreApplication={() => setActiveTab('application')}
+      />
+
       {/* Main Container with Age Metadata Banner */}
       <div className="glass-panel p-6 space-y-6">
         
@@ -151,7 +164,31 @@ export const GamingLab: React.FC = () => {
             }`}
           >
             <BookOpen className="w-3.5 h-3.5" />
-            <span>Theoretical Foundations & Proofs</span>
+            <span>Theoretical Foundations</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('algorithm')}
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+              activeTab === 'algorithm'
+                ? 'bg-blue-500/20 text-blue-400 border border-blue-500/40 shadow-sm'
+                : 'text-slate-400 hover:text-white hover:bg-white/5'
+            }`}
+          >
+            <Terminal className="w-3.5 h-3.5" />
+            <span>{activeLanguage === 'en' ? 'Algorithm Walkthrough' : 'അൽഗോരിതം വിവരണം'}</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('application')}
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+              activeTab === 'application'
+                ? 'bg-purple-500/20 text-purple-400 border border-purple-500/40 shadow-sm'
+                : 'text-slate-400 hover:text-white hover:bg-white/5'
+            }`}
+          >
+            <Award className="w-3.5 h-3.5" />
+            <span>{activeLanguage === 'en' ? 'Industrial Applications' : 'വ്യവസായിക ഉപയോഗങ്ങൾ'}</span>
           </button>
 
           <button
@@ -756,19 +793,121 @@ export const GamingLab: React.FC = () => {
           </div>
         )}
 
+        {/* Tab: Bilingual Algorithm Walkthrough */}
+        {activeTab === 'algorithm' && (
+          <div className="space-y-6 animate-in fade-in duration-200">
+            <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 space-y-1">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-bold text-blue-400 flex items-center gap-2">
+                  <Terminal className="w-4 h-4" />
+                  <span>{BILINGUAL_GAMING_LAB_DATA[selectedAge]?.[activeLanguage].algorithmTitle}</span>
+                </h3>
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300">
+                  {activeLanguage === 'en' ? 'Step-by-Step Logic' : 'പഠന ഘട്ടങ്ങൾ'}
+                </span>
+              </div>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                {BILINGUAL_GAMING_LAB_DATA[selectedAge]?.[activeLanguage].algorithmOverview}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {BILINGUAL_GAMING_LAB_DATA[selectedAge]?.[activeLanguage].algorithmSteps.map((step) => (
+                <div key={step.stepNumber} className="p-4 rounded-xl bg-slate-900/70 border border-slate-800 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-mono font-bold text-cyan-400">
+                      Step {step.stepNumber}: {step.title}
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    {step.detail}
+                  </p>
+                  {step.codeOrFormula && (
+                    <div className="p-2 rounded bg-black/50 border border-slate-800 font-mono text-[11px] text-emerald-400 overflow-x-auto">
+                      <code>{step.codeOrFormula}</code>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-800 text-xs text-slate-400 flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-amber-400 flex-shrink-0" />
+              <span><strong>Key Takeaway:</strong> {BILINGUAL_GAMING_LAB_DATA[selectedAge]?.[activeLanguage].keyConceptSummary}</span>
+            </div>
+          </div>
+        )}
+
+        {/* Tab: Real-World Industrial Applications */}
+        {activeTab === 'application' && (
+          <div className="space-y-6 animate-in fade-in duration-200">
+            <div className="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20 space-y-1">
+              <h3 className="text-sm font-bold text-purple-400 flex items-center gap-2">
+                <Award className="w-4 h-4" />
+                <span>{activeLanguage === 'en' ? 'Industrial Deployments & Engineering Implementations' : 'വ്യാവസായിക ഉപയോഗങ്ങളും സാങ്കേതിക മാതൃകകളും'}</span>
+              </h3>
+              <p className="text-xs text-slate-300">
+                {activeLanguage === 'en' 
+                  ? 'Real-world production environments and mission-critical systems relying on these exact algorithmic formulations.'
+                  : 'ഈ അൽഗോരിതങ്ങൾ പ്രായോഗികമായി ഉപയോഗിക്കുന്ന ലോകോത്തര ടെക്നോളജി സിസ്റ്റങ്ങളും കമ്പനികളും.'}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {BILINGUAL_GAMING_LAB_DATA[selectedAge]?.[activeLanguage].realWorldApplications.map((app, idx) => (
+                <div key={idx} className="p-5 rounded-xl bg-slate-900/70 border border-slate-800 space-y-3">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-purple-400 font-bold block">
+                        {app.domain}
+                      </span>
+                      <h4 className="text-sm font-bold text-white mt-0.5">{app.title}</h4>
+                    </div>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/15 text-purple-300 border border-purple-500/30 flex-shrink-0">
+                      {app.organizationOrStandard}
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    {app.description}
+                  </p>
+                  <div className="pt-2 border-t border-slate-800/80 flex items-center gap-2 text-xs text-emerald-400 font-mono">
+                    <span className="text-[10px] text-slate-400 font-sans uppercase">Impact:</span>
+                    <span>{app.impactMetrics}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
       </div>
 
-      {/* Official Faculty Footer Branding */}
-      <footer className="glass-panel p-6 border-slate-800 text-center text-xs text-slate-400 space-y-2">
-        <div className="font-bold text-slate-200">
-          KTU Smart Learning Ecosystem • Progressive STEM Gaming Laboratory
+      {/* Official Faculty Footer Branding & Academic Licensing */}
+      <footer className="glass-panel p-6 border-slate-800 text-center text-xs text-slate-400 space-y-3">
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <span className="font-bold text-slate-200">
+            KTU Smart Learning Ecosystem • Progressive STEM Gaming Laboratory
+          </span>
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/25">
+            <ShieldCheck className="w-3 h-3 text-cyan-400" />
+            <span>CC BY-NC-ND 4.0 Academic License</span>
+          </span>
         </div>
         <div>
-          Curated & Mentored by: <strong className="text-cyan-400">Jane Rose Ferdinant</strong> | Assistant Professor | Department of Computer Science and Engineering (CSE)
+          Authored & Curated by: <strong className="text-cyan-400">Jane Rose Ferdinant</strong> | Assistant Professor | Department of Computer Science and Engineering (CSE)
         </div>
-        <div className="text-[11px] text-slate-500">
-          Grounded in APJ Abdul Kalam Technological University (KTU) B.Tech CSE Syllabus & IEEE Pedagogical Guidelines
-        </div>
+        <p className="text-[11px] text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          Licensed under{' '}
+          <a
+            href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-cyan-400 hover:underline font-medium"
+          >
+            Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
+          </a>
+          . Grounded in APJ Abdul Kalam Technological University (KTU) B.Tech CSE Syllabus & IEEE Curriculum Standards. Commercial exploitation, unauthorized redistribution, and unlicensed modification are prohibited.
+        </p>
       </footer>
 
     </div>

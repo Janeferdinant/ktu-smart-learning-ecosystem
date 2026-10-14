@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Jane Rose Ferdinant, Assistant Professor, Department of Computer Science and Engineering (CSE)">
+  <meta name="copyright" content="© 2026 Jane Rose Ferdinant. Licensed under CC BY-NC-ND 4.0">
+  <meta name="license" content="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+  <meta name="dcterms.rights" content="Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License">
+  <meta name="dcterms.creator" content="Jane Rose Ferdinant">
+  <title>Progressive STEM Gaming Lab (Ages 10–21+) | KTU Smart Learning Ecosystem</title>
+  <link rel="stylesheet" href="./showcase-theme.css">
+  <style>
+    .age-pill-btn {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-muted);
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: var(--transition-smooth);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .age-pill-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--accent-cyan);
+      color: #fff;
+    }
+    .age-pill-btn.active {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
+    }
+    .game-arena-box {
+      background: rgba(5, 8, 17, 0.85);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--glass-shadow);
+    }
+    .cmd-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid var(--accent-cyan);
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: #38bdf8;
+      cursor: pointer;
+    }
+    .depth-tab-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .depth-tab-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    .depth-tab-btn.active {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+    .step-card {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    .viva-card {
+      background: rgba(244, 63, 94, 0.05);
+      border: 1px solid rgba(244, 63, 94, 0.2);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+  
+    /* Animated Avatar Styles */
+    @keyframes avatarBlink { 0%, 90%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+    @keyframes avatarTalk { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(2.2); } }
+    @keyframes auraPulse { 0%, 100% { opacity: 0.25; transform: scale(1); } 50% { opacity: 0.65; transform: scale(1.08); } }
+    @keyframes waveBounce { 0%, 100% { height: 4px; } 50% { height: 16px; } }
+    .avatar-eye { transform-origin: center; animation: avatarBlink 4s infinite; }
+    .avatar-speaking .avatar-mouth { transform-origin: 50px 70px; animation: avatarTalk 0.25s infinite; }
+    .avatar-speaking .avatar-aura { animation: auraPulse 1.5s infinite; }
+    .avatar-speaking .avatar-eq { display: flex !important; }
+    .eq-bar:nth-child(1) { animation: waveBounce 0.4s infinite ease-in-out; }
+    .eq-bar:nth-child(2) { animation: waveBounce 0.6s infinite ease-in-out 0.1s; }
+    .eq-bar:nth-child(3) { animation: waveBounce 0.5s infinite ease-in-out 0.2s; }
+    .eq-bar:nth-child(4) { animation: waveBounce 0.7s infinite ease-in-out 0.15s; }
+  
+  </style>
+</head>
+<body data-theme="liquid">
+
+  <!-- 3D Particle Canvas -->
+  <canvas id="canvas-3d-bg"></canvas>
+
+  <div class="showcase-container">
+    
+    <!-- Header -->
+    <header class="showcase-header">
+      <div class="brand-badge">
+        <span class="code-pill">GAMING LAB</span>
+        <span class="subject-title-header">Progressive STEM Arcade (Ages 10 – 21+)</span>
+      </div>
+      <div class="header-actions">
+        <div class="academic-license-pill" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 9999px; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan);">
+          <svg style="width: 14px; height: 14px; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <span>CC BY-NC-ND 4.0 Academic License</span>
+        </div>
+        <select id="theme-select" class="glass-select">
+          <option value="liquid">Liquid Glass</option>
+          <option value="aurora">Aurora Glass</option>
+          <option value="frosted">Frosted Glass</option>
+          <option value="cyber">Neon Cyber Glass</option>
+          <option value="obsidian">Deep Obsidian Glass</option>
+          <option value="holographic">Holographic Glass</option>
+        </select>
+        <a href="../../index.html" class="glass-btn glass-btn-primary">← Learning Hub</a>
+      </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-section" style="grid-template-columns: 1fr; margin-bottom: 28px;">
+      <div class="hero-glass-card" style="padding: 32px 40px;">
+        <span class="hero-tag">Age-Adaptive Pedagogical Framework</span>
+        <h1 class="hero-h1">Interactive Engineering & Logic Arcade</h1>
+        <p class="hero-desc">
+          Curated by <strong>Jane Rose Ferdinant</strong>, Assistant Professor, Department of Computer Science and Engineering (CSE). Experience the physical, algorithmic, and mathematical concepts of the KTU curriculum through developmental gaming stages — from visual logic at Age 10 to distributed systems deadlocks at Age 21.
+        </p>
+
+        <!-- Age Tier Selector -->
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08);">
+          <button class="age-pill-btn active" onclick="switchAgeTier(10, this)">
+            <span>Age 10</span>
+            <span style="font-size: 0.72rem; opacity: 0.8;">Algorithm Rover</span>
+          </button>
+          <button class="age-pill-btn" onclick="switchAgeTier(12, this)">
+            <span>Age 12</span>
+            <span style="font-size: 0.72rem; opacity: 0.8;">Logic Gate Defender</span>
+          </button>
+          <button class="age-pill-btn" onclick="switchAgeTier(15, this)">
+            <span>Age 15</span>
+            <span style="font-size: 0.72rem; opacity: 0.8;">OOP Robo Kinematics</span>
+          </button>
+          <button class="age-pill-btn" onclick="switchAgeTier(18, this)">
+            <span>Age 18</span>
+            <span style="font-size: 0.72rem; opacity: 0.8;">Subnet & Dijkstra SPF</span>
+          </button>
+          <button class="age-pill-btn" onclick="switchAgeTier(21, this)">
+            <span>Age 21</span>
+            <span style="font-size: 0.72rem; opacity: 0.8;">Deadlock & CPM Lead</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    
+    <!-- Animated Academic Avatar with Bilingual Voiceover Guide -->
+    <div class="glass-panel" style="margin-bottom: 24px; padding: 20px 24px; position: relative; overflow: hidden; border-color: rgba(99, 102, 241, 0.35);">
+      <div id="avatar-aura-glow" class="avatar-aura" style="position: absolute; top: -20px; left: -20px; width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, var(--accent-cyan), transparent 70%); filter: blur(25px); opacity: 0.25; pointer-events: none; transition: all 0.5s;"></div>
+      
+      <div id="avatar-container-block" style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 20px; position: relative; z-index: 2;">
+        
+        <!-- Avatar Graphic Container -->
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; flex-shrink: 0;">
+          <div id="avatar-circle-wrapper" class="avatar-circle" style="position: relative; width: 96px; height: 96px; border-radius: 50%; background: #020617; border: 2px solid var(--accent-cyan); overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);">
+            <svg viewBox="0 0 100 100" style="width: 100%; height: 100%; padding: 6px;">
+              <defs>
+                <linearGradient id="avatarGlowHtml_sub" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#1e1b4b" />
+                  <stop offset="100%" stop-color="#0f172a" />
+                </linearGradient>
+                <linearGradient id="visorGradHtml_sub" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#38bdf8" />
+                  <stop offset="50%" stop-color="#06b6d4" />
+                  <stop offset="100%" stop-color="#818cf8" />
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="50" r="42" fill="url(#avatarGlowHtml_sub)" stroke="#38bdf8" stroke-width="1.5" />
+              <path d="M 24 34 L 50 22 L 76 34 L 50 42 Z" fill="#4338ca" opacity="0.8" />
+              <path d="M 50 42 L 50 48" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" />
+              <circle cx="50" cy="49" r="2.5" fill="#f59e0b" />
+              <rect x="25" y="44" width="50" height="13" rx="6" fill="url(#visorGradHtml_sub)" opacity="0.9" />
+              <line x1="30" y1="50" x2="45" y2="50" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.8" />
+              <line x1="55" y1="50" x2="70" y2="50" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.8" />
+              <circle cx="38" cy="50" r="2.5" fill="#ffffff" class="avatar-eye" />
+              <circle cx="62" cy="50" r="2.5" fill="#ffffff" class="avatar-eye" />
+              <ellipse id="avatar-mouth-elem" cx="50" cy="70" rx="7" ry="2.5" fill="#38bdf8" class="avatar-mouth" />
+              <circle cx="72" cy="68" r="3" fill="#f43f5e" />
+            </svg>
+            <div id="avatar-equalizer" class="avatar-eq" style="display: none; position: absolute; bottom: 6px; gap: 2px; height: 16px; align-items: flex-end;">
+              <span class="eq-bar" style="width: 2px; background: #38bdf8; border-radius: 1px;"></span>
+              <span class="eq-bar" style="width: 2px; background: #10b981; border-radius: 1px;"></span>
+              <span class="eq-bar" style="width: 2px; background: #a855f7; border-radius: 1px;"></span>
+              <span class="eq-bar" style="width: 2px; background: #f59e0b; border-radius: 1px;"></span>
+            </div>
+          </div>
+          <div style="margin-top: 6px;">
+            <strong style="color: #fff; font-size: 0.8rem; display: block;">Prof. Jane AI Guide</strong>
+            <span id="avatar-role-label" style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent-cyan); display: block;">Algorithmic Logic Mentor</span>
+          </div>
+        </div>
+
+        <!-- Speech Bubble & Voiceover Controls -->
+        <div style="flex: 1; min-width: 260px;">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px;">
+            <div style="display: inline-flex; align-items: center; gap: 6px;">
+              <span id="avatar-topic-badge" class="cmd-badge" style="background: rgba(56, 189, 248, 0.12); color: var(--accent-cyan); font-size: 0.72rem;">Deterministic State Machines</span>
+              <span id="avatar-speaking-indicator" style="font-size: 0.75rem; color: var(--text-muted); display: none;">• Speaking Voiceover</span>
+            </div>
+            <!-- Language Switcher -->
+            <div style="display: inline-flex; background: rgba(0,0,0,0.5); padding: 2px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+              <button id="lang-btn-en" class="age-pill-btn active" onclick="setLanguage('en')" style="padding: 4px 10px; font-size: 0.75rem;">English (EN)</button>
+              <button id="lang-btn-ml" class="age-pill-btn" onclick="setLanguage('ml')" style="padding: 4px 10px; font-size: 0.75rem;">മലയാളം (ML)</button>
+            </div>
+          </div>
+
+          <!-- Transcript Bubble -->
+          <div id="avatar-transcript-box" style="padding: 12px 14px; background: rgba(0,0,0,0.4); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); font-size: 0.85rem; color: #e2e8f0; line-height: 1.6; margin-bottom: 12px;"></div>
+
+          <!-- Audio Player Buttons -->
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button id="btn-play-voiceover" class="glass-btn glass-btn-primary" onclick="playVoiceover()" style="padding: 6px 14px; font-size: 0.78rem;">▶ Play Voiceover</button>
+              <button id="btn-pause-voiceover" class="glass-btn" onclick="pauseVoiceover()" style="display: none; padding: 6px 14px; font-size: 0.78rem;">⏸ Pause</button>
+              <button id="btn-stop-voiceover" class="glass-btn" onclick="stopVoiceover()" style="display: none; padding: 6px 14px; font-size: 0.78rem;">⏹ Stop</button>
+              <button id="btn-speed-toggle" class="cmd-badge" onclick="toggleSpeechRate()" style="font-size: 0.72rem;">1.0x Speed</button>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button class="cmd-badge" onclick="switchDepthTab('algorithm')" style="font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8;">💡 Algorithm Steps</button>
+              <button class="cmd-badge" onclick="switchDepthTab('application')" style="font-size: 0.75rem; background: rgba(168, 85, 247, 0.15); color: #c084fc;">🏭 Real-World Apps</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  
+    <!-- Main Game Container -->
+    <div id="game-dynamic-viewport" class="game-arena-box"></div>
+
+    <!-- Deep In-Depth Curriculum Breakdown Panel with Multi-Tabs -->
+    <div class="glass-panel" style="margin-top: 32px; padding: 24px;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 16px; margin-bottom: 20px;">
+        <div>
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan); text-transform: uppercase;">Curriculum Depth Companion</span>
+          <h2 id="tier-depth-title" style="font-size: 1.3rem; font-weight: 800; color: #fff; margin-top: 2px;"></h2>
+        </div>
+        <span class="panel-badge" id="syllabus-anchor-badge" style="font-size: 0.8rem; padding: 4px 10px;">CST Curriculum</span>
+      </div>
+
+      <!-- Depth Sub-Tabs -->
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;">
+        <button class="depth-tab-btn active" onclick="switchDepthTab('theory', this)">📚 Theoretical Foundations</button>
+        <button class="depth-tab-btn" onclick="switchDepthTab('numerical', this)">📝 Solved KTU Numerical</button>
+        <button class="depth-tab-btn" onclick="switchDepthTab('workbench', this)">🧮 Interactive Workbench</button>
+        <button class="depth-tab-btn" onclick="switchDepthTab('vivavoce', this)">🛡️ Viva Voce & Interview</button>
+        <button class="depth-tab-btn" onclick="switchDepthTab('enterprise', this)">🚀 Enterprise Architecture</button>
+      </div>
+
+      <!-- Depth Dynamic Viewport -->
+      <div id="depth-content-box" style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.7;"></div>
+    </div>
+
+    <!-- Official Faculty Branding & Academic Licensing Footer -->
+    <footer class="faculty-footer" style="margin-top: 48px; padding: 28px 24px; border-top: 1px solid rgba(255,255,255,0.08); background: rgba(5, 8, 17, 0.7); border-radius: var(--radius-lg); text-align: center;">
+      <div class="footer-container" style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 12px;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px;">
+          <span style="font-weight: 800; color: #fff; font-size: 0.95rem;">KTU Smart Learning Ecosystem</span>
+          <span style="color: var(--text-muted);">•</span>
+          <span style="color: var(--accent-cyan); font-weight: 600;">Progressive STEM Arcade</span>
+          <span class="academic-license-pill" style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan);">
+            <svg style="width: 13px; height: 13px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <span>Official Academic License: CC BY-NC-ND 4.0</span>
+          </span>
+        </div>
+        <div class="faculty-badge" style="display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; font-size: 0.85rem; color: #cbd5e1;">
+          <span>Curated & Mentored by:</span>
+          <strong style="color: #fff; font-weight: 700;">Jane Rose Ferdinant</strong>
+          <span style="color: var(--accent-cyan);">|</span>
+          <span>Assistant Professor</span>
+          <span style="color: var(--accent-cyan);">|</span>
+          <span style="color: #94a3b8;">Department of Computer Science and Engineering (CSE)</span>
+        </div>
+        <p class="copyright-text" style="font-size: 0.78rem; color: #64748b; line-height: 1.6; margin: 0; max-width: 780px;">
+          © 2026 APJ Abdul Kalam Technological University (KTU) Smart Learning Ecosystem. All curriculum materials, algorithmic workbenches, and interactive models are protected under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)</a>. Commercial use, unauthorized derivative works, automated harvesting, and uncredited reproduction are strictly prohibited.
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="./showcase-engine.js"></script>
+  <script>
+    // Audio Synthesizer (lazy-initialized on user interaction to comply with browser autoplay policies)
+    let audioCtx = null;
+    function getAudioContext() {
+      try {
+        if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx && audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+      } catch (e) {
+        // Audio policy or restriction fallback
+      }
+      return audioCtx;
+    }
+    function playBeep(freq = 440, type = 'sine', duration = 0.1) {
+      const ctx = getAudioContext();
+      if (!ctx) return;
+      try {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.15, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        // Ignore audio playback exceptions
+      }
+    }
+    const sfx = {
+      click: () => playBeep(600, 'triangle', 0.05),
+      win: () => { playBeep(523, 'sine', 0.1); setTimeout(() => playBeep(659, 'sine', 0.15), 100); },
+      fail: () => playBeep(180, 'sawtooth', 0.2)
+    };
+
+    // Deep Academic Dictionary
+    const GAME_TIERS = {
+      10: {
+
+        avatarRole: 'Algorithmic Logic Mentor',
+        topic: 'Deterministic State Machines & Sequential Logic',
+        voiceover_en: 'Welcome to Algorithm Rover! At age 10, you are learning the bedrock of all computer science: Deterministic State Machines. A computer never guesses what you mean; it executes instructions step by step in exact sequence. Notice how each forward move and 90-degree turn consumes precise battery units while targeting the energy beacon. In the real world, this exact logic drives thousands of Amazon Kiva warehouse robots and autonomous Martian exploration rovers!',
+        voiceover_ml: 'അൽഗോരിതം റോവറിലേക്ക് സ്വാഗതം! കമ്പ്യൂട്ടർ സയൻസിന്റെ അടിസ്ഥാനമായ ഡിറ്റർമിനിസ്റ്റിക് സ്റ്റേറ്റ് മെഷീനുകളാണ് നാം ഇവിടെ പഠിക്കുന്നത്. കമ്പ്യൂട്ടറുകൾ സ്വമേധയാ ചിന്തിക്കുന്നില്ല; അവ നൽകിയ നിർദ്ദേശങ്ങൾ ക്രമമായി നടപ്പിലാക്കുന്നു. ഓരോ നീക്കവും ഊർജ്ജം വിനിയോഗിച്ച് ലക്ഷ്യത്തിലെത്തുന്നു. ഇതേ അൽഗോരിതമാണ് ആമസോൺ വെയർഹൗസ് റോബോട്ടുകളിലും നാസയുടെ ചൊവ്വാ പര്യവേക്ഷണ റോവറുകളിലും പ്രവർത്തിക്കുന്നത്!',
+        algorithm_en: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">Deterministic State Machine & Manhattan Grid Navigation</h4>
+      <p style="margin-bottom: 12px;">The algorithm models the rover as a formal finite automaton <code>S(t+1) = δ(S(t), I(t))</code> on an orthogonal Cartesian grid.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+        <div class="step-card">
+          <strong style="color: var(--accent-cyan);">Step 1: FIFO Command Queue</strong>
+          <p style="margin-top: 4px;">User instructions [MOVE, LEFT, RIGHT, COLLECT] are pushed to a FIFO execution buffer evaluated at discrete 350ms clock ticks.</p>
+          <code style="color: #34d399; display: block; margin-top: 4px;">queue.push(instruction); // O(1)</code>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-amber);">Step 2: Coordinate Translation</strong>
+          <p style="margin-top: 4px;">Orientation vector θ updates position: X_next = X + cos(θ), Y_next = Y + sin(θ). Grid boundaries (0 ≤ X, Y ≤ 4) are strictly enforced.</p>
+          <code style="color: #34d399; display: block; margin-top: 4px;">X = clamp(X + dx, 0, 4);</code>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-purple);">Step 3: Energy Monotonicity</strong>
+          <p style="margin-top: 4px;">Battery invariant ensures finite loop termination: Battery_next = Battery - Cost. Infinite loops are physically impossible.</p>
+          <code style="color: #34d399; display: block; margin-top: 4px;">assert(Battery >= 0);</code>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-emerald);">Step 4: Goal State Recognition</strong>
+          <p style="margin-top: 4px;">When coordinates equal target beacon (4, 4) and energy gems ≥ required threshold, mission is validated.</p>
+          <code style="color: #34d399; display: block; margin-top: 4px;">if (x===4 && y===4) WIN();</code>
+        </div>
+      </div>`,
+        algorithm_ml: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">ഡിറ്റർമിനിസ്റ്റിക് സ്റ്റേറ്റ് മെഷീൻ & മാൻഹാട്ടൻ ഗ്രിഡ് നാവിഗേഷൻ</h4>
+      <p style="margin-bottom: 12px;">റോവറിന്റെ ഓരോ ചലനവും ഗണിതശാസ്ത്രപരമായി S(t+1) = δ(S(t), I(t)) എന്ന സ്റ്റേറ്റ് ട്രാൻസിഷൻ സമവാക്യം അനുസരിച്ച് പ്രവർത്തിക്കുന്നു.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+        <div class="step-card">
+          <strong style="color: var(--accent-cyan);">ഘട്ടം 1: FIFO ഇൻസ്ട്രക്ഷൻ ക്യൂ</strong>
+          <p style="margin-top: 4px;">ഉപയോക്താവ് നൽകുന്ന നിർദ്ദേശങ്ങൾ (MOVE, TURN, COLLECT) ക്യൂവിൽ സൂക്ഷിക്കുകയും 350 മില്ലിസെക്കൻഡ് ഇടവിട്ട് നടപ്പിലാക്കുകയും ചെയ്യുന്നു.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-amber);">ഘട്ടം 2: കോർഡിനേറ്റ് മാറ്റം</strong>
+          <p style="margin-top: 4px;">നിലവിലെ ദിശയ്ക്കനുസരിച്ച് റോവറിന്റെ നിർദ്ദേശാങ്കങ്ങൾ (X, Y) മാറുന്നു. ഗ്രിഡിന്റെ അതിർത്തി വിട്ടുപോകാതിരിക്കാൻ പരിശോധിക്കുന്നു.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-purple);">ഘട്ടം 3: ബാറ്ററി നിയന്ത്രണം</strong>
+          <p style="margin-top: 4px;">ഓരോ നീക്കത്തിനും ബാറ്ററി കുറയുന്നു. ഊർജ്ജം പൂജ്യമാകുന്നതിന് മുൻപ് ലക്ഷ്യസ്ഥാനത്ത് എത്തിച്ചേരണം.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-emerald);">ഘട്ടം 4: വിജയ പരിശോധന</strong>
+          <p style="margin-top: 4px;">ബീക്കൺ ബിന്ദുവായ (4, 4)-ൽ റോവർ എത്തുമ്പോൾ അൽഗോരിതം വിജയകരമായി ലക്ഷ്യം കാണുന്നു.</p>
+        </div>
+      </div>`,
+        apps_en: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">Industrial Engineering Deployments</h4>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">Amazon Kiva Autonomous Mobile Robotics (AMR)</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); display: block; margin: 4px 0;">Domain: Automated Warehousing / ISO 3691-4</span>
+          <p style="margin-top: 6px;">Centralized reservation algorithms schedule tens of thousands of drive units moving multi-ton pod inventory across orthogonal floor barcodes without grid collisions.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">Impact: 300% order throughput increase, 0.001% collision rate</div>
+        </div>
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">NASA JPL Mars Perseverance AutoNav Subsystem</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-amber); display: block; margin: 4px 0;">Domain: Planetary Exploration / NASA Mars 2020</span>
+          <p style="margin-top: 6px;">Autonomous hazard-avoidance path planning executes onboard stereo image terrain mapping, sequencing rover wheel actuation under strict battery thermal limits.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">Impact: Autonomous single-day traverses exceeding 300 meters across Martian regolith</div>
+        </div>
+      </div>`,
+        apps_ml: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">വ്യാവസായിക ഉപയോഗങ്ങൾ</h4>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">ആമസോൺ കിവ ഓട്ടോണമസ് ഡ്രൈവ് റോബോട്ടുകൾ</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); display: block; margin: 4px 0;">ഡൊമെയ്ൻ: വെയർഹൗസ് ഓട്ടോമേഷൻ</span>
+          <p style="margin-top: 6px;">ആയിരക്കണക്കിന് ചരക്കുപെട്ടികൾ ഗ്രിഡ് നാവിഗേഷൻ വഴി ഒരേ സമയം കൈകാര്യം ചെയ്യുന്ന ഓട്ടോണമസ് റോബോട്ടുകൾ.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">നേട്ടം: 300% വേഗത വർദ്ധനവ്, പൂജ്യം കൂട്ടിയിടികൾ</div>
+        </div>
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">നാസ പെർസിവീയറൻസ് ചൊവ്വാ റോവർ AutoNav</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-amber); display: block; margin: 4px 0;">ഡൊമെയ്ൻ: ബഹിരാകാശ പര്യവേക്ഷണം</span>
+          <p style="margin-top: 6px;">തടസ്സങ്ങൾ സ്വയം കണ്ടെത്തി ചൊവ്വയുടെ ഉപരിതലത്തിൽ സ്വതന്ത്രമായി സഞ്ചരിക്കുന്ന നാവിഗേഷൻ അൽഗോരിതം.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">നേട്ടം: പ്രതിദിനം 300 മീറ്ററിലധികം സുരക്ഷിത സ്വതന്ത്ര സഞ്ചാരം</div>
+        </div>
+      </div>`,
+        title: "Algorithm Rover: Computational Logic Island",
+        syllabus: "EST102 Programming & Problem Solving (Module 1)",
+        theory: `
+          <h4 style="color: var(--accent-cyan); margin-bottom: 6px;">1. Deterministic State Machines & Sequence Invariance</h4>
+          <p>Computers do not guess human intent; they execute exact instructions in temporal sequence. The state transition function is defined as <code>S(t+1) = δ(S(t), I(t))</code>. Step(N+1) cannot evaluate until Step(N) completes.</p>
+          <h4 style="color: var(--accent-amber); margin: 12px 0 6px;">2. Manhattan Grid Distance & Loop Invariants</h4>
+          <p>On an obstacle-free orthogonal grid, minimum displacement is <code>D_M = |X_target - X_rover| + |Y_target - Y_rover|</code>. Every forward translation must preserve the battery invariant: <code>Battery ≥ D_M · Cost_move</code>.</p>
+          <h4 style="color: var(--accent-emerald); margin: 12px 0 6px;">3. Formal Time & Space Complexity</h4>
+          <p>Time Complexity: <code>O(N)</code> where N is queued instructions. Space Complexity: <code>O(N)</code> memory buffer.</p>
+        `,
+        numerical: `
+          <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 12px; margin-bottom: 14px;">
+            <strong style="color: var(--accent-amber);">KTU Numerical Question:</strong>
+            A rover starts at (0, 0) facing East with 100 battery units. Target energy gem is at (3, 2). Each move costs 2 units, 90° turn costs 1 unit. Calculate: (1) Minimum Manhattan distance, (2) Optimal execution queue, and (3) Remaining battery capacity.
+          </div>
+          <div class="step-card">
+            <strong>Step 1: Manhattan Distance:</strong> <code>D_M = |3 - 0| + |2 - 0| = 3 + 2 = 5 steps</code>.
+          </div>
+          <div class="step-card">
+            <strong>Step 2: Rotations Required:</strong> Facing East. Move 3 steps along X. Turn Left (90° CCW to North). Move 2 steps along Y. (1 turn total).
+          </div>
+          <div class="step-card">
+            <strong>Step 3: Battery Expenditure:</strong> <code>B_consumed = (5 moves × 2) + (1 turn × 1) + (1 collect × 1) = 10 + 1 + 1 = 12 units</code>.
+          </div>
+          <div style="padding: 10px; background: rgba(16, 185, 129, 0.15); border-radius: 6px; color: #a7f3d0; font-family: var(--font-mono);">
+            ✓ Final Result: Sequence = [MOVE×3, TURN_LEFT, MOVE×2, COLLECT]. Battery Consumed = 12. Remaining Battery = 88%.
+          </div>
+        `,
+        workbench: `
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 16px;">
+            <div>
+              <label style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); display: block;">Forward Steps (Cost 2):</label>
+              <input type="range" id="wb10-steps" min="1" max="15" value="5" oninput="calcWb10()" style="width: 100%;">
+              <span id="wb10-steps-val" style="color: var(--accent-cyan); font-family: var(--font-mono); font-weight: 700;">5 steps</span>
+            </div>
+            <div>
+              <label style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); display: block;">Rotations (Cost 1):</label>
+              <input type="range" id="wb10-turns" min="0" max="8" value="2" oninput="calcWb10()" style="width: 100%;">
+              <span id="wb10-turns-val" style="color: var(--accent-amber); font-family: var(--font-mono); font-weight: 700;">2 turns</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; text-align: center;">
+            <div style="background: rgba(0,0,0,0.4); padding: 12px; border-radius: 8px;">
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Consumed Battery:</span>
+              <div id="wb10-burned" style="font-size: 1.4rem; font-weight: 800; color: var(--accent-amber);">12 units</div>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 12px; border-radius: 8px;">
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Residual Capacity:</span>
+              <div id="wb10-remain" style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan);">88%</div>
+            </div>
+          </div>
+        `,
+        vivavoce: `
+          <div class="viva-card">
+            <strong style="color: #fff;">Q1: Why must a robot path planning loop condition be strictly monotonic?</strong>
+            <p style="margin-top: 6px; color: #cbd5e1;">A loop condition must be monotonic (strictly decreasing distance to target or battery counter) to guarantee program termination and prevent infinite cyclic oscillations.</p>
+          </div>
+          <div class="viva-card">
+            <strong style="color: #fff;">Q2: What is the difference between syntax errors and semantic logic errors in algorithmic sequencing?</strong>
+            <p style="margin-top: 6px; color: #cbd5e1;">A syntax error prevents compilation/parsing. A semantic logic error passes compilation successfully but leads to unintended runtime behavior like grid collisions.</p>
+          </div>
+          <div class="viva-card">
+            <strong style="color: #fff;">Q3: How does Manhattan distance provide an admissible heuristic in A* search?</strong>
+            <p style="margin-top: 6px; color: #cbd5e1;">Because diagonal movements through barriers are disallowed on orthogonal grids, Manhattan distance (|Δx| + |Δy|) never overestimates the true traversal cost, satisfying the A* admissibility requirement h(n) ≤ h*(n).</p>
+          </div>
+        `,
+        enterprise: `
+          <h4 style="color: var(--accent-cyan); margin-bottom: 6px;">Amazon Kiva AGV Robotics & Mars Exploration</h4>
+          <p>Amazon Fulfillment centers coordinate thousands of drive robots using centralized state reservation tables and taxicab path planning to haul warehouse pods without deadlock collisions.</p>
+        `
+      },
+      12: {
+
+        avatarRole: 'Digital Logic & Hardware Mentor',
+        topic: 'Boolean Algebra & Cryptographic Parity Checking',
+        voiceover_en: 'Welcome to Cyber Gate Defender! At age 12, we transition into physical digital hardware. Every smartphone and CPU is built from billions of microscopic silicon transistors configured as Boolean gates: AND, OR, NOT, and XOR. Here, an incoming packet is verified using an XOR parity checker. In production networks, this prevents data corruption across high-speed optical fiber lines and hardware firewall coprocessors!',
+        voiceover_ml: 'സൈബർ ഗേറ്റ് ഡിഫെൻഡറിലേക്ക് സ്വാഗതം! 12-ാം വയസ്സിൽ നാം പ്രോഗ്രാമിംഗിൽ നിന്നും കമ്പ്യൂട്ടറിന്റെ ഹാർഡ്‌വെയർ തലത്തിലേക്ക് കടക്കുന്നു. സ്മാർട്ട്‌ഫോണുകളിലെ പ്രോസസ്സറുകൾ നിർമ്മിച്ചിരിക്കുന്നത് ബില്യൺ കണക്കിന് ട്രാൻസിസ്റ്ററുകൾ കൊണ്ടാണ്. അവ AND, OR, XOR തുടങ്ങിയ ബൂളിയൻ ഗേറ്റുകളായി പ്രവർത്തിക്കുന്നു. ഇവിടെ വരുന്ന ഡാറ്റാ പാക്കറ്റുകൾ പാരിറ്റി ചെക്ക് വഴി ശരിയാണോ എന്ന് വിലയിരുത്തുന്നു. ഹൈസ്പീഡ് ഇന്റർനെറ്റിലെയും ഫയർവാളുകളിലെയും ഡാറ്റാ സുരക്ഷ ഇങ്ങനെയൊരു അൽഗോരിതത്തിലാണ് അധിഷ്ഠിതം!',
+        algorithm_en: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">Boolean Minimization & Error-Detecting Parity Network</h4>
+      <p style="margin-bottom: 12px;">Digital circuits compute using combinational logic. Single-bit parity relies on modulo-2 addition: P = A ⊕ B ⊕ C ⊕ D.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+        <div class="step-card">
+          <strong style="color: var(--accent-cyan);">Step 1: Canonical SOP Synthesis</strong>
+          <p style="margin-top: 4px;">Truth tables are converted to Sum-of-Products canonical minterms F = Σ m(1, 3, 5, 7).</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-amber);">Step 2: De Morgan's Reduction</strong>
+          <p style="margin-top: 4px;">Factoring adjacent minterms minimizes transistor counts from 48 down to a single wire F = C.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-purple);">Step 3: XOR Parity Generation</strong>
+          <p style="margin-top: 4px;">Network frame packets append parity bit calculated via cascaded XOR gates to detect single-bit flips.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-emerald);">Step 4: Hardware Firewall Validation</strong>
+          <p style="margin-top: 4px;">Comparing computed XOR parity against packet header confirms frame integrity at light speed.</p>
+        </div>
+      </div>`,
+        algorithm_ml: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">ബൂളിയൻ ആൾജിബ്ര & ഹാർഡ്‌വെയർ പാരിറ്റി ചെക്കിംഗ്</h4>
+      <p style="margin-bottom: 12px;">ഇൻപുട്ട് ബിറ്റുകളെ വിശകലനം ചെയ്ത് മോഡുലോ-2 അഡിഷൻ (XOR) വഴി ഡാറ്റയിൽ വന്ന പിഴവുകൾ തത്സമയം കണ്ടെത്തുന്നു.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+        <div class="step-card">
+          <strong style="color: var(--accent-cyan);">ഘട്ടം 1: SOP സമവാക്യ രൂപീകരണം</strong>
+          <p style="margin-top: 4px;">ട്രൂത്ത് ടേബിളിൽ നിന്നുമുള്ള വാല്യൂകളെ സം-ഓഫ്-പ്രൊഡക്റ്റ്സ് രീതിയിൽ എഴുതുന്നു.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-amber);">ഘട്ടം 2: ഡി മോർഗൻസ് ലഘൂകരണം</strong>
+          <p style="margin-top: 4px;">ബൂളിയൻ നിയമങ്ങൾ വഴി ട്രാൻസിസ്റ്റർ എണ്ണം കുറച്ച് സർക്യൂട്ട് ലളിതമാക്കുന്നു.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-purple);">ഘട്ടം 3: XOR പാരിറ്റി ബിറ്റ്</strong>
+          <p style="margin-top: 4px;">നെറ്റ്‌വർക്ക് ഫ്രെയിമുകളിലെ ഒറ്റ ബിറ്റ് വ്യതിയാനങ്ങൾ തിരിച്ചറിയാൻ പാരിറ്റി ബിറ്റ് നിർമ്മിക്കുന്നു.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-emerald);">ഘട്ടം 4: ഫയർവാൾ വെരിഫിക്കേഷൻ</strong>
+          <p style="margin-top: 4px;">പാരിറ്റി കൃത്യമാണെങ്കിൽ മാത്രം പാക്കറ്റ് കടത്തിവിടുന്നു.</p>
+        </div>
+      </div>`,
+        apps_en: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">Industrial Engineering Deployments</h4>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">Apple Silicon M-Series Neural Engine & ALUs</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); display: block; margin: 4px 0;">Domain: Microprocessor Architecture / ARMv9</span>
+          <p style="margin-top: 6px;">Billions of 3-nanometer FinFET CMOS logic gates compute 64-bit vector math and cryptographic hashes in sub-nanosecond clock pulses.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">Impact: Over 35 trillion operations per second (35 TOPS)</div>
+        </div>
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">Hardware Firewall Accelerators & ECC Memory</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-amber); display: block; margin: 4px 0;">Domain: Enterprise Cyber Defense / PCIe 6.0 ECC</span>
+          <p style="margin-top: 6px;">Dedicated ASIC hardware parity checks verify gigabit optical streams without software CPU overhead.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">Impact: Instant zero-latency bit-flip correction across enterprise server RAM</div>
+        </div>
+      </div>`,
+        apps_ml: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">വ്യാവസായിക ഉപയോഗങ്ങൾ</h4>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">ആപ്പിൾ M-സീരീസ് & ഇൻറൽ ആർക്കിടെക്ചർ ALUs</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); display: block; margin: 4px 0;">ഡൊമെയ്ൻ: മൈക്രോപ്രോസസ്സർ രൂപകൽപ്പന</span>
+          <p style="margin-top: 6px;">നാനോസെക്കൻഡിൽ ബൂളിയൻ ഓപ്പറേഷൻസ് നടത്തി കമ്പ്യൂട്ടറുകൾ പ്രവർത്തിപ്പിക്കുന്ന അത്യാധുനിക ചിപ്പുകൾ.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">നേട്ടം: സെക്കൻഡിൽ 35 ട്രില്യണിലധികം പ്രവർത്തനങ്ങൾ (35 TOPS)</div>
+        </div>
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">ഹാർഡ്‌വെയർ ഫയർവാൾ & ECC മെമ്മറി</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-amber); display: block; margin: 4px 0;">ഡൊമെയ്ൻ: സൈബർ സെക്യൂരിറ്റി</span>
+          <p style="margin-top: 6px;">ഡാറ്റാ സെന്ററുകളിൽ മെമ്മറി ബിറ്റുകൾക്ക് വരുന്ന തകരാറുകൾ തത്സമയം തിരുത്തുന്ന സാങ്കേതികവിദ്യ.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">നേട്ടം: പൂജ്യം കാലതാമസത്തോടെയുള്ള ഡാറ്റാ സുരക്ഷ</div>
+        </div>
+      </div>`,
+        title: "Cyber Gate Defender: Boolean Network Matrix",
+        syllabus: "CST203 Logic System Design (Module 1 & 2)",
+        theory: `
+          <h4 style="color: var(--accent-cyan); margin-bottom: 6px;">1. Boolean Algebra & Functional Completeness</h4>
+          <p>Digital circuits compute using AND (<code>Y = A·B</code>), OR (<code>Y = A+B</code>), XOR (<code>Y = A⊕B</code>), and NOT (<code>Y = A'</code>). NAND and NOR gates are universal gates because any combinational logic circuit can be formed exclusively from them.</p>
+          <h4 style="color: var(--accent-amber); margin: 12px 0 6px;">2. Full Adder Derivation & De Morgan's Reduction</h4>
+          <p>Sum = <code>A ⊕ B ⊕ Cin</code>; Carry Out = <code>AB + Cin(A ⊕ B)</code>. De Morgan's laws: <code>(A·B)' = A' + B'</code> and <code>(A+B)' = A'·B'</code> minimize transistor count.</p>
+          <h4 style="color: var(--accent-emerald); margin: 12px 0 6px;">3. Error Detecting Parity Check</h4>
+          <p>Modulo-2 sum: <code>P = A ⊕ B ⊕ C ⊕ D</code>. Detects odd numbers of bit corruptions in network frames.</p>
+        `,
+        numerical: `
+          <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 12px; margin-bottom: 14px;">
+            <strong style="color: var(--accent-amber);">KTU Numerical Question:</strong>
+            Minimize the Boolean expression F(A, B, C) = Σ m(1, 3, 5, 7) using Boolean algebra theorems. Calculate the number of CMOS transistors saved over the canonical SOP implementation.
+          </div>
+          <div class="step-card">
+            <strong>Step 1: Canonical SOP:</strong> <code>F = A'B'C + A'BC + AB'C + ABC</code> (4 minterms, 3 literals each).
+          </div>
+          <div class="step-card">
+            <strong>Step 2: Group Terms:</strong> <code>F = A'C(B' + B) + AC(B' + B) = A'C(1) + AC(1) = A'C + AC</code>.
+          </div>
+          <div class="step-card">
+            <strong>Step 3: Factor:</strong> <code>F = C(A' + A) = C(1) = C</code>. Entire network reduces to a single wire!
+          </div>
+          <div style="padding: 10px; background: rgba(16, 185, 129, 0.15); border-radius: 6px; color: #a7f3d0; font-family: var(--font-mono);">
+            ✓ Final Result: F = C. Transistors saved: 38 CMOS transistors (100% gate reduction).
+          </div>
+        `,
+        workbench: `
+          <div style="display: flex; gap: 12px; justify-content: center; margin-bottom: 16px;">
+            <button class="cmd-badge" id="btn-in-a" onclick="toggleWb12('A')">Input A: 1</button>
+            <button class="cmd-badge" id="btn-in-b" onclick="toggleWb12('B')">Input B: 0</button>
+            <button class="cmd-badge" id="btn-in-c" onclick="toggleWb12('C')">Input C: 1</button>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; text-align: center;">
+            <div style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 6px;">
+              <span style="font-size: 0.72rem; color: var(--text-muted);">A AND B</span>
+              <div id="wb12-and" style="font-size: 1.2rem; font-weight: 800; color: var(--accent-cyan);">0</div>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 6px;">
+              <span style="font-size: 0.72rem; color: var(--text-muted);">A OR B</span>
+              <div id="wb12-or" style="font-size: 1.2rem; font-weight: 800; color: var(--accent-amber);">1</div>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 6px;">
+              <span style="font-size: 0.72rem; color: var(--text-muted);">A XOR B XOR C</span>
+              <div id="wb12-xor" style="font-size: 1.2rem; font-weight: 800; color: var(--accent-purple);">0</div>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 6px;">
+              <span style="font-size: 0.72rem; color: var(--text-muted);">Majority (AB+BC+AC)</span>
+              <div id="wb12-maj" style="font-size: 1.2rem; font-weight: 800; color: var(--accent-emerald);">1</div>
+            </div>
+          </div>
+        `,
+        vivavoce: `
+          <div class="viva-card">
+            <strong style="color: #fff;">Q1: Why are NAND and NOR designated as universal gates?</strong>
+            <p style="margin-top: 6px; color: #cbd5e1;">Because any Boolean logic expression (AND, OR, NOT, XOR, XNOR) can be implemented solely through combinations of NAND or NOR gates without any other hardware.</p>
+          </div>
+          <div class="viva-card">
+            <strong style="color: #fff;">Q2: What is propagation delay in CMOS logic gates?</strong>
+            <p style="margin-top: 6px; color: #cbd5e1;">Propagation delay (t_pd) is the physical duration required for an input voltage transition to stabilize at the output, establishing the physical maximum CPU clock speed.</p>
+          </div>
+          <div class="viva-card">
+            <strong style="color: #fff;">Q3: How does XOR gate chaining compute single-bit parity check?</strong>
+            <p style="margin-top: 6px; color: #cbd5e1;">XOR computes modulo-2 addition. Chaining bits through XOR evaluates to 1 for odd numbers of 1s and 0 for even numbers, enabling immediate single-bit error detection.</p>
+          </div>
+        `,
+        enterprise: `
+          <h4 style="color: var(--accent-cyan); margin-bottom: 6px;">Apple M-Series & Intel Core ALU Architectures</h4>
+          <p>Billions of microscopic CMOS logic gates execute 64-bit vector math instructions at sub-nanosecond clock intervals, driving high-performance neural engines and hardware cryptographic coprocessors.</p>
+        `
+      },
+      15: {
+
+        avatarRole: 'OOP & Robotics Kinematics Mentor',
+        topic: 'Polymorphic Dynamic Dispatch & Forward Kinematics',
+        voiceover_en: 'Welcome to Polymorphic Robo Kinematics! At age 15, we bridge advanced Object-Oriented Software Architecture and Mechanical Kinematics. In Java and C++, polymorphism allows a base RoboticArm reference to dynamically dispatch Laser, Gripper, or Welder tools at runtime via a Virtual Method Table (vtable). Simultaneously, planar forward kinematics uses trigonometry to translate joint angles into sub-millimeter Cartesian coordinate coordinates. This exact mathematics enables robotic surgical arms and precision automotive manufacturing!',
+        voiceover_ml: 'പോളിമോർഫിക് റോബോ കൈനമാറ്റിക്സിലേക്ക് സ്വാഗതം! 15-ാം വയസ്സിൽ നാം ഒബ്ജക്റ്റ് ഓറിയന്റഡ് പ്രോഗ്രാമിംഗും റോബോട്ടിക്സ് മെക്കാനിക്സും പരസ്പരം ബന്ധിപ്പിക്കുന്നു. ജാവയിലും സി++ലും ഉപയോഗിക്കുന്ന പോളിമോർഫിസം വഴി ഒരൊറ്റ റോബോട്ട് ആമിലേക്ക് ലേസർ, ഗ്രിപ്പർ, വെൽഡർ ടൂളുകൾ ഡൈനാമിക് ആയി ഘടിപ്പിക്കാൻ സാധിക്കുന്നു. ട്രിഗണോമെട്രിക് ഫോർമുലകൾ ഉപയോഗിച്ച് ജോയിന്റ് ആംഗിളുകൾ കൃത്യമായ നിർദ്ദേശാങ്കങ്ങളിലേക്ക് (X, Y) മാറ്റുന്നു. അത്യാധുനിക സർജിക്കൽ റോബോട്ടുകളിലും കാർ നിർമ്മാണ ശാലകളിലും ഇതാണ് പ്രയോജനപ്പെടുത്തുന്നത്!',
+        algorithm_en: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">Virtual Method Table Dispatch & 2-DOF Forward Kinematics</h4>
+      <p style="margin-bottom: 12px;">Dynamic dispatch uncouples tooling architecture, while trigonometry maps joint angles θ1, θ2 to Cartesian coordinates (X, Y).</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+        <div class="step-card">
+          <strong style="color: var(--accent-cyan);">Step 1: Polymorphic Subclassing</strong>
+          <p style="margin-top: 4px;">RoboticArm superclass defines abstract activateTool() method implemented by LaserArm and GripperArm.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-amber);">Step 2: VTable Runtime Lookup</strong>
+          <p style="margin-top: 4px;">Dynamic dispatch dereferences method pointers at runtime via the object instance vtable, upholding the Open-Closed Principle.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-purple);">Step 3: Forward Kinematics</strong>
+          <p style="margin-top: 4px;">End-effector coordinates: X = L1·cos(θ1) + L2·cos(θ1 + θ2) and Y = L1·sin(θ1) + L2·sin(θ1 + θ2).</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-emerald);">Step 4: Singularity Detection</strong>
+          <p style="margin-top: 4px;">det(J) = L1·L2·sin(θ2). If sin(θ2) = 0, joint is in singularity position requiring infinite torque.</p>
+        </div>
+      </div>`,
+        algorithm_ml: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">പോളിമോർഫിക് ഡൈനാമിക് ഡിസ്പാച്ച് & ഫോർവേഡ് കൈനമാറ്റിക്സ്</h4>
+      <p style="margin-bottom: 12px;">vtable ആർക്കിടെക്ചറും ഫോർവേഡ് കൈനമാറ്റിക്സും സമന്വയിപ്പിച്ച് റോബോട്ട് കൺട്രോൾ സാധ്യമാക്കുന്നു.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+        <div class="step-card">
+          <strong style="color: var(--accent-cyan);">ഘട്ടം 1: പോളിമോർഫിക് ക്ലാസുകൾ</strong>
+          <p style="margin-top: 4px;">RoboticArm സൂപ്പർക്ലാസിൽ നിന്നും LaserArm, GripperArm ക്ലാസുകൾ രൂപപ്പെടുത്തുന്നു.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-amber);">ഘട്ടം 2: VTable ഡിസ്പാച്ച്</strong>
+          <p style="margin-top: 4px;">റൺടൈമിൽ ഏത് ടൂളാണ് ആക്റ്റീവ് എന്ന് കണ്ടെത്തി കൃത്യമായ ഫംഗ്ഷൻ പ്രവർത്തിപ്പിക്കുന്നു.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-purple);">ഘട്ടം 3: കൈനമാറ്റിക്സ് കാൽക്കുലേഷൻ</strong>
+          <p style="margin-top: 4px;">ലിങ്ക് നീളങ്ങളും ആംഗിളുകളും വെച്ച് റോബോട്ടിന്റെ അഗ്രഭാഗത്തിന്റെ സ്ഥാനം നിർണ്ണയിക്കുന്നു.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-emerald);">ഘട്ടം 4: സിംഗുലാരിറ്റി പരിശോധന</strong>
+          <p style="margin-top: 4px;">det(J) കണക്കുകൂട്ടി ആം പൂർണ്ണമായി നിവർന്ന് കുടുങ്ങിപ്പോകാതെ സംരക്ഷിക്കുന്നു.</p>
+        </div>
+      </div>`,
+        apps_en: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">Industrial Engineering Deployments</h4>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">da Vinci Surgical Robot Multi-Quadrant End-Effectors</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); display: block; margin: 4px 0;">Domain: Medical Robotics / FDA 510(k)</span>
+          <p style="margin-top: 6px;">Translates surgeon master console motions into 0.1mm micro-wrist laparoscopic incisions with tremor filtration.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">Impact: Sub-millimeter surgical accuracy with 70% reduced blood loss</div>
+        </div>
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">KUKA & Fanuc 6-Axis Robotic Welding Platforms</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-amber); display: block; margin: 4px 0;">Domain: Automotive Manufacturing / ISO 10218</span>
+          <p style="margin-top: 6px;">Polymorphic tooling swaps between spot welding, sealant dispensers, and laser inspection heads on the same robotic arm.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">Impact: 99.98% weld repeatability over 100,000 continuous assembly cycles</div>
+        </div>
+      </div>`,
+        apps_ml: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">വ്യാവസായിക ഉപയോഗങ്ങൾ</h4>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">ഡാ വിഞ്ചി റോബോട്ടിക് സർജറി സിസ്റ്റം</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); display: block; margin: 4px 0;">ഡൊമെയ്ൻ: മെഡിക്കൽ സർജിക്കൽ റോബോട്ടിക്സ്</span>
+          <p style="margin-top: 6px;">ഡോക്ടർമാരുടെ കൈകളുടെ ചലനങ്ങൾ 0.1 മില്ലിമീറ്റർ സൂക്ഷ്മതയോടെ രോഗിയുടെ ഉള്ളിൽ പ്രവർത്തിപ്പിക്കുന്ന ശസ്ത്രക്രിയാ ഉപകരണം.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">നേട്ടം: 0.1 മില്ലിമീറ്റർ മൈക്രോ-കൃത്യത, രക്തസ്രാവത്തിൽ 70% കുറവ്</div>
+        </div>
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">കുക്ക (KUKA) ഓട്ടോമോട്ടീവ് റോബോട്ടുകൾ</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-amber); display: block; margin: 4px 0;">ഡൊമെയ്ൻ: കാർ നിർമ്മാണം</span>
+          <p style="margin-top: 6px;">കാർ നിർമ്മാണ ശാലകളിൽ സ്പോട്ട് വെൽഡിംഗും ലേസർ കട്ടിംഗും അനായാസം മാറിമാറി ചെയ്യുന്ന പോളിമോർഫിക് റോബോട്ടുകൾ.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">നേട്ടം: 99.98% ആവർത്തന കൃത്യത, 24/7 പ്രവർത്തനം</div>
+        </div>
+      </div>`,
+        title: "Polymorphic Code Arena & 2-DOF Robot Arm",
+        syllabus: "CST205 Java OOP & PCADT502 Robotics and Automation",
+        theory: `
+          <h4 style="color: var(--accent-cyan); margin-bottom: 6px;">1. Polymorphic Dynamic Dispatch & VTables</h4>
+          <p>Superclass reference '<code>RoboticArm arm = new LaserArm()</code>' resolves method calls at runtime via the Virtual Method Table (vtable) pointer array, providing decoupled, open-closed architecture.</p>
+          <h4 style="color: var(--accent-amber); margin: 12px 0 6px;">2. Forward Kinematics Coordinate Transformation</h4>
+          <p>End effector tip coordinates: <code>X = L1·cos(θ1) + L2·cos(θ1 + θ2)</code> and <code>Y = L1·sin(θ1) + L2·sin(θ1 + θ2)</code>.</p>
+          <h4 style="color: var(--accent-emerald); margin: 12px 0 6px;">3. Jacobian Singularity Determinant</h4>
+          <p><code>det(J) = L1 · L2 · sin(θ2)</code>. When θ2 = 0° or 180°, det(J) = 0, causing kinematic singularity and infinite motor torque demands.</p>
+        `,
+        numerical: `
+          <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 12px; margin-bottom: 14px;">
+            <strong style="color: var(--accent-amber);">KTU Numerical Question:</strong>
+            A 2-DOF planar robot arm has link lengths L1 = 200 mm and L2 = 150 mm. The joints are rotated to θ1 = 30° and θ2 = 45°. Compute: (1) Cartesian coordinates (X, Y) of the end effector, (2) Maximum reach, and (3) Jacobian determinant to test for singularities.
+          </div>
+          <div class="step-card">
+            <strong>Step 1: Compound Angles:</strong> θ1 + θ2 = 75°. cos(30°)=0.866, sin(30°)=0.500. cos(75°)=0.2588, sin(75°)=0.9659.
+          </div>
+          <div class="step-card">
+            <strong>Step 2: Tip X:</strong> <code>X = 200(0.8660) + 150(0.2588) = 173.20 + 38.82 = 212.02 mm</code>.
+          </div>
+          <div class="step-card">
+            <strong>Step 3: Tip Y:</strong> <code>Y = 200(0.5000) + 150(0.9659) = 100.00 + 144.89 = 244.89 mm</code>.
+          </div>
+          <div class="step-card">
+            <strong>Step 4: Singularity Test:</strong> <code>det(J) = 200 × 150 × sin(45°) = 21,213 mm² ≠ 0</code> (Controllable, non-singular).
+          </div>
+          <div style="padding: 10px; background: rgba(16, 185, 129, 0.15); border-radius: 6px; color: #a7f3d0; font-family: var(--font-mono);">
+            ✓ Final Result: Position = (212.02 mm, 244.89 mm). Max Reach = 350 mm. Det(J) = 21,213 mm² (Safe).
+          </div>
+        `,
+        workbench: `
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 14px;">
+            <div>
+              <label style="font-size: 0.75rem; color: var(--text-muted);">θ1 (-90° to 90°):</label>
+              <input type="range" id="wb15-th1" min="-90" max="90" value="30" oninput="calcWb15()" style="width: 100%;">
+              <span id="wb15-th1-val" style="color: var(--accent-cyan); font-family: var(--font-mono);">30°</span>
+            </div>
+            <div>
+              <label style="font-size: 0.75rem; color: var(--text-muted);">θ2 (-120° to 120°):</label>
+              <input type="range" id="wb15-th2" min="-120" max="120" value="45" oninput="calcWb15()" style="width: 100%;">
+              <span id="wb15-th2-val" style="color: var(--accent-purple); font-family: var(--font-mono);">45°</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: center;">
+            <div style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 6px;">
+              <span style="font-size: 0.72rem; color: var(--text-muted);">Tip X (mm):</span>
+              <div id="wb15-x" style="font-size: 1.2rem; font-weight: 800; color: var(--accent-cyan);">212.02</div>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 6px;">
+              <span style="font-size: 0.72rem; color: var(--text-muted);">Tip Y (mm):</span>
+              <div id="wb15-y" style="font-size: 1.2rem; font-weight: 800; color: var(--accent-cyan);">244.89</div>
+            </div>
+          </div>
+        `,
+        vivavoce: `
+          <div class="viva-card">
+            <strong style="color: #fff;">Q1: How does the JVM execute dynamic method dispatch?</strong>
+            <p style="margin-top: 6px; color: #cbd5e1;">The JVM uses the <code>invokevirtual</code> bytecode instruction to look up the target method in the instance's virtual method table (vtable) at runtime with O(1) pointer overhead.</p>
+          </div>
+          <div class="viva-card">
+            <strong style="color: #fff;">Q2: What is kinematic singularity and why must it be avoided?</strong>
+            <p style="margin-top: 6px; color: #cbd5e1;">A singularity occurs when the Jacobian matrix loses rank (det(J) = 0). Joint velocities and motor torques approach infinity, causing mechanical lockup or structural damage.</p>
+          </div>
+          <div class="viva-card">
+            <strong style="color: #fff;">Q3: Contrast Class Inheritance (is-a) vs Object Composition (has-a).</strong>
+            <p style="margin-top: 6px; color: #cbd5e1;">Inheritance creates tight compile-time coupling. Composition enables dynamic runtime swapping of component behaviors with weak coupling, adhering to the Strategy pattern.</p>
+          </div>
+        `,
+        enterprise: `
+          <h4 style="color: var(--accent-cyan); margin-bottom: 6px;">da Vinci Surgical Robotics & Industrial SCARA Arms</h4>
+          <p>da Vinci surgical systems translate teleoperated surgeon hand motions into sub-millimeter laparoscopic instrument articulations using closed-loop inverse kinematic Jacobians.</p>
+        `
+      },
+      18: {
+
+        avatarRole: 'Networks & Graph Algorithms Mentor',
+        topic: 'CIDR Subnet Slicing & Dijkstra Shortest Path First',
+        voiceover_en: 'Welcome to Subnet Slicer and Dijkstra Router Mesh! At age 18, we tackle core Internet Engineering principles. Given an IPv4 address block, network architects use CIDR subnet masking (such as slash-26) to allocate usable IP addresses with zero waste. Simultaneously, internet core routers run Dijkstra\'s Shortest Path First algorithm to calculate optimal OSPF packet routes across interconnected autonomous systems. This powers global CDNs like Cloudflare and AWS VPC infrastructure!',
+        voiceover_ml: 'സബ്നെറ്റ് സ്ലൈസറിലേക്കും ഡിജ്ക്‌സ്ട്ര റൂട്ടർ മെഷിലേക്കും സ്വാഗതം! 18-ാം വയസ്സിൽ നാം ഇന്റർനെറ്റ് നെറ്റ്‌വർക്കിങ്ങിന്റെ ഉള്ളറകളിലേക്ക് കടക്കുന്നു. ഒരു വലിയ ഐപി ബ്ലോക്കിനെ വേസ്റ്റില്ലാതെ വിഭജിക്കാൻ CIDR സബ്നെറ്റിങ് ഉപയോഗിക്കുന്നു. അതോടൊപ്പം റൂട്ടറുകൾക്കിടയിൽ ഏറ്റവും വേഗമേറിയ പാത കണ്ടെത്താൻ ഡിജ്ക്‌സ്ട്രയുടെ അൽഗോരിതം പ്രവർത്തിക്കുന്നു. ലോകമെമ്പാടുമുള്ള ഇന്റർനെറ്റ് ട്രാഫിക്കും ക്ലൗഡ് നെറ്റ്വർക്കുകളും ഈ ഗണിത തത്വത്തിലാണ് പ്രവർത്തിക്കുന്നത്!',
+        algorithm_en: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">Classless Inter-Domain Routing (CIDR) & Dijkstra Shortest Path</h4>
+      <p style="margin-bottom: 12px;">Subnetting allocates 2^(32-N) - 2 usable hosts, while Dijkstra solves single-source shortest paths in O((V + E) log V) time.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+        <div class="step-card">
+          <strong style="color: var(--accent-cyan);">Step 1: Prefix Length Selection</strong>
+          <p style="margin-top: 4px;">For H = 60 hosts, compute 2^h - 2 ≥ 60 => h = 6. Prefix N = 32 - 6 = /26 (62 usable hosts).</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-amber);">Step 2: Priority Queue Setup</strong>
+          <p style="margin-top: 4px;">Initialize dist[R1] = 0, dist[Others] = ∞, pushing router nodes into a binary min-heap.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-purple);">Step 3: Edge Relaxation Loop</strong>
+          <p style="margin-top: 4px;">Greedily extract router with minimum tentative distance, updating neighbor distances if new path cost is lower.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-emerald);">Step 4: FIB Table Convergence</strong>
+          <p style="margin-top: 4px;">Path R1 -> R3 (5) -> R4 (15) achieves total cost 20, dominating alternative path of 30.</p>
+        </div>
+      </div>`,
+        algorithm_ml: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">CIDR സബ്നെറ്റിങ് & ഡിജ്ക്‌സ്ട്ര അൽഗോരിതം</h4>
+      <p style="margin-bottom: 12px;">ഐപി വിലാസങ്ങൾ കാര്യക്ഷമമായി വിഭജിക്കുകയും ഏറ്റവും വേഗതയേറിയ പാതയിലൂടെ ഡാറ്റ കടത്തിവിടുകയും ചെയ്യുന്നു.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+        <div class="step-card">
+          <strong style="color: var(--accent-cyan);">ഘട്ടം 1: സബ്നെറ്റ് മാസ്ക് കണക്കാക്കൽ</strong>
+          <p style="margin-top: 4px;">60 ഹോസ്റ്റുകൾക്കായി /26 പ്രിഫിക്സ് തെരഞ്ഞെടുത്ത് 62 ഐപികൾ അനുവദിക്കുന്നു.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-amber);">ഘട്ടം 2: പ്രയോറിറ്റി ക്യൂ തുടക്കം</strong>
+          <p style="margin-top: 4px;">റൂട്ടറുകളിലേക്കുള്ള ദൂരം വിശകലനം ചെയ്യാൻ മിൻ-ഹീപ് ഉപയോഗിക്കുന്നു.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-purple);">ഘട്ടം 3: എഡ്ജ് റിലാക്സേഷൻ</strong>
+          <p style="margin-top: 4px;">കുറഞ്ഞ ദൂരമുള്ള പാതകൾ കണ്ടെത്തി റൂട്ടിംഗ് ടേബിൾ അപ്ഡേറ്റ് ചെയ്യുന്നു.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-emerald);">ഘട്ടം 4: ഒപ്റ്റിമൽ റൂട്ടിംഗ്</strong>
+          <p style="margin-top: 4px;">കുറഞ്ഞ കോസ്റ്റിലുള്ള പാത (R1 -> R3 -> R4, കോസ്റ്റ്: 20) വഴി പാക്കറ്റ് എത്തിക്കുന്നു.</p>
+        </div>
+      </div>`,
+        apps_en: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">Industrial Engineering Deployments</h4>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">Amazon Web Services (AWS) Virtual Private Cloud (VPC)</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); display: block; margin: 4px 0;">Domain: Cloud Infrastructure / RFC 4632</span>
+          <p style="margin-top: 6px;">Hyperscale cloud isolation partitions enterprise data centers into private subnets, security groups, and internet gateways.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">Impact: Billions of isolated subnets provisioned globally with microsecond packet filtering</div>
+        </div>
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">Cloudflare Global Anycast Edge Routing Mesh</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-amber); display: block; margin: 4px 0;">Domain: Internet Backbone Routing / BGP & OSPF</span>
+          <p style="margin-top: 6px;">Evaluates dynamic internet traffic congestion, routing DNS requests to the geographically nearest point of presence.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">Impact: Under 50ms average global latency for 20% of the world's web traffic</div>
+        </div>
+      </div>`,
+        apps_ml: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">വ്യാവസായിക ഉപയോഗങ്ങൾ</h4>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">ആമസോൺ വെബ് സർവീസസ് (AWS) VPC സബ്നെറ്റിങ്</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); display: block; margin: 4px 0;">ഡൊമെയ്ൻ: ക്ലൗഡ് കമ്പ്യൂട്ടിംഗ്</span>
+          <p style="margin-top: 6px;">കമ്പനികളുടെ സെർവറുകൾക്ക് ഐപി വിലാസങ്ങൾ വിഭജിച്ച് സുരക്ഷിതമായി നൽകുന്ന സാങ്കേതികവിദ്യ.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">നേട്ടം: മൈക്രോസെക്കൻഡ് പാക്കറ്റ് സ്പീഡ്, ഡാറ്റാ ഐസൊലേഷൻ</div>
+        </div>
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">ക്ലൗഡ്‌ഫ്ലെയർ ആനിക്കസ്റ്റ് എഡ്ജ് നെറ്റ്‌വർക്ക്</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-amber); display: block; margin: 4px 0;">ഡൊമെയ്ൻ: ആഗോള ഇന്റർനെറ്റ് റൂട്ടിംഗ്</span>
+          <p style="margin-top: 6px;">ലോകമെമ്പാടുമുള്ള ഇന്റർനെറ്റ് ട്രാഫിക്കിൽ ഏറ്റവും വേഗതയേറിയ പാതയിലൂടെ ഉപഭോക്താവിലേക്ക് ഡാറ്റ എത്തിക്കുന്നു.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">നേട്ടം: 50 മില്ലിസെക്കൻഡിൽ താഴെ റെസ്പോൺസ് സമയം</div>
+        </div>
+      </div>`,
+        title: "Subnet Speed Slicer & Dijkstra Packet Rush",
+        syllabus: "CST303 Computer Networks & CST305 Artificial Intelligence",
+        theory: `
+          <h4 style="color: var(--accent-cyan); margin-bottom: 6px;">1. Classless Inter-Domain Routing (CIDR) & VLSM</h4>
+          <p>Host bits: <code>h = 32 - Prefix</code>. Usable addresses per subnet: <code>2^h - 2</code> (subtracting Network ID and Directed Broadcast ID). Subnet masking divides address blocks without wasting IP space.</p>
+          <h4 style="color: var(--accent-amber); margin: 12px 0 6px;">2. Dijkstra Shortest Path First (SPF)</h4>
+          <p>Edge relaxation: <code>IF dist[u] + cost(u, v) < dist[v] THEN dist[v] = dist[u] + cost(u, v)</code>. Guarantees minimum latency path with complexity <code>O((|V| + |E|) log |V|)</code>.</p>
+          <h4 style="color: var(--accent-emerald); margin: 12px 0 6px;">3. BGP Route Aggregation</h4>
+          <p>Summarizes contiguous /24 prefixes into /22 or /20 supernets, shrinking global core routing tables.</p>
+        `,
+        numerical: `
+          <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 12px; margin-bottom: 14px;">
+            <strong style="color: var(--accent-amber);">KTU Numerical Question:</strong>
+            Given block 192.168.1.0/24, partition it using VLSM for: (1) Sales (60 hosts), (2) Dev (28 hosts), (3) Support (14 hosts), (4) WAN (2 hosts). Determine CIDR prefixes, masks, and usable host ranges.
+          </div>
+          <div class="step-card">
+            <strong>Sales (60 hosts):</strong> 2^h - 2 ≥ 60 => h=6 bits => /26 (Mask 255.255.255.192). Net: 192.168.1.0/26. Usable: 192.168.1.1 - 192.168.1.62. Bcast: 192.168.1.63.
+          </div>
+          <div class="step-card">
+            <strong>Dev (28 hosts):</strong> 2^h - 2 ≥ 28 => h=5 bits => /27 (Mask 255.255.255.224). Net: 192.168.1.64/27. Usable: 192.168.1.65 - 192.168.1.94. Bcast: 192.168.1.95.
+          </div>
+          <div class="step-card">
+            <strong>Support (14 hosts):</strong> 2^h - 2 ≥ 14 => h=4 bits => /28 (Mask 255.255.255.240). Net: 192.168.1.96/28. Usable: 192.168.1.97 - 192.168.1.110. Bcast: 192.168.1.111.
+          </div>
+          <div class="step-card">
+            <strong>WAN (2 hosts):</strong> 2^h - 2 ≥ 2 => h=2 bits => /30 (Mask 255.255.255.252). Net: 192.168.1.112/30. Usable: 192.168.1.113 - 192.168.1.114. Bcast: 192.168.1.115.
+          </div>
+          <div style="padding: 10px; background: rgba(16, 185, 129, 0.15); border-radius: 6px; color: #a7f3d0; font-family: var(--font-mono);">
+            ✓ Final Result: Zero subnet overlap. 140 unassigned addresses remain available in reserve pool.
+          </div>
+        `,
+        workbench: `
+          <div style="margin-bottom: 14px;">
+            <label style="font-size: 0.75rem; color: var(--text-muted);">CIDR Prefix Length:</label>
+            <input type="range" id="wb18-prefix" min="24" max="30" value="26" oninput="calcWb18()" style="width: 100%;">
+            <span id="wb18-prefix-val" style="color: var(--accent-cyan); font-family: var(--font-mono); font-weight: 700;">/26</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; text-align: center;">
+            <div style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 6px;">
+              <span style="font-size: 0.72rem; color: var(--text-muted);">Subnet Mask:</span>
+              <div id="wb18-mask" style="font-size: 1.1rem; font-weight: 800; color: var(--accent-cyan);">255.255.255.192</div>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 6px;">
+              <span style="font-size: 0.72rem; color: var(--text-muted);">Usable Hosts:</span>
+              <div id="wb18-hosts" style="font-size: 1.2rem; font-weight: 800; color: var(--accent-emerald);">62</div>
+            </div>
+          </div>
+        `,
+        vivavoce: `
+          <div class="viva-card">
+            <strong style="color: #fff;">Q1: Why does Dijkstra fail on negative-weight edges?</strong>
+            <p style="margin-top: 6px; color: #cbd5e1;">Dijkstra assumes that once a vertex is extracted from the min-heap, its shortest distance is permanently finalized. A negative link could reduce distance later, breaking optimality. Bellman-Ford O(|V|·|E|) handles negative links.</p>
+          </div>
+          <div class="viva-card">
+            <strong style="color: #fff;">Q2: Why must 2 addresses be subtracted from 2^h?</strong>
+            <p style="margin-top: 6px; color: #cbd5e1;">The all-zeros host address is reserved as the Subnet Network ID, and all-ones is reserved as the Directed Broadcast ID. Neither can be assigned to an interface.</p>
+          </div>
+          <div class="viva-card">
+            <strong style="color: #fff;">Q3: What is the role of Dijkstra SPF in OSPF routing?</strong>
+            <p style="margin-top: 6px; color: #cbd5e1;">Every OSPF router builds an identical Link-State Database (LSDB) and executes Dijkstra's algorithm with itself as the root to construct the loop-free shortest-path forwarding table.</p>
+          </div>
+        `,
+        enterprise: `
+          <h4 style="color: var(--accent-cyan); margin-bottom: 6px;">AWS Virtual Private Cloud (VPC) & Cloudflare Anycast</h4>
+          <p>Cloud networks partition /16 VPC CIDR blocks into public web subnets, private microservice clusters, and isolated database subnets with strict routing tables.</p>
+        `
+      },
+      21: {
+
+        avatarRole: 'Distributed Systems & Project Architect',
+        topic: 'Deadlock Preemption & CPM Critical Path Management',
+        voiceover_en: 'Welcome to Distributed Deadlock Command and Critical Path Method! At age 21, we reach professional senior engineering mastery. In multi-threaded enterprise databases, circular wait conditions create deadlocks in the Resource Allocation Graph. A transaction rollback algorithm preempts the least-costly victim thread to restore throughput. Simultaneously, industrial engineering leaders use the Critical Path Method to smooth float and protect project milestones. This exact engineering underpins PostgreSQL lock contention and NASA aerospace missions!',
+        voiceover_ml: 'ഡിസ്ട്രിബ്യൂട്ടഡ് ഡെഡ്‌ലോക്ക് കമാൻഡിലേക്കും ക്രിട്ടിക്കൽ പാത്ത് മെത്തേഡിലേക്കും സ്വാഗതം! 21-ാം വയസ്സിൽ നാം എന്റർപ്രൈസ് ലെവൽ സോഫ്റ്റ്‌വെയർ ആർക്കിടെക്ചറിലേക്ക് എത്തുന്നു. വലിയ ഡാറ്റാബേസുകളിൽ ഒരേ സമയം പല ത്രെഡുകൾ പരസ്പരം കാത്തിരിക്കുമ്പോൾ ഡെഡ്‌ലോക്ക് ഉണ്ടാകുന്നു. കുറഞ്ഞ ചിലവുള്ള ത്രെഡ് പ്രീഎംപ്റ്റ് ചെയ്ത് ഡെഡ്‌ലോക്ക് മാറ്റുന്നു. അതോടൊപ്പം ക്രിട്ടിക്കൽ പാത്ത് മെത്തേഡ് വഴി പ്രോജക്റ്റുകളുടെ കാലതാമസം ഒഴിവാക്കുന്നു. പോസ്റ്റ്ഗ്രേ-എസ്ക്യുഎൽ ഡാറ്റാബേസുകളിലും നാസയുടെ പ്രോജക്റ്റുകളിലും ഇതാണ് ഉപയോഗിക്കുന്നത്!',
+        algorithm_en: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">RAG Cycle Preemption & Critical Path Float Smoothing</h4>
+      <p style="margin-bottom: 12px;">Tarjan's DFS detects circular waits in Resource Allocation Graphs, while CPM calculates zero-slack paths.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+        <div class="step-card">
+          <strong style="color: var(--accent-cyan);">Step 1: Directed Cycle Detection</strong>
+          <p style="margin-top: 4px;">DFS identifies circular wait cycle: T1 -> R2 -> T2 -> R1 -> T1.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-amber);">Step 2: Minimum-Cost Victim Selection</strong>
+          <p style="margin-top: 4px;">Cost(T2) = 15ms latency penalty vs Cost(T1) = 80ms. T2 is selected as optimal rollback victim.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-purple);">Step 3: Preemption & Lock Release</strong>
+          <p style="margin-top: 4px;">T2 is preempted, releasing resource R2 to T1, restoring transactional throughput.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-emerald);">Step 4: CPM Critical Path Forward/Backward Pass</strong>
+          <p style="margin-top: 4px;">Calculates Early/Late finishes. Tasks with Total Float = 0 form the zero-slack Critical Path A-B-D-F.</p>
+        </div>
+      </div>`,
+        algorithm_ml: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">റിസോഴ്സ് അലോക്കേഷൻ ഗ്രാഫ് പ്രീഎംപ്ഷൻ & CPM</h4>
+      <p style="margin-bottom: 12px;">ഡെഡ്‌ലോക്ക് സൈക്കിളുകൾ കണ്ടെത്തി പ്രീഎംപ്റ്റ് ചെയ്യുകയും, പ്രോജക്റ്റ് ഫ്ലോട്ട് വിശകലനം ചെയ്യുകയും ചെയ്യുന്നു.</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+        <div class="step-card">
+          <strong style="color: var(--accent-cyan);">ഘട്ടം 1: ഡെഡ്‌ലോക്ക് സൈക്കിൾ കണ്ടെത്തൽ</strong>
+          <p style="margin-top: 4px;">DFS വഴി ത്രെഡുകൾക്കിടയിലെ സർക്കുലർ കാത്തിരിപ്പ് സൈക്കിൾ കണ്ടെത്തുന്നു.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-amber);">ഘട്ടം 2: വിക്ടിം ത്രെഡ് തെരഞ്ഞെടുക്കൽ</strong>
+          <p style="margin-top: 4px;">കുറഞ്ഞ നഷ്ടത്തിൽ പിൻവലിക്കാൻ കഴിയുന്ന ത്രെഡ് T2 (15ms) തെരഞ്ഞെടുക്കുന്നു.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-purple);">ഘട്ടം 3: പ്രീഎംപ്ഷൻ & റിലീസ്</strong>
+          <p style="margin-top: 4px;">റിസോഴ്സ് വിട്ടുനൽകി ഡെഡ്‌ലോക്ക് അവസ്ഥയിൽ നിന്ന് സിസ്റ്റത്തെ മോചിപ്പിക്കുന്നു.</p>
+        </div>
+        <div class="step-card">
+          <strong style="color: var(--accent-emerald);">ഘട്ടം 4: ക്രിട്ടിക്കൽ പാത നിർണ്ണയം</strong>
+          <p style="margin-top: 4px;">വൈകാൻ പാടില്ലാത്ത ക്രിട്ടിക്കൽ പാത (Total Float = 0) കണ്ടെത്തി ഷെഡ്യൂൾ ക്രമീകരിക്കുന്നു.</p>
+        </div>
+      </div>`,
+        apps_en: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">Industrial Engineering Deployments</h4>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">PostgreSQL & Oracle Multi-Version Lock Managers</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); display: block; margin: 4px 0;">Domain: Enterprise Database Engines / ACID</span>
+          <p style="margin-top: 6px;">Background deadlock detection daemons evaluate lock contention graphs, rolling back conflicting queries to maintain high transactional throughput.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">Impact: Over 100,000 concurrent database queries per second with sub-5ms lock resolution</div>
+        </div>
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">NASA James Webb Space Telescope (JWST) Schedule Control</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-amber); display: block; margin: 4px 0;">Domain: Aerospace Systems / PMI PMBOK</span>
+          <p style="margin-top: 6px;">Critical Path Method networks synchronized tens of thousands of component integration milestones, reallocating float to absorb mirror alignment delays.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">Impact: Zero-margin schedule slip containment on multi-billion dollar satellite deployments</div>
+        </div>
+      </div>`,
+        apps_ml: `<h4 style="color: var(--accent-cyan); margin-bottom: 8px;">വ്യാവസായിക ഉപയോഗങ്ങൾ</h4>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">PostgreSQL & ഒറാക്കിൾ ഡെഡ്‌ലോക്ക് ഡിറ്റക്ടർ</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); display: block; margin: 4px 0;">ഡൊമെയ്ൻ: എന്റർപ്രൈസ് ഡാറ്റാബേസ് മാനേജ്‌മെന്റ്</span>
+          <p style="margin-top: 6px;">ബാങ്കിംഗ് സിസ്റ്റങ്ങളിലും സെർവറുകളിലും ട്രാൻസാക്ഷനുകൾ തത്സമയം വിക്ടിം പ്രീഎംപ്റ്റ് ചെയ്യുന്ന സിസ്റ്റം.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">നേട്ടം: സെക്കൻഡിൽ ലക്ഷത്തിലധികം ബാങ്കിംഗ് ഇടപാടുകൾ സുരക്ഷിതമായി നടത്തുന്നു</div>
+        </div>
+        <div class="step-card">
+          <strong style="color: #fff; font-size: 0.95rem;">നാസ ജെയിംസ് വെബ് ടെലിസ്കോപ്പ് പ്രോജക്ട് ഷെഡ്യൂളിംഗ്</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-amber); display: block; margin: 4px 0;">ഡൊമെയ്ൻ: എയ്‌റോസ്പേസ് പ്രോജക്ട് മാനേജ്‌മെന്റ്</span>
+          <p style="margin-top: 6px;">പതിനായിരക്കണക്കിന് ഘട്ടങ്ങളുള്ള ബഹിരാകാശ പദ്ധതികളിൽ കൃത്യസമയത്ത് വിക്ഷേപണം ഉറപ്പാക്കുന്ന വിദ്യ.</p>
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: #34d399;">നേട്ടം: മെഗാ പ്രോജക്റ്റുകളിൽ പൂജ്യം ഷെഡ്യൂൾ പിഴവ്</div>
+        </div>
+      </div>`,
+        title: "Distributed Deadlock Command & CPM Scheduler",
+        syllabus: "PECST521 Software Project Management & CST205 Java Concurrency",
+        theory: `
+          <h4 style="color: var(--accent-cyan); margin-bottom: 6px;">1. Coffman Deadlock Conditions & Resource Allocation Graphs</h4>
+          <p>Deadlocks hold if Mutual Exclusion, Hold and Wait, No Preemption, and Circular Wait occur simultaneously. Directed cycles in single-instance graphs indicate deadlock.</p>
+          <h4 style="color: var(--accent-amber); margin: 12px 0 6px;">2. Critical Path Method (CPM) Float Equations</h4>
+          <p><code>Early Start (ES) = max(EF_pred)</code>; <code>Late Finish (LF) = min(LS_succ)</code>. <code>Total Float = LS - ES</code>. Activities with <code>Total Float = 0</code> define the Critical Path.</p>
+          <h4 style="color: var(--accent-emerald); margin: 12px 0 6px;">3. Banker's Algorithm Safety Vector</h4>
+          <p>Ensures that resource allocation only proceeds if a safe sequence exists where <code>Need[i] ≤ Available</code>.</p>
+        `,
+        numerical: `
+          <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 12px; margin-bottom: 14px;">
+            <strong style="color: var(--accent-amber);">KTU Numerical Question:</strong>
+            A project has activities: A(3d), B(4d, pred A), C(2d, pred A), D(5d, pred B), E(6d, pred C), F(3d, pred D,E). Compute ES, EF, LS, LF, Total Float, Free Float, and find the Critical Path.
+          </div>
+          <div class="step-card">
+            <strong>Forward Pass:</strong> A: 0-3. B: 3-7. C: 3-5. D: 7-12. E: 5-11. F: max(12,11)=12 => 12-15. Project duration = 15 days.
+          </div>
+          <div class="step-card">
+            <strong>Backward Pass:</strong> F: 12-15. D: 7-12. E: 6-12. B: 3-7. C: 4-6. A: min(3,4)=3 => 0-3.
+          </div>
+          <div class="step-card">
+            <strong>Float Analysis:</strong> A: TF=0. B: TF=0. C: TF=1d. D: TF=0. E: TF=1d. F: TF=0.
+          </div>
+          <div style="padding: 10px; background: rgba(16, 185, 129, 0.15); border-radius: 6px; color: #a7f3d0; font-family: var(--font-mono);">
+            ✓ Critical Path: A → B → D → F (Duration = 15 days). Float buffer on path A-C-E-F = 1 day.
+          </div>
+        `,
+        workbench: `
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px;">
+            <div>
+              <label style="font-size: 0.72rem; color: var(--text-muted);">Act A (3d):</label>
+              <input type="number" id="wb21-a" value="3" oninput="calcWb21()" style="width: 100%; background: #000; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 4px;">
+            </div>
+            <div>
+              <label style="font-size: 0.72rem; color: var(--text-muted);">Act B (4d):</label>
+              <input type="number" id="wb21-b" value="4" oninput="calcWb21()" style="width: 100%; background: #000; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 4px;">
+            </div>
+            <div>
+              <label style="font-size: 0.72rem; color: var(--text-muted);">Act D (5d):</label>
+              <input type="number" id="wb21-d" value="5" oninput="calcWb21()" style="width: 100%; background: #000; color: #fff; border: 1px solid #444; border-radius: 4px; padding: 4px;">
+            </div>
+          </div>
+          <div style="background: rgba(0,0,0,0.4); padding: 12px; border-radius: 8px; text-align: center;">
+            <span style="font-size: 0.75rem; color: var(--text-muted);">Critical Path Duration (A+B+D+F):</span>
+            <div id="wb21-total" style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan);">15 days</div>
+          </div>
+        `,
+        vivavoce: `
+          <div class="viva-card">
+            <strong style="color: #fff;">Q1: Differentiate Deadlock Prevention vs Avoidance vs Detection.</strong>
+            <p style="margin-top: 6px; color: #cbd5e1;">Prevention statically eliminates one Coffman condition at design time. Avoidance dynamically prevents unsafe allocation using Banker's algorithm. Detection allows deadlocks and periodically detects/breaks cycles via victim preemption.</p>
+          </div>
+          <div class="viva-card">
+            <strong style="color: #fff;">Q2: What is the difference between Total Float and Free Float?</strong>
+            <p style="margin-top: 6px; color: #cbd5e1;">Total Float is the maximum slippage without delaying the project deadline. Free Float is the slippage without delaying the Early Start of ANY successor activity.</p>
+          </div>
+          <div class="viva-card">
+            <strong style="color: #fff;">Q3: How does Two-Phase Locking (2PL) guarantee serializability?</strong>
+            <p style="margin-top: 6px; color: #cbd5e1;">In 2PL, a transaction cannot request new locks once it begins releasing existing locks (Growing then Shrinking phase), preventing cyclic read-write conflicts.</p>
+          </div>
+        `,
+        enterprise: `
+          <h4 style="color: var(--accent-cyan); margin-bottom: 6px;">PostgreSQL Latch Contention & NASA PERT Programs</h4>
+          <p>Production database engines use lockdep graph analysis to detect circular wait cycles, while aerospace engineering programs manage thousands of critical path supplier milestones.</p>
+        `
+      }
+    };
+
+    let currentAge = 10;
+    let currentDepthTab = 'theory';
+
+    
+    let currentLanguage = 'en';
+    let speechRate = 1.0;
+    let isSpeaking = false;
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      document.getElementById('lang-btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('lang-btn-ml').classList.toggle('active', lang === 'ml');
+      stopVoiceover();
+      updateAvatarSpeech();
+      if (currentDepthTab === 'algorithm' || currentDepthTab === 'application') {
+        renderDepthContent();
+      }
+      sfx.click();
+    }
+
+    function updateAvatarSpeech() {
+      const tier = GAME_TIERS[currentAge];
+      if (!tier) return;
+      document.getElementById('avatar-role-label').innerText = tier.avatarRole || 'Algorithmic Logic Mentor';
+      document.getElementById('avatar-topic-badge').innerText = tier.topic || 'Curriculum Concepts';
+      const text = currentLanguage === 'en' ? tier.voiceover_en : tier.voiceover_ml;
+      document.getElementById('avatar-transcript-box').innerText = text || '';
+      document.getElementById('btn-play-voiceover').innerText = currentLanguage === 'en' ? '▶ Play Voiceover' : '▶ വിവരണം കേൾക്കുക (Play)';
+    }
+
+    function playVoiceover() {
+      if (!('speechSynthesis' in window)) {
+        alert('Web Speech API is not supported in this browser.');
+        return;
+      }
+      if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+        setSpeakingState(true);
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const tier = GAME_TIERS[currentAge];
+      const text = currentLanguage === 'en' ? tier.voiceover_en : tier.voiceover_ml;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = speechRate;
+      utterance.pitch = 1.05;
+
+      const voices = window.speechSynthesis.getVoices();
+      if (currentLanguage === 'ml') {
+        const mlVoice = voices.find(v => v.lang.startsWith('ml') || v.name.toLowerCase().includes('malayalam'));
+        const inVoice = voices.find(v => v.lang.includes('IN'));
+        if (mlVoice) utterance.voice = mlVoice;
+        else if (inVoice) utterance.voice = inVoice;
+      } else {
+        const enVoice = voices.find(v => (v.lang.startsWith('en-IN') || v.lang.startsWith('en-US')) && !v.name.includes('Zira'));
+        if (enVoice) utterance.voice = enVoice;
+      }
+
+      utterance.onstart = () => setSpeakingState(true);
+      utterance.onend = () => setSpeakingState(false);
+      utterance.onerror = () => setSpeakingState(false);
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function pauseVoiceover() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.pause();
+        setSpeakingState(false);
+      }
+    }
+
+    function stopVoiceover() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        setSpeakingState(false);
+      }
+    }
+
+    function setSpeakingState(speaking) {
+      isSpeaking = speaking;
+      const block = document.getElementById('avatar-container-block');
+      if (block) block.classList.toggle('avatar-speaking', speaking);
+      const indicator = document.getElementById('avatar-speaking-indicator');
+      if (indicator) {
+        indicator.style.display = speaking ? 'inline' : 'none';
+        indicator.innerText = currentLanguage === 'en' ? '• Speaking Voiceover' : '• സംസാരിക്കുന്നു';
+      }
+      const playBtn = document.getElementById('btn-play-voiceover');
+      const pauseBtn = document.getElementById('btn-pause-voiceover');
+      const stopBtn = document.getElementById('btn-stop-voiceover');
+      if (playBtn) playBtn.style.display = speaking ? 'none' : 'inline-block';
+      if (pauseBtn) pauseBtn.style.display = speaking ? 'inline-block' : 'none';
+      if (stopBtn) stopBtn.style.display = speaking ? 'inline-block' : 'none';
+    }
+
+    function toggleSpeechRate() {
+      speechRate = speechRate === 1.0 ? 1.25 : 1.0;
+      document.getElementById('btn-speed-toggle').innerText = speechRate + 'x Speed';
+      if (isSpeaking) {
+        stopVoiceover();
+        playVoiceover();
+      }
+    }
+  
+    function switchAgeTier(age, btn) {
+      currentAge = age;
+      document.querySelectorAll('.age-pill-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      const tier = GAME_TIERS[age];
+      document.getElementById('tier-depth-title').innerText = tier.title;
+      document.getElementById('syllabus-anchor-badge').innerText = tier.syllabus;
+
+      renderDepthContent();
+      renderGameViewport(age);
+      sfx.click();
+    }
+
+    function switchDepthTab(tabName, btn) {
+      currentDepthTab = tabName;
+      document.querySelectorAll('.depth-tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderDepthContent();
+      sfx.click();
+    }
+
+    function renderDepthContent() {
+      const tier = GAME_TIERS[currentAge];
+      const box = document.getElementById('depth-content-box');
+      if (currentDepthTab === 'theory') box.innerHTML = tier.theory;
+      else if (currentDepthTab === 'numerical') box.innerHTML = tier.numerical;
+      else if (currentDepthTab === 'workbench') box.innerHTML = tier.workbench;
+      else if (currentDepthTab === 'vivavoce') box.innerHTML = tier.vivavoce;
+      else if (currentDepthTab === 'enterprise') box.innerHTML = tier.enterprise;
+    }
+
+    // Workbench calculations
+    function calcWb10() {
+      const steps = parseInt(document.getElementById('wb10-steps').value);
+      const turns = parseInt(document.getElementById('wb10-turns').value);
+      document.getElementById('wb10-steps-val').innerText = steps + ' steps';
+      document.getElementById('wb10-turns-val').innerText = turns + ' turns';
+      const burned = (steps * 2) + (turns * 1) + 1;
+      document.getElementById('wb10-burned').innerText = burned + ' units';
+      document.getElementById('wb10-remain').innerText = Math.max(0, 100 - burned) + '%';
+    }
+
+    let wb12_a = 1, wb12_b = 0, wb12_c = 1;
+    function toggleWb12(pin) {
+      if (pin === 'A') { wb12_a = wb12_a ? 0 : 1; document.getElementById('btn-in-a').innerText = 'Input A: ' + wb12_a; }
+      if (pin === 'B') { wb12_b = wb12_b ? 0 : 1; document.getElementById('btn-in-b').innerText = 'Input B: ' + wb12_b; }
+      if (pin === 'C') { wb12_c = wb12_c ? 0 : 1; document.getElementById('btn-in-c').innerText = 'Input C: ' + wb12_c; }
+      document.getElementById('wb12-and').innerText = (wb12_a & wb12_b);
+      document.getElementById('wb12-or').innerText = (wb12_a | wb12_b);
+      document.getElementById('wb12-xor').innerText = (wb12_a ^ wb12_b ^ wb12_c);
+      document.getElementById('wb12-maj').innerText = ((wb12_a & wb12_b) | (wb12_b & wb12_c) | (wb12_a & wb12_c));
+      sfx.click();
+    }
+
+    function calcWb15() {
+      const th1 = parseInt(document.getElementById('wb15-th1').value);
+      const th2 = parseInt(document.getElementById('wb15-th2').value);
+      document.getElementById('wb15-th1-val').innerText = th1 + '°';
+      document.getElementById('wb15-th2-val').innerText = th2 + '°';
+      const r1 = (th1 * Math.PI) / 180;
+      const r2 = ((th1 + th2) * Math.PI) / 180;
+      const x = 200 * Math.cos(r1) + 150 * Math.cos(r2);
+      const y = 200 * Math.sin(r1) + 150 * Math.sin(r2);
+      document.getElementById('wb15-x').innerText = x.toFixed(2);
+      document.getElementById('wb15-y').innerText = y.toFixed(2);
+    }
+
+    function calcWb18() {
+      const p = parseInt(document.getElementById('wb18-prefix').value);
+      document.getElementById('wb18-prefix-val').innerText = '/' + p;
+      const total = Math.pow(2, 32 - p);
+      const usable = Math.max(0, total - 2);
+      const lastOctet = 256 - total;
+      document.getElementById('wb18-mask').innerText = '255.255.255.' + lastOctet;
+      document.getElementById('wb18-hosts').innerText = usable;
+    }
+
+    function calcWb21() {
+      const a = parseInt(document.getElementById('wb21-a').value) || 0;
+      const b = parseInt(document.getElementById('wb21-b').value) || 0;
+      const d = parseInt(document.getElementById('wb21-d').value) || 0;
+      document.getElementById('wb21-total').innerText = (a + b + d + 3) + ' days';
+    }
+
+    function renderGameViewport(age) {
+      const vp = document.getElementById('game-dynamic-viewport');
+      if (age === 10) {
+        vp.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #fff;">Algorithm Rover: 5x5 Logic Grid</h3>
+            <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan);">Score: <strong id="age10-score">0</strong> pts</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 320px 1fr; gap: 24px;">
+            <canvas id="rover-canvas" width="320" height="320" style="background: #020617; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);"></canvas>
+            <div>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;">
+                <button class="cmd-badge" onclick="addRoverCmd('MOVE')">+ Move Forward</button>
+                <button class="cmd-badge" onclick="addRoverCmd('LEFT')">+ Turn Left</button>
+                <button class="cmd-badge" onclick="addRoverCmd('RIGHT')">+ Turn Right</button>
+                <button class="cmd-badge" onclick="addRoverCmd('COLLECT')">+ Collect Gem</button>
+              </div>
+              <div id="rover-queue" style="min-height: 80px; background: rgba(0,0,0,0.4); padding: 12px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.85rem; color: #a7f3d0; margin-bottom: 14px;">
+                Queue: (empty)
+              </div>
+              <button class="glass-btn glass-btn-primary" onclick="runRoverCode()">Execute Algorithm</button>
+              <button class="glass-btn" onclick="resetRover()">Reset Level</button>
+            </div>
+          </div>
+        `;
+        initRoverGame();
+      } else if (age === 12) {
+        vp.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #fff;">Cyber Gate Defender: Firewall Network</h3>
+            <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan);">Shield: <strong id="age12-shield">100</strong>%</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            <div style="background: rgba(0,0,0,0.4); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); text-align: center;">
+              <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">Incoming Data Frame Target:</div>
+              <div id="target-gate-req" style="font-size: 1.8rem; font-weight: 900; color: var(--accent-cyan); font-family: var(--font-mono);">A XOR B = 1</div>
+              <div style="display: flex; justify-content: center; gap: 16px; margin: 20px 0;">
+                <button class="cmd-badge" id="gate-in1" onclick="toggleGateInput(1)" style="font-size: 1rem; padding: 10px 20px;">A: 0</button>
+                <button class="cmd-badge" id="gate-in2" onclick="toggleGateInput(2)" style="font-size: 1rem; padding: 10px 20px;">B: 0</button>
+              </div>
+              <button class="glass-btn glass-btn-primary" onclick="validateFirewall()">Transmit Packet</button>
+            </div>
+            <div style="background: rgba(0,0,0,0.3); padding: 16px; border-radius: 12px;">
+              <strong style="color: var(--accent-amber);">Truth Table Reference:</strong>
+              <table style="width: 100%; margin-top: 10px; font-family: var(--font-mono); font-size: 0.8rem; text-align: left;">
+                <tr style="border-bottom: 1px solid #333;"><th>A</th><th>B</th><th>AND</th><th>OR</th><th>XOR</th></tr>
+                <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+              </table>
+            </div>
+          </div>
+        `;
+        initGateGame();
+      } else if (age === 15) {
+        vp.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #fff;">Polymorphic 2-DOF Robot Arm Kinematics</h3>
+            <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan);">Target Error: <strong id="robo-err">--</strong> mm</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 360px 1fr; gap: 24px;">
+            <canvas id="robo-canvas" width="360" height="280" style="background: #020617; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);"></canvas>
+            <div>
+              <div style="margin-bottom: 14px;">
+                <label style="font-size: 0.8rem; color: var(--text-muted); display: block;">Joint 1 (θ1): <span id="val-th1">30°</span></label>
+                <input type="range" id="sl-th1" min="-90" max="90" value="30" oninput="updateRoboArm()" style="width: 100%;">
+              </div>
+              <div style="margin-bottom: 14px;">
+                <label style="font-size: 0.8rem; color: var(--text-muted); display: block;">Joint 2 (θ2): <span id="val-th2">45°</span></label>
+                <input type="range" id="sl-th2" min="-120" max="120" value="45" oninput="updateRoboArm()" style="width: 100%;">
+              </div>
+              <button class="glass-btn glass-btn-primary" onclick="engageRoboTool()">Engage Polymorphic Gripper</button>
+            </div>
+          </div>
+        `;
+        initRoboGame();
+      } else if (age === 18) {
+        vp.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #fff;">Subnet Slicer & Dijkstra Router Mesh</h3>
+            <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan);">Hops: <strong id="dijk-hops">0</strong></span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            <div style="background: rgba(0,0,0,0.4); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 0.85rem; color: var(--text-muted);">CIDR Challenge:</div>
+              <div style="font-size: 1.1rem; color: #fff; font-weight: 700; margin: 8px 0;">Need 60 Usable Hosts. Select Prefix:</div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;">
+                <button class="cmd-badge" onclick="checkCidr(25)">/25 (126 hosts)</button>
+                <button class="cmd-badge" onclick="checkCidr(26)">/26 (62 hosts)</button>
+                <button class="cmd-badge" onclick="checkCidr(27)">/27 (30 hosts)</button>
+                <button class="cmd-badge" onclick="checkCidr(28)">/28 (14 hosts)</button>
+              </div>
+              <div id="cidr-feedback" style="font-family: var(--font-mono); font-size: 0.85rem;"></div>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Dijkstra Route: R1 → R4</div>
+              <div style="margin: 12px 0; font-family: var(--font-mono); font-size: 0.85rem; color: #38bdf8;">
+                Available Paths:<br>
+                1. R1 → R2(10) → R4(20) = Total Cost: 30<br>
+                2. R1 → R3(5) → R4(15) = Total Cost: 20 (Optimal SPF!)
+              </div>
+              <button class="glass-btn glass-btn-primary" onclick="routePacket('R3')">Route via R3 (Cost 20)</button>
+              <button class="glass-btn" onclick="routePacket('R2')">Route via R2 (Cost 30)</button>
+              <div id="dijk-feedback" style="margin-top: 10px; font-family: var(--font-mono); font-size: 0.85rem;"></div>
+            </div>
+          </div>
+        `;
+      } else if (age === 21) {
+        vp.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #fff;">Distributed Deadlock Breaker & CPM Project Command</h3>
+            <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan);">Status: <strong id="deadlock-status" style="color: #f43f5e;">DEADLOCK DETECTED</strong></span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            <div style="background: rgba(0,0,0,0.4); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Resource Allocation Graph (RAG):</div>
+              <div style="padding: 12px; background: rgba(244,63,94,0.1); border: 1px solid #f43f5e; border-radius: 8px; margin: 12px 0; font-family: var(--font-mono); font-size: 0.85rem;">
+                Thread 1 holds Res 1, waits for Res 2<br>
+                Thread 2 holds Res 2, waits for Res 1<br>
+                <strong>Cycle: T1 → R2 → T2 → R1 → T1</strong>
+              </div>
+              <button class="glass-btn glass-btn-primary" onclick="preemptThread('T2')">Preempt Thread 2 (Cost 15ms)</button>
+              <button class="glass-btn" onclick="preemptThread('T1')">Preempt Thread 1 (Cost 80ms)</button>
+              <div id="deadlock-feedback" style="margin-top: 10px; font-family: var(--font-mono); font-size: 0.85rem;"></div>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 0.85rem; color: var(--text-muted);">CPM Network Critical Float:</div>
+              <div style="padding: 12px; background: rgba(0,0,0,0.3); border-radius: 8px; margin: 12px 0; font-family: var(--font-mono); font-size: 0.85rem;">
+                Path A-B-D-F: Duration 15 days, Total Float = 0 (Critical Path)<br>
+                Path A-C-E-F: Duration 14 days, Total Float = 1 day (Buffer)
+              </div>
+              <button class="glass-btn glass-btn-primary" onclick="smoothFloat()">Reallocate 1 Day Float to Path B</button>
+              <div id="cpm-feedback" style="margin-top: 10px; font-family: var(--font-mono); font-size: 0.85rem;"></div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Age 10: Rover Game Logic
+    let rover = { x: 0, y: 0, dir: 0, gems: 0 };
+    let roverQueue = [];
+    function initRoverGame() {
+      rover = { x: 0, y: 0, dir: 0, gems: 0 };
+      roverQueue = [];
+      drawRover();
+    }
+    function addRoverCmd(cmd) {
+      roverQueue.push(cmd);
+      document.getElementById('rover-queue').innerText = 'Queue: ' + roverQueue.join(' → ');
+      sfx.click();
+    }
+    function drawRover() {
+      const c = document.getElementById('rover-canvas');
+      if (!c) return;
+      const ctx = c.getContext('2d');
+      ctx.clearRect(0, 0, 320, 320);
+
+      // Grid
+      ctx.strokeStyle = '#1e293b';
+      for (let i = 0; i <= 5; i++) {
+        ctx.beginPath(); ctx.moveTo(i * 64, 0); ctx.lineTo(i * 64, 320); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(0, i * 64); ctx.lineTo(320, i * 64); ctx.stroke();
+      }
+
+      // Gems at (2, 1), (3, 3)
+      ctx.fillStyle = '#f59e0b';
+      ctx.beginPath(); ctx.arc(2 * 64 + 32, 1 * 64 + 32, 12, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(3 * 64 + 32, 3 * 64 + 32, 12, 0, Math.PI * 2); ctx.fill();
+
+      // Beacon Goal at (4, 4)
+      ctx.fillStyle = '#38bdf8';
+      ctx.fillRect(4 * 64 + 16, 4 * 64 + 16, 32, 32);
+
+      // Rover
+      ctx.save();
+      ctx.translate(rover.x * 64 + 32, rover.y * 64 + 32);
+      ctx.rotate((rover.dir * 90 * Math.PI) / 180);
+      ctx.fillStyle = '#10b981';
+      ctx.beginPath();
+      ctx.moveTo(18, 0); ctx.lineTo(-14, -12); ctx.lineTo(-8, 0); ctx.lineTo(-14, 12);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+    function runRoverCode() {
+      let idx = 0;
+      const timer = setInterval(() => {
+        if (idx >= roverQueue.length) {
+          clearInterval(timer);
+          if (rover.x === 4 && rover.y === 4) {
+            document.getElementById('age10-score').innerText = (rover.gems * 100 + 200).toString();
+            sfx.win();
+            alert('Mission Complete! Rover arrived at beacon safely.');
+          }
+          return;
+        }
+        const cmd = roverQueue[idx++];
+        if (cmd === 'MOVE') {
+          if (rover.dir === 0 && rover.x < 4) rover.x++;
+          else if (rover.dir === 1 && rover.y < 4) rover.y++;
+          else if (rover.dir === 2 && rover.x > 0) rover.x--;
+          else if (rover.dir === 3 && rover.y > 0) rover.y--;
+        } else if (cmd === 'LEFT') {
+          rover.dir = (rover.dir + 3) % 4;
+        } else if (cmd === 'RIGHT') {
+          rover.dir = (rover.dir + 1) % 4;
+        } else if (cmd === 'COLLECT') {
+          if ((rover.x === 2 && rover.y === 1) || (rover.x === 3 && rover.y === 3)) {
+            rover.gems++;
+            sfx.win();
+          }
+        }
+        drawRover();
+        sfx.click();
+      }, 350);
+    }
+    function resetRover() {
+      initRoverGame();
+      document.getElementById('rover-queue').innerText = 'Queue: (empty)';
+    }
+
+    // Age 12 Logic
+    let gateIn1 = 0, gateIn2 = 0;
+    function initGateGame() {
+      gateIn1 = 0; gateIn2 = 0;
+    }
+    function toggleGateInput(id) {
+      if (id === 1) gateIn1 = gateIn1 ? 0 : 1;
+      if (id === 2) gateIn2 = gateIn2 ? 0 : 1;
+      document.getElementById('gate-in1').innerText = 'A: ' + gateIn1;
+      document.getElementById('gate-in2').innerText = 'B: ' + gateIn2;
+      sfx.click();
+    }
+    function validateFirewall() {
+      if ((gateIn1 ^ gateIn2) === 1) {
+        sfx.win();
+        alert('Packet Verified! XOR output = 1. Packet routed through firewall.');
+      } else {
+        sfx.fail();
+        alert('Parity mismatch! Output is 0. Packet dropped.');
+      }
+    }
+
+    // Age 15 Logic
+    function initRoboGame() { updateRoboArm(); }
+    function updateRoboArm() {
+      const th1 = parseInt(document.getElementById('sl-th1').value);
+      const th2 = parseInt(document.getElementById('sl-th2').value);
+      document.getElementById('val-th1').innerText = th1 + '°';
+      document.getElementById('val-th2').innerText = th2 + '°';
+
+      const c = document.getElementById('robo-canvas');
+      if (!c) return;
+      const ctx = c.getContext('2d');
+      ctx.clearRect(0, 0, 360, 280);
+
+      const ox = 60, oy = 220;
+      const l1 = 120, l2 = 90;
+      const r1 = (th1 * Math.PI) / 180;
+      const r2 = ((th1 + th2) * Math.PI) / 180;
+
+      const j1x = ox + l1 * Math.cos(r1);
+      const j1y = oy - l1 * Math.sin(r1);
+      const tipx = j1x + l2 * Math.cos(r2);
+      const tipy = j1y - l2 * Math.sin(r2);
+
+      // Target
+      ctx.fillStyle = '#f43f5e';
+      ctx.beginPath(); ctx.arc(240, 90, 14, 0, Math.PI * 2); ctx.fill();
+
+      // Arm Links
+      ctx.lineWidth = 8; ctx.lineCap = 'round';
+      ctx.strokeStyle = '#38bdf8';
+      ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(j1x, j1y); ctx.stroke();
+      ctx.strokeStyle = '#a855f7';
+      ctx.beginPath(); ctx.moveTo(j1x, j1y); ctx.lineTo(tipx, tipy); ctx.stroke();
+
+      const dist = Math.hypot(tipx - 240, tipy - 90);
+      document.getElementById('robo-err').innerText = dist.toFixed(1);
+    }
+    function engageRoboTool() {
+      const err = parseFloat(document.getElementById('robo-err').innerText);
+      if (err < 15) {
+        sfx.win();
+        alert('Kinematic Alignment Optimal! Target grabbed with Polymorphic Precision Tool.');
+      } else {
+        sfx.fail();
+        alert('Target Missed! Re-adjust joint angles θ1 and θ2.');
+      }
+    }
+
+    // Age 18 Logic
+    function checkCidr(prefix) {
+      const fb = document.getElementById('cidr-feedback');
+      if (prefix === 26) {
+        fb.innerHTML = '<span style="color: #34d399;">✓ Perfect: /26 yields 62 usable hosts (minimal waste).</span>';
+        sfx.win();
+      } else {
+        fb.innerHTML = '<span style="color: #f43f5e;">✗ Suboptimal: Choose prefix with minimal host waste.</span>';
+        sfx.fail();
+      }
+    }
+    function routePacket(via) {
+      const fb = document.getElementById('dijk-feedback');
+      if (via === 'R3') {
+        fb.innerHTML = '<span style="color: #34d399;">✓ Dijkstra Optimal: Path Cost 20 vs 30. Packet delivered in 4ms.</span>';
+        document.getElementById('dijk-hops').innerText = '2';
+        sfx.win();
+      } else {
+        fb.innerHTML = '<span style="color: #f59e0b;">⚠ Suboptimal route: Path cost is 30 (10ms slower).</span>';
+        sfx.fail();
+      }
+    }
+
+    // Age 21 Logic
+    function preemptThread(t) {
+      const fb = document.getElementById('deadlock-feedback');
+      if (t === 'T2') {
+        fb.innerHTML = '<span style="color: #34d399;">✓ Deadlock Cycle Broken! Thread 2 rolled back with minimum latency penalty (15ms).</span>';
+        document.getElementById('deadlock-status').innerText = 'OPTIMAL THROUGHPUT';
+        document.getElementById('deadlock-status').style.color = '#34d399';
+        sfx.win();
+      } else {
+        fb.innerHTML = '<span style="color: #f59e0b;">⚠ High rollback cost: Thread 1 holds critical database transaction locks (80ms penalty).</span>';
+        sfx.fail();
+      }
+    }
+    function smoothFloat() {
+      const fb = document.getElementById('cpm-feedback');
+      fb.innerHTML = '<span style="color: #34d399;">✓ Float smoothed: Absorbed 1 day delay from Task B without moving project release deadline!</span>';
+      sfx.win();
+    }
+
+    // Global window function bindings for inline handlers
+    
+    window.setLanguage = setLanguage;
+    window.playVoiceover = playVoiceover;
+    window.pauseVoiceover = pauseVoiceover;
+    window.stopVoiceover = stopVoiceover;
+    window.toggleSpeechRate = toggleSpeechRate;
+      window.switchAgeTier = switchAgeTier;
+    window.switchDepthTab = switchDepthTab;
+    window.calcWb10 = calcWb10;
+    window.toggleWb12 = toggleWb12;
+    window.calcWb15 = calcWb15;
+    window.calcWb18 = calcWb18;
+    window.calcWb21 = calcWb21;
+    window.addRoverCmd = addRoverCmd;
+    window.runRoverCode = runRoverCode;
+    window.resetRover = resetRover;
+    window.toggleGateInput = toggleGateInput;
+    window.validateFirewall = validateFirewall;
+    window.updateRoboArm = updateRoboArm;
+    window.engageRoboTool = engageRoboTool;
+    window.checkCidr = checkCidr;
+    window.routePacket = routePacket;
+    window.preemptThread = preemptThread;
+    window.smoothFloat = smoothFloat;
+
+    // Initializer
+    window.addEventListener('DOMContentLoaded', () => {
+      switchAgeTier(10);
+      updateAvatarSpeech();
+    });
+  </script>
+</body>
+</html>
