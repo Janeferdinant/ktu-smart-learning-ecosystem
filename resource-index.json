@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generatedAt": "2026-10-14T02:38:17.048Z",
+    "generatedAt": "2026-10-14T02:47:38.264Z",
     "totalFilesIndexed": 231,
     "institution": "APJ Abdul Kalam Technological University (KTU)",
     "department": "Department of Computer Science and Engineering (CSE)",
@@ -37,9 +37,9 @@
       "path": "audit-reports/file-inventory.csv",
       "filename": "file-inventory.csv",
       "ext": ".csv",
-      "sizeBytes": 47236,
-      "modified": "2026-10-14T02:23:07.437Z",
-      "sha256": "088efef12eb0e6e0ffd32ccbad6b4c4cc6906956f277c9aa45b2124a7edab1e7"
+      "sizeBytes": 47408,
+      "modified": "2026-10-14T02:38:17.048Z",
+      "sha256": "67ebf44858dd7613ff60493f2b9491064d5b0939f800229459a21aa6474d20e1"
     },
     {
       "path": "audit-reports/final-audit-report.md",
@@ -70,8 +70,8 @@
       "filename": "CST303_Module_01_Slides_Light.pdf",
       "ext": ".pdf",
       "sizeBytes": 16697,
-      "modified": "2026-10-14T02:22:03.875Z",
-      "sha256": "a25093f41c3aa69b309f423a27a456861d945c9590534de0e37a1a771ee4b9e4"
+      "modified": "2026-10-14T02:40:24.798Z",
+      "sha256": "bb8fa679c9bb900d1694e6b4a7ef6edfe5f7ea48bb45dbfec7acf77deda65745"
     },
     {
       "path": "dashboard/index.html",
@@ -381,9 +381,9 @@
       "path": "dashboard/public/gaming-lab.html",
       "filename": "gaming-lab.html",
       "ext": ".html",
-      "sizeBytes": 65668,
-      "modified": "2026-10-14T02:37:16.409Z",
-      "sha256": "2ae89cc3579bd0c8dcdaaa993486453649a257074f758dc982ef5565af8d5c3c"
+      "sizeBytes": 60315,
+      "modified": "2026-10-14T02:46:41.988Z",
+      "sha256": "50d40514014155e155f109fdc273a470c2d141a2ec0e7dd85d2ca58af3f5c53b"
     },
     {
       "path": "dashboard/public/subjects/common/showcase-engine.js",
@@ -461,17 +461,17 @@
       "path": "dashboard/src/App.tsx",
       "filename": "App.tsx",
       "ext": ".tsx",
-      "sizeBytes": 5437,
-      "modified": "2026-10-14T02:18:46.246Z",
-      "sha256": "4ed536aab89bfffea9aaa10c1dc90e153d945aa2f1f4ae4daa5a5ebccee37fa2"
+      "sizeBytes": 5262,
+      "modified": "2026-10-14T02:45:42.770Z",
+      "sha256": "e1eebff0c84b142d2fc429539efc5ee70b4876cfcfe82f9015307a6360466a0f"
     },
     {
       "path": "dashboard/src/components/CopyrightWatermark.tsx",
       "filename": "CopyrightWatermark.tsx",
       "ext": ".tsx",
-      "sizeBytes": 10176,
-      "modified": "2026-10-14T02:35:38.867Z",
-      "sha256": "576a3f9f2155d99c3cd33c9a5f37cde557abb57bcaf62572f519160ab54216d4"
+      "sizeBytes": 3671,
+      "modified": "2026-10-14T02:46:09.904Z",
+      "sha256": "0c4f4afd34f07f20b78cb8a8a776c40db1f70c67db8460b24c732e25e94c32b6"
     },
     {
       "path": "dashboard/src/components/Footer.tsx",
@@ -1006,8 +1006,8 @@
       "filename": "test_qp.pdf",
       "ext": ".pdf",
       "sizeBytes": 7953,
-      "modified": "2026-10-14T02:22:03.863Z",
-      "sha256": "1a50a9414d322897be76b069e2647080e56d9774b3e0420a23765bbc8111f5fe"
+      "modified": "2026-10-14T02:40:24.789Z",
+      "sha256": "e959a68396163310fbfdc58c08c01513ec7cd0e9a187123a664ac88e14b9c22f"
     },
     {
       "path": "dashboard/tsconfig.json",
@@ -1085,9 +1085,9 @@
       "path": "resource-index.json",
       "filename": "resource-index.json",
       "ext": ".json",
-      "sizeBytes": 73350,
-      "modified": "2026-10-14T02:23:07.437Z",
-      "sha256": "94fc271bc3b77775eff9026f02b3bb8fca253bdc34be2cac86ac8307daedd2e4"
+      "sizeBytes": 73827,
+      "modified": "2026-10-14T02:38:17.048Z",
+      "sha256": "c058364f56a49daa0c4f7401e512795a4596a108a0dd27bd97072812afda0d9b"
     },
     {
       "path": "scripts/copy_academic_pdfs.js",
@@ -1181,9 +1181,9 @@
       "path": "subjects/common/gaming-lab.html",
       "filename": "gaming-lab.html",
       "ext": ".html",
-      "sizeBytes": 65668,
-      "modified": "2026-10-14T02:37:16.409Z",
-      "sha256": "2ae89cc3579bd0c8dcdaaa993486453649a257074f758dc982ef5565af8d5c3c"
+      "sizeBytes": 60315,
+      "modified": "2026-10-14T02:47:30.848Z",
+      "sha256": "50d40514014155e155f109fdc273a470c2d141a2ec0e7dd85d2ca58af3f5c53b"
     },
     {
       "path": "subjects/common/showcase-engine.js",
