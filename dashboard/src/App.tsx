@@ -14,6 +14,7 @@ import { AnswerKeySolutions } from './pages/AnswerKeySolutions';
 import { AssessmentCenter } from './pages/AssessmentCenter';
 import { KnowledgeGraphExplorer } from './pages/KnowledgeGraphExplorer';
 import { EarlyLearningMode } from './pages/EarlyLearningMode';
+import { GamingLab } from './pages/GamingLab';
 import { VirtualLabs } from './pages/VirtualLabs';
 import { ResearchExplorer } from './pages/ResearchExplorer';
 import { IndustryApplications } from './pages/IndustryApplications';
@@ -112,6 +113,10 @@ export const App: React.FC = () => {
             <KnowledgeGraphExplorer
               onNavigateSection={handleNavigateSection}
             />
+          )}
+
+          {activeSection === 'gaming-lab' && (
+            <GamingLab />
           )}
 
           {activeSection === 'games' && (

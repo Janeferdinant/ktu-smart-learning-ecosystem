@@ -121,6 +121,8 @@ Actual KTU university exam questions solved with full step-by-step working:
 
 ---
 
+---
+
 ## 5. Deployment & Continuous Integration
 
 1. All interactive showcases are placed in both:
@@ -130,3 +132,36 @@ Actual KTU university exam questions solved with full step-by-step working:
 3. Every update is tracked with SHA-256 hashes in `audit-reports/file-inventory.csv`.
 4. Automated test suites verify integrity (`npm test`).
 5. Production bundle is deployed to Vercel at `https://dashboard-eta-ashen-67.vercel.app`.
+
+---
+
+## 6. Progressive STEM Gaming Laboratory (Ages 10 – 21+) & Academic Depth
+
+A dedicated multi-age cognitive arcade translates abstract computer science and engineering principles into playable simulations across 5 developmental tiers, complemented by rigorous academic depth:
+
+1. **Age 10 (Junior Explorers) — Algorithm Rover: Computational Logic Island**
+   - *Curriculum Focus:* EST102 Programming & Problem Solving (Module 1).
+   - *Mechanics:* Procedural command queueing (`MOVE`, `TURN_LEFT`, `TURN_RIGHT`, `COLLECT`), Manhattan taxicab metric, battery depletion invariants.
+   - *Depth:* Deterministic finite state machine $\delta(S_t, I_t)$, loop invariants, solved Manhattan battery numerical, live step complexity workbench, and A* admissibility viva voce questions.
+
+2. **Age 12 (Middle School Hackers) — Cyber Gate Defender: Boolean Network Matrix**
+   - *Curriculum Focus:* CST203 Logic System Design (Module 1 & 2).
+   - *Mechanics:* Interactive logic gates (AND, OR, XOR, NOT), truth table verification, packet checksum firewall routing.
+   - *Depth:* Axiomatic Boolean algebra, Full Adder sum/carry derivations ($Sum = A \oplus B \oplus C_{in}$), solved SOP minimization ($F = C$), majority voting calculator workbench, and CMOS propagation delay viva voce questions.
+
+3. **Age 15 (Pre-Engineering Apprentices) — Polymorphic Code Arena & 2-DOF Robot Arm**
+   - *Curriculum Focus:* CST205 Java OOP (Module 2) & PCADT502 Robotics (Module 1).
+   - *Mechanics:* Polymorphic tool attachment, 2-DOF planar joint angle sliders, Cartesian end-effector target acquisition.
+   - *Depth:* Dynamic method dispatch via JVM vtables, Forward Kinematics trigonometric transformation ($X = L_1 \cos\theta_1 + L_2 \cos(\theta_1+\theta_2)$), Jacobian velocity matrix, singularity determinant ($\det(J) = L_1 L_2 \sin\theta_2$), solved numerical problem, and live reach workbench.
+
+4. **Age 18 (Engineering Freshers) — Subnet Speed Slicer & Dijkstra Packet Rush**
+   - *Curriculum Focus:* CST303 Computer Networks (Module 3) & CST305 AI (Module 1).
+   - *Mechanics:* Real-time CIDR host allocation against the clock, dynamic link metric Dijkstra SPF router selection.
+   - *Depth:* Variable Length Subnet Masking (VLSM) mathematical derivation ($2^h - 2$), Dijkstra edge relaxation proof by contradiction, 4-department worked allocation problem, live CIDR mask/host workbench, and negative edge bound viva voce questions.
+
+5. **Age 21 (Senior / Grad Tech Leads) — Distributed Deadlock Command & CPM Scheduler**
+   - *Curriculum Focus:* PECST521 Software Project Management & CST205 Java Concurrency.
+   - *Mechanics:* Resource Allocation Graph (RAG) circular-wait cycle breaking via optimal victim preemption, CPM float buffer reallocation.
+   - *Depth:* Coffman's 4 conditions, Banker's safety vector equation, CPM Forward/Backward pass equations, Total Float ($TF = LS - ES$) and Free Float ($FF = \min(ES_{succ}) - EF$), 6-activity solved critical path problem, live float workbench, and Two-Phase Locking (2PL) viva voce questions.
+
+Each tier features 6 interactive companion tabs: **Interactive Simulation**, **Theoretical Foundations & Proofs**, **Solved KTU Numerical Problem**, **Realtime Formula Workbench**, **Viva Voce & Technical Mastery**, and **Enterprise Case Study**. Official faculty branding: `Jane Rose | Assistant Professor | Department of Computer Science and Engineering (CSE)`. Zero student PII.

@@ -9,6 +9,7 @@ import {
   BrainCircuit,
   Network,
   Baby,
+  Gamepad2,
   Cpu,
   FileCheck,
   Briefcase,
@@ -39,8 +40,9 @@ export const NAV_ITEMS: NavItem[] = [
   // Interactive & Assessment
   { id: 'quizzes', label: '8. Quiz & Assessment', icon: BrainCircuit, badge: 'Adaptive', category: 'assessment' },
   { id: 'knowledge-graph', label: '9. Knowledge Graph', icon: Network, category: 'interactive' },
-  { id: 'games', label: '10. Early Learning Games', icon: Baby, badge: 'Age 5', category: 'interactive' },
-  { id: 'simulations', label: '11. Virtual Lab & 3D Demos', icon: Cpu, badge: 'Three.js', category: 'interactive' },
+  { id: 'gaming-lab', label: '10. STEM Gaming Lab', icon: Gamepad2, badge: 'Ages 10–21', category: 'interactive' },
+  { id: 'games', label: '11. Early Learning Games', icon: Baby, badge: 'Age 5', category: 'interactive' },
+  { id: 'simulations', label: '12. Virtual Lab & 3D Demos', icon: Cpu, badge: 'Three.js', category: 'interactive' },
 
   // Research, Career & Faculty
   { id: 'research', label: '12. Research Explorer', icon: FileCheck, badge: 'IEEE', category: 'career-faculty' },
