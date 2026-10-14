@@ -33,3 +33,7 @@ yarn-error.log*
 # Operating System files
 .DS_Store
 Thumbs.db
+
+# Test artifacts
+dashboard/*.pdf
+test_qp.pdf
