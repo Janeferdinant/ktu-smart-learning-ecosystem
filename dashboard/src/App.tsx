@@ -21,6 +21,7 @@ import { IndustryApplications } from './pages/IndustryApplications';
 import { CareerSalaryExplorer } from './pages/CareerSalaryExplorer';
 import { TeachingPlanExplorer } from './pages/TeachingPlanExplorer';
 import { FacultyManagement } from './pages/FacultyManagement';
+import { CopyrightWatermark } from './components/CopyrightWatermark';
 
 export const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('subjects');
@@ -155,6 +156,9 @@ export const App: React.FC = () => {
 
       {/* Official Faculty Footer with Dynamic Local Date */}
       <Footer />
+
+      {/* Floating Holographic Copyright Watermark & Authenticity Seal */}
+      <CopyrightWatermark />
     </div>
   );
 };

@@ -63,7 +63,7 @@ export const GamingLab: React.FC = () => {
             Curriculum Gaming Lab (Ages 10 – 21+)
           </h1>
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-            Curated by <strong>Jane Rose</strong>, Assistant Professor, Department of Computer Science and Engineering (CSE). Experience the physical, algorithmic, and mathematical concepts of the KTU curriculum through 5 developmentally calibrated stages — from foundational algorithmic logic to distributed systems deadlock resolution.
+            Curated by <strong>Jane Rose Ferdinant</strong>, Assistant Professor, Department of Computer Science and Engineering (CSE). Experience the physical, algorithmic, and mathematical concepts of the KTU curriculum through 5 developmentally calibrated stages — from foundational algorithmic logic to distributed systems deadlock resolution.
           </p>
         </div>
 
@@ -764,7 +764,7 @@ export const GamingLab: React.FC = () => {
           KTU Smart Learning Ecosystem • Progressive STEM Gaming Laboratory
         </div>
         <div>
-          Curated & Mentored by: <strong className="text-cyan-400">Jane Rose</strong> | Assistant Professor | Department of Computer Science and Engineering (CSE)
+          Curated & Mentored by: <strong className="text-cyan-400">Jane Rose Ferdinant</strong> | Assistant Professor | Department of Computer Science and Engineering (CSE)
         </div>
         <div className="text-[11px] text-slate-500">
           Grounded in APJ Abdul Kalam Technological University (KTU) B.Tech CSE Syllabus & IEEE Pedagogical Guidelines

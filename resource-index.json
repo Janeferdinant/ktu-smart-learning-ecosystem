@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "generatedAt": "2026-10-14T00:58:48.978Z",
-    "totalFilesIndexed": 226,
+    "generatedAt": "2026-10-14T02:23:07.437Z",
+    "totalFilesIndexed": 230,
     "institution": "APJ Abdul Kalam Technological University (KTU)",
     "department": "Department of Computer Science and Engineering (CSE)",
     "faculty": "Jane Rose | Assistant Professor"
@@ -11,9 +11,9 @@
       "path": ".gitignore",
       "filename": ".gitignore",
       "ext": "",
-      "sizeBytes": 400,
-      "modified": "2026-10-13T12:01:42.978Z",
-      "sha256": "c1d97784f42c2f616924019ad3be4593a1a56f0d5e0e175ceab896b37e59f343"
+      "sizeBytes": 446,
+      "modified": "2026-10-14T01:10:55.722Z",
+      "sha256": "732a147458501697d2bfa6fb857009580f8bc934440011b6dbd03f83552a56d1"
     },
     {
       "path": ".superpowers/sdd/2026-10-13-ktu-smart-learning-ecosystem/progress.md",
@@ -35,9 +35,9 @@
       "path": "audit-reports/file-inventory.csv",
       "filename": "file-inventory.csv",
       "ext": ".csv",
-      "sizeBytes": 46544,
-      "modified": "2026-10-14T00:56:27.857Z",
-      "sha256": "c7e03268670b9c529668e2eb00c42bacbe684c56b3dcd0092db3c503c8e90e8e"
+      "sizeBytes": 46545,
+      "modified": "2026-10-14T00:58:48.979Z",
+      "sha256": "fb9d4f28b2f5165d6ac4239e55f21dd97826b7a4b1a0b6b97aa6ad2f1174c645"
     },
     {
       "path": "audit-reports/final-audit-report.md",
@@ -62,6 +62,14 @@
       "sizeBytes": 9,
       "modified": "2026-10-13T12:06:57.961Z",
       "sha256": "319c3304702d205b9fba52d0f12ce3d388bacdade80ad223c550935fadaa20a6"
+    },
+    {
+      "path": "dashboard/CST303_Module_01_Slides_Light.pdf",
+      "filename": "CST303_Module_01_Slides_Light.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 16697,
+      "modified": "2026-10-14T02:22:03.875Z",
+      "sha256": "a25093f41c3aa69b309f423a27a456861d945c9590534de0e37a1a771ee4b9e4"
     },
     {
       "path": "dashboard/index.html",
@@ -371,9 +379,9 @@
       "path": "dashboard/public/gaming-lab.html",
       "filename": "gaming-lab.html",
       "ext": ".html",
-      "sizeBytes": 60051,
-      "modified": "2026-10-14T00:54:12.122Z",
-      "sha256": "549e58f986f29a46491e04de544294ab2100539f7d0a969ec3cd3f3ee495e6f9"
+      "sizeBytes": 65817,
+      "modified": "2026-10-14T02:21:41.098Z",
+      "sha256": "7f786d176164169e855f83971d52dc520783f20be72c78fb1c90e42707f2d5cd"
     },
     {
       "path": "dashboard/public/subjects/common/showcase-engine.js",
@@ -451,17 +459,25 @@
       "path": "dashboard/src/App.tsx",
       "filename": "App.tsx",
       "ext": ".tsx",
-      "sizeBytes": 5262,
-      "modified": "2026-10-14T00:32:40.230Z",
-      "sha256": "e1eebff0c84b142d2fc429539efc5ee70b4876cfcfe82f9015307a6360466a0f"
+      "sizeBytes": 5437,
+      "modified": "2026-10-14T02:18:46.246Z",
+      "sha256": "4ed536aab89bfffea9aaa10c1dc90e153d945aa2f1f4ae4daa5a5ebccee37fa2"
+    },
+    {
+      "path": "dashboard/src/components/CopyrightWatermark.tsx",
+      "filename": "CopyrightWatermark.tsx",
+      "ext": ".tsx",
+      "sizeBytes": 11109,
+      "modified": "2026-10-14T02:18:04.325Z",
+      "sha256": "fb0a5aed2502d75c13d9dbafcbb303e666a8960149d78ff64206e8832fbd6901"
     },
     {
       "path": "dashboard/src/components/Footer.tsx",
       "filename": "Footer.tsx",
       "ext": ".tsx",
-      "sizeBytes": 2349,
-      "modified": "2026-10-13T11:08:06.401Z",
-      "sha256": "483e19925130c2a145bb72e70500666a130d7483e7d7da02aaffb664eb7d02eb"
+      "sizeBytes": 2359,
+      "modified": "2026-10-14T02:19:03.902Z",
+      "sha256": "17952745c3d5417b3f213a409b72c9bf32d90805f887c4886ba2e827d924fe48"
     },
     {
       "path": "dashboard/src/components/games/AlgorithmRoverGame.tsx",
@@ -651,9 +667,9 @@
       "path": "dashboard/src/data/gamingLabData.ts",
       "filename": "gamingLabData.ts",
       "ext": ".ts",
-      "sizeBytes": 59014,
-      "modified": "2026-10-14T00:42:44.863Z",
-      "sha256": "0ba9e6e867e511e5d53d1e111eeade939b526ef06a20e02b69ca960f6b268e34"
+      "sizeBytes": 59064,
+      "modified": "2026-10-14T02:19:37.172Z",
+      "sha256": "1bc5491fdb4240b9463e9466f4cd52a6d11a8abed464c8e426ccfe40f7eb7e3e"
     },
     {
       "path": "dashboard/src/data/industryCareerData.ts",
@@ -755,9 +771,9 @@
       "path": "dashboard/src/pages/GamingLab.tsx",
       "filename": "GamingLab.tsx",
       "ext": ".tsx",
-      "sizeBytes": 42072,
-      "modified": "2026-10-14T00:45:31.574Z",
-      "sha256": "d38a903254c08e9058c098eb56854c481286a723d5398d2713268a6581db4c80"
+      "sizeBytes": 42092,
+      "modified": "2026-10-14T02:20:23.064Z",
+      "sha256": "90337c970e7f9fa856fdeeef9c947e80e52c472790c2e755064df0a57d908abc"
     },
     {
       "path": "dashboard/src/pages/IndustryApplications.tsx",
@@ -984,6 +1000,14 @@
       "sha256": "afe5fcf44489370698f2466d5f1c4d0af12e233198d097615d91d877da037494"
     },
     {
+      "path": "dashboard/test_qp.pdf",
+      "filename": "test_qp.pdf",
+      "ext": ".pdf",
+      "sizeBytes": 7953,
+      "modified": "2026-10-14T02:22:03.863Z",
+      "sha256": "1a50a9414d322897be76b069e2647080e56d9774b3e0420a23765bbc8111f5fe"
+    },
+    {
       "path": "dashboard/tsconfig.json",
       "filename": "tsconfig.json",
       "ext": ".json",
@@ -1059,9 +1083,9 @@
       "path": "resource-index.json",
       "filename": "resource-index.json",
       "ext": ".json",
-      "sizeBytes": 72210,
-      "modified": "2026-10-14T00:56:27.857Z",
-      "sha256": "aaa769345d96c6343f489401e2846e0c3c92b59f8bfc159fc631ff9c9815b5ab"
+      "sizeBytes": 72211,
+      "modified": "2026-10-14T00:58:48.980Z",
+      "sha256": "9a7a0d0a8a47d90c051939f8474ec92321ebb0fab05ec603c5e69b9e0abcde4e"
     },
     {
       "path": "scripts/copy_academic_pdfs.js",
@@ -1086,6 +1110,14 @@
       "sizeBytes": 17581,
       "modified": "2026-10-13T11:02:28.869Z",
       "sha256": "9db6e6d7d8e46144aaae526f07a9776184311fafd1d3ee886d6301dbc4b0ff00"
+    },
+    {
+      "path": "scripts/get_vercel_token.ps1",
+      "filename": "get_vercel_token.ps1",
+      "ext": ".ps1",
+      "sizeBytes": 2132,
+      "modified": "2026-10-14T02:16:48.829Z",
+      "sha256": "05707cc9afee61fdeae1976a5fb4a58c2485c3ac88f58e53438c5543ea8d3a1c"
     },
     {
       "path": "scripts/organize_repository.js",
@@ -1139,9 +1171,9 @@
       "path": "subjects/common/gaming-lab.html",
       "filename": "gaming-lab.html",
       "ext": ".html",
-      "sizeBytes": 60051,
-      "modified": "2026-10-14T00:54:12.122Z",
-      "sha256": "549e58f986f29a46491e04de544294ab2100539f7d0a969ec3cd3f3ee495e6f9"
+      "sizeBytes": 65817,
+      "modified": "2026-10-14T02:21:41.098Z",
+      "sha256": "7f786d176164169e855f83971d52dc520783f20be72c78fb1c90e42707f2d5cd"
     },
     {
       "path": "subjects/common/showcase-engine.js",

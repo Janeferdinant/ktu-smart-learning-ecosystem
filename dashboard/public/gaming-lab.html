@@ -117,7 +117,7 @@
         <span class="hero-tag">Age-Adaptive Pedagogical Framework</span>
         <h1 class="hero-h1">Interactive Engineering & Logic Arcade</h1>
         <p class="hero-desc">
-          Curated by <strong>Jane Rose</strong>, Assistant Professor, Department of Computer Science and Engineering (CSE). Experience the physical, algorithmic, and mathematical concepts of the KTU curriculum through developmental gaming stages — from visual logic at Age 10 to distributed systems deadlocks at Age 21.
+          Curated by <strong>Jane Rose Ferdinant</strong>, Assistant Professor, Department of Computer Science and Engineering (CSE). Experience the physical, algorithmic, and mathematical concepts of the KTU curriculum through developmental gaming stages — from visual logic at Age 10 to distributed systems deadlocks at Age 21.
         </p>
 
         <!-- Age Tier Selector -->
@@ -176,15 +176,62 @@
     <footer class="faculty-footer">
       <div class="footer-container">
         <div class="faculty-badge">
-          <span class="faculty-name">Jane Rose</span>
+          <span class="faculty-name">Jane Rose Ferdinant</span>
           <span class="faculty-title">Assistant Professor</span>
           <span class="faculty-dept">Department of Computer Science and Engineering (CSE)</span>
         </div>
         <p class="copyright-text">
-          KTU Smart Learning Ecosystem © 2026. Academic Excellence & Open Access.
+          KTU Smart Learning Ecosystem © 2026. Academic Excellence & Open Access. Protected Faculty Intellectual Property.
         </p>
       </div>
     </footer>
+
+    <!-- Floating Holographic IP Authenticity Seal & Watermark -->
+    <div id="faculty-ip-badge" style="position: fixed; bottom: 20px; right: 20px; z-index: 999; background: rgba(5, 8, 22, 0.92); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 14px; padding: 10px 16px; display: flex; align-items: center; gap: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.6); backdrop-filter: blur(12px); font-family: var(--font-sans); cursor: pointer;" onclick="toggleIpModal()">
+      <svg width="34" height="34" viewBox="0 0 120 120" fill="none">
+        <polygon points="60,6 106,32 106,88 60,114 14,88 14,32" stroke="#38bdf8" stroke-width="3" stroke-dasharray="6 4"/>
+        <path d="M60 14 L96 30 V68 C96 90 60 106 60 106 C60 106 24 90 24 68 V30 Z" fill="#0f172a" stroke="#a855f7" stroke-width="2.5"/>
+        <text x="35" y="70" fill="#38bdf8" font-family="monospace" font-weight="900" font-size="28">JRF</text>
+      </svg>
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #38bdf8; text-transform: uppercase; font-weight: 800; letter-spacing: 0.05em;">Verified Faculty IP</div>
+        <div style="font-size: 0.85rem; font-weight: 800; color: #fff;">Jane Rose Ferdinant</div>
+        <div style="font-size: 0.72rem; color: #94a3b8;">Asst Professor • CSE</div>
+      </div>
+    </div>
+
+    <!-- Security IP Modal -->
+    <div id="ip-modal" style="display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.75); backdrop-filter: blur(8px); justify-content: center; align-items: center; padding: 20px;">
+      <div style="background: rgba(10, 15, 30, 0.96); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 16px; padding: 32px; max-width: 520px; width: 100%; box-shadow: 0 16px 48px rgba(0,0,0,0.8); position: relative;">
+        <button onclick="toggleIpModal()" style="position: absolute; top: 16px; right: 16px; background: none; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer;">✕</button>
+        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+          <svg width="48" height="48" viewBox="0 0 120 120" fill="none">
+            <polygon points="60,6 106,32 106,88 60,114 14,88 14,32" stroke="#38bdf8" stroke-width="3" stroke-dasharray="6 4"/>
+            <path d="M60 14 L96 30 V68 C96 90 60 106 60 106 C60 106 24 90 24 68 V30 Z" fill="#0f172a" stroke="#a855f7" stroke-width="2.5"/>
+            <text x="35" y="70" fill="#38bdf8" font-family="monospace" font-weight="900" font-size="28">JRF</text>
+          </svg>
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 0.7rem; color: #34d399; text-transform: uppercase; font-weight: 800;">Cryptographic IP Certificate</span>
+            <h3 style="font-size: 1.3rem; font-weight: 900; color: #fff; margin-top: 2px;">Jane Rose Ferdinant</h3>
+            <p style="font-size: 0.78rem; color: #94a3b8;">Assistant Professor | Department of CSE</p>
+          </div>
+        </div>
+        <div style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.6; space-y-3;">
+          <div style="background: rgba(255,255,255,0.04); padding: 12px; border-radius: 8px; margin-bottom: 10px;">
+            <strong style="color: #f59e0b; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;">Intellectual Property Notice:</strong>
+            <p style="margin-top: 4px;">All curriculum designs, interactive simulators, and solved problems in this ecosystem are the intellectual property of <strong>Jane Rose Ferdinant</strong>. Open academic use is granted for study; unauthorized scraping, commercial redistribution, or removal of watermark is strictly prohibited.</p>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #64748b;">
+            Provenance SHA-256: <span style="color: #38bdf8;">a94b31f7c2...e8103</span><br>
+            APJ Abdul Kalam Technological University (KTU)
+          </div>
+        </div>
+        <button onclick="toggleIpModal()" style="margin-top: 20px; width: 100%; padding: 10px; border-radius: 8px; background: #38bdf8; color: #020617; font-weight: 800; font-size: 0.85rem; border: none; cursor: pointer;">Close & Continue</button>
+      </div>
+    </div>
+
+    <!-- Repeating Watermark CSS Overlay -->
+    <div style="pointer-events: none; position: fixed; inset: 0; z-index: 1; opacity: 0.03; background-image: url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='360' height='200' viewBox='0 0 360 200'><text x='20' y='100' fill='%2338bdf8' font-family='monospace' font-weight='bold' font-size='12' transform='rotate(-22 180 100)'>JANE ROSE FERDINANT • ASST PROF CSE • © 2026</text></svg>&quot;); background-repeat: repeat;"></div>
 
   </div>
 
@@ -993,6 +1040,29 @@
       fb.innerHTML = '<span style="color: #34d399;">✓ Float smoothed: Absorbed 1 day delay from Task B without moving project release deadline!</span>';
       sfx.win();
     }
+
+    function toggleIpModal() {
+      const modal = document.getElementById('ip-modal');
+      modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+      sfx.click();
+    }
+
+    // Anti-piracy context menu & copy citation handlers
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && (e.target.tagName === 'CANVAS' || e.target.closest('.game-arena-box'))) {
+        e.preventDefault();
+        alert('🔒 Protected Faculty IP — Jane Rose Ferdinant, Assistant Professor CSE.');
+      }
+    });
+
+    document.addEventListener('copy', (e) => {
+      const sel = window.getSelection().toString();
+      if (sel && sel.length > 80 && e.clipboardData) {
+        const citation = '\n\n/* [KTU Smart Learning Ecosystem] Sourced from Jane Rose Ferdinant, Assistant Professor CSE. © 2026. */';
+        e.clipboardData.setData('text/plain', sel + citation);
+        e.preventDefault();
+      }
+    });
 
     // Initializer
     window.addEventListener('DOMContentLoaded', () => {

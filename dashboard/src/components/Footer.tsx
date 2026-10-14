@@ -23,7 +23,7 @@ export const Footer: React.FC = () => {
             </span>
           </div>
           <p className="text-sm font-semibold text-slate-800 dark:text-slate-200 tracking-wide">
-            Jane Rose | Assistant Professor | Department of Computer Science and Engineering (CSE)
+            Jane Rose Ferdinant | Assistant Professor | Department of Computer Science and Engineering (CSE)
           </p>
           <p className="text-xs text-slate-500 dark:text-slate-400">
             APJ Abdul Kalam Technological University (KTU) — Official Course Delivery & Learning Portal
