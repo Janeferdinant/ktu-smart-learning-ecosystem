@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ACADEMIC_SUBJECTS } from '../data/academicData';
 import { Subject, QuestionPaper } from '../types/academic';
-import { HelpCircle, Download, CheckCircle, Search, FileText, ArrowRight, ShieldCheck, Filter } from 'lucide-react';
-import { PdfViewerModal } from '../components/PdfViewerModal';
+import { HelpCircle, Download, CheckCircle, Search, FileText, ArrowRight, ShieldCheck, Filter, Lightbulb, Gamepad2, KeyRound } from 'lucide-react';
+import { QuestionPaperWorkspaceModal } from '../components/QuestionPaperWorkspaceModal';
 import { downloadAcademicPdf } from '../services/pdfService';
 
 interface QuestionPaperBankProps {
@@ -14,6 +14,7 @@ export const QuestionPaperBank: React.FC<QuestionPaperBankProps> = ({ onNavigate
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [modalPaper, setModalPaper] = useState<QuestionPaper | null>(null);
+  const [modalTab, setModalTab] = useState<'solution' | 'demo' | 'answerKey' | 'paper'>('solution');
 
   const currentSubject = ACADEMIC_SUBJECTS.find(s => s.id === selectedSubjectId) || ACADEMIC_SUBJECTS[0];
 
@@ -107,7 +108,7 @@ export const QuestionPaperBank: React.FC<QuestionPaperBankProps> = ({ onNavigate
                 <th className="py-3 px-4">Exam Session</th>
                 <th className="py-3 px-4">Scheme</th>
                 <th className="py-3 px-4">Category</th>
-                <th className="py-3 px-4">Solutions Available</th>
+                <th className="py-3 px-4">Interactive Companions</th>
                 <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
@@ -141,26 +142,33 @@ export const QuestionPaperBank: React.FC<QuestionPaperBankProps> = ({ onNavigate
                       </span>
                     </td>
                     <td className="py-3 px-4">
-                      {qp.hasSolution ? (
-                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">
-                          <CheckCircle className="w-3.5 h-3.5" />
-                          <span>Scheme Solved</span>
-                        </span>
-                      ) : (
-                        <span className="text-slate-400 text-[11px]">Unsolved</span>
-                      )}
-                    </td>
-                    <td className="py-3 px-4 text-right space-x-2 whitespace-nowrap">
-                      {qp.hasSolution && (
+                      <div className="flex flex-wrap items-center gap-1.5">
                         <button
-                          onClick={() => onNavigateSection('answer-keys')}
-                          className="px-2.5 py-1 rounded-lg text-[11px] font-semibold text-emerald-600 hover:bg-emerald-500/10 transition-colors"
+                          onClick={() => { setModalPaper(qp); setModalTab('solution'); }}
+                          className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 border border-blue-500/20 transition-all inline-flex items-center gap-1"
                         >
-                          View Scheme
+                          <Lightbulb className="w-3 h-3 text-amber-400" />
+                          <span>Solution</span>
                         </button>
-                      )}
+                        <button
+                          onClick={() => { setModalPaper(qp); setModalTab('demo'); }}
+                          className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 transition-all inline-flex items-center gap-1"
+                        >
+                          <Gamepad2 className="w-3 h-3 text-emerald-400" />
+                          <span>Demo</span>
+                        </button>
+                        <button
+                          onClick={() => { setModalPaper(qp); setModalTab('answerKey'); }}
+                          className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/20 transition-all inline-flex items-center gap-1"
+                        >
+                          <KeyRound className="w-3 h-3 text-amber-500" />
+                          <span>Key</span>
+                        </button>
+                      </div>
+                    </td>
+                    <td className="py-3 px-4 text-right space-x-1.5 whitespace-nowrap">
                       <button
-                        onClick={() => setModalPaper(qp)}
+                        onClick={() => { setModalPaper(qp); setModalTab('paper'); }}
                         className="px-2.5 py-1 rounded-lg text-[11px] font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 transition-colors"
                       >
                         Preview
@@ -187,15 +195,13 @@ export const QuestionPaperBank: React.FC<QuestionPaperBankProps> = ({ onNavigate
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Interactive Question Paper Workspace Modal */}
       {modalPaper && (
-        <PdfViewerModal
+        <QuestionPaperWorkspaceModal
           isOpen={true}
           onClose={() => setModalPaper(null)}
-          title={modalPaper.title}
-          filename={modalPaper.filename}
-          sizeBytes={modalPaper.sizeBytes}
-          scheme={modalPaper.scheme}
+          paper={modalPaper}
+          initialTab={modalTab}
         />
       )}
     </div>
