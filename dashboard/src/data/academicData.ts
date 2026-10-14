@@ -3,6 +3,7 @@ import { Subject } from '../types/academic';
 export const ACADEMIC_SUBJECTS: Subject[] = [
   {
     id: 'cst303-computer-networks',
+    showcaseUrl: '/subjects/cst303.html',
     code: 'CST303',
     name: 'Computer Networks',
     department: 'Computer Science and Engineering',
@@ -152,6 +153,7 @@ export const ACADEMIC_SUBJECTS: Subject[] = [
   },
   {
     id: 'cst205-object-oriented-programming',
+    showcaseUrl: '/subjects/cst205.html',
     code: 'CST205',
     name: 'Object Oriented Programming using Java',
     department: 'Computer Science and Engineering',
@@ -280,6 +282,7 @@ export const ACADEMIC_SUBJECTS: Subject[] = [
   },
   {
     id: 'pcadt502-robotics',
+    showcaseUrl: '/subjects/pcadt502.html',
     code: 'PCADT502',
     name: 'Robotics and Autonomous Systems',
     department: 'Computer Science and Engineering',
@@ -349,6 +352,7 @@ export const ACADEMIC_SUBJECTS: Subject[] = [
   },
   {
     id: 'pecst521-software-project-management',
+    showcaseUrl: '/subjects/pecst521.html',
     code: 'PECST521',
     name: 'Software Project Management',
     department: 'Computer Science and Engineering',
@@ -410,6 +414,196 @@ export const ACADEMIC_SUBJECTS: Subject[] = [
         description: 'Team dynamics, motivation theories, Scrum sprint ceremonies, and contract closure.',
         hoursAllocated: 9,
         keyTopics: ['Maslow & Herzberg Motivation Models', 'Scrum Sprint Burndown Charts', 'Project Post-Mortem Reviews'],
+        resources: []
+      }
+    ],
+    questionPapers: [],
+    answerKeys: []
+  }
+,
+  {
+    id: 'cst305-artificial-intelligence',
+    code: 'CST305',
+    name: 'Artificial Intelligence',
+    department: 'Computer Science and Engineering',
+    semester: 'S5 B.Tech',
+    credits: 4,
+    regulation: 'KTU 2019 Scheme',
+    faculty: 'Jane Rose | Assistant Professor',
+    description: 'Foundational study of state-space search algorithms (A*, AO*), adversarial Minimax game trees with Alpha-Beta pruning, first-order logic resolution, and probabilistic reasoning.',
+    icon: 'Cpu',
+    gradient: 'from-purple-600 to-indigo-600',
+    showcaseUrl: '/subjects/cst305.html',
+    modules: [
+      {
+        id: 1,
+        moduleNumber: 1,
+        title: 'Introduction to AI & State Space Search',
+        description: 'Intelligent agents, environments, uninformed search (BFS, DFS, IDDFS), and informed heuristic search (A*, AO*).',
+        hoursAllocated: 9,
+        keyTopics: ['Agent Architectures', 'Heuristic Evaluation Functions', 'A* Admissibility and Consistency'],
+        resources: []
+      },
+      {
+        id: 2,
+        moduleNumber: 2,
+        title: 'Game Playing & Constraint Satisfaction',
+        description: 'Adversarial search, Minimax theorem, Alpha-Beta pruning heuristics, and CSP backtracking.',
+        hoursAllocated: 9,
+        keyTopics: ['Minimax Search', 'Alpha-Beta Cutoffs', 'Constraint Propagation'],
+        resources: []
+      },
+      {
+        id: 3,
+        moduleNumber: 3,
+        title: 'Knowledge Representation & Logic',
+        description: 'Propositional logic, First-Order Predicate Calculus (FOPC), unification, and resolution refutation.',
+        hoursAllocated: 10,
+        keyTopics: ['FOPC Syntax & Semantics', 'Unification Algorithm', 'Resolution Refutation Proofs'],
+        resources: []
+      },
+      {
+        id: 4,
+        moduleNumber: 4,
+        title: 'Uncertain Reasoning & Bayesian Networks',
+        description: 'Probabilistic reasoning, conditional independence, Bayes rule, and belief network topology.',
+        hoursAllocated: 9,
+        keyTopics: ['Bayes Theorem', 'Markov Blanket', 'Probabilistic Inference'],
+        resources: []
+      },
+      {
+        id: 5,
+        moduleNumber: 5,
+        title: 'Learning & Neural Architectures',
+        description: 'Supervised learning, decision trees, perceptron convergence, and multilayer backpropagation.',
+        hoursAllocated: 9,
+        keyTopics: ['Linear Classifiers', 'Backpropagation Gradient Descent', 'Inductive Bias'],
+        resources: []
+      }
+    ],
+    questionPapers: [],
+    answerKeys: []
+  },
+  {
+    id: 'cst307-data-mining',
+    code: 'CST307',
+    name: 'Data Mining & Warehousing',
+    department: 'Computer Science and Engineering',
+    semester: 'S5 B.Tech',
+    credits: 4,
+    regulation: 'KTU 2019 Scheme',
+    faculty: 'Jane Rose | Assistant Professor',
+    description: 'Data warehousing, multi-dimensional OLAP cubes, association rule mining with Apriori & FP-Growth, decision tree classification, and cluster analysis.',
+    icon: 'Database',
+    gradient: 'from-emerald-600 to-teal-600',
+    showcaseUrl: '/subjects/cst307.html',
+    modules: [
+      {
+        id: 1,
+        moduleNumber: 1,
+        title: 'Data Warehousing & OLAP Technology',
+        description: 'Data warehouse architecture, star/snowflake schemas, OLAP operations (slice, dice, drill-down).',
+        hoursAllocated: 9,
+        keyTopics: ['Star and Snowflake Schemas', 'MOLAP vs ROLAP', 'Data Preprocessing'],
+        resources: []
+      },
+      {
+        id: 2,
+        moduleNumber: 2,
+        title: 'Association Rule & Frequent Itemset Mining',
+        description: 'Market basket analysis, Apriori downward closure property, candidate generation, and FP-Tree growth.',
+        hoursAllocated: 10,
+        keyTopics: ['Apriori Algorithm', 'FP-Growth Mining', 'Support, Confidence & Lift'],
+        resources: []
+      },
+      {
+        id: 3,
+        moduleNumber: 3,
+        title: 'Classification & Predictive Modeling',
+        description: 'Decision trees (ID3, C4.5), Information Gain, Naive Bayes, and model evaluation metrics (ROC/AUC).',
+        hoursAllocated: 9,
+        keyTopics: ['Entropy & Information Gain', 'Naive Bayes Classifier', 'Confusion Matrix & F1-Score'],
+        resources: []
+      },
+      {
+        id: 4,
+        moduleNumber: 4,
+        title: 'Cluster Analysis',
+        description: 'Partitioning methods (K-Means, K-Medoids), hierarchical clustering (AGNES, DIANA), and density-based DBSCAN.',
+        hoursAllocated: 9,
+        keyTopics: ['K-Means Convergence', 'Dendrogram Construction', 'DBSCAN Core Points'],
+        resources: []
+      },
+      {
+        id: 5,
+        moduleNumber: 5,
+        title: 'Advanced Mining & Outlier Detection',
+        description: 'Text mining, web mining, spatial data analysis, and statistical anomaly detection.',
+        hoursAllocated: 9,
+        keyTopics: ['TF-IDF Feature Extraction', 'Distance-based Outliers', 'Graph Mining'],
+        resources: []
+      }
+    ],
+    questionPapers: [],
+    answerKeys: []
+  },
+  {
+    id: 'embedded-systems-stm32',
+    code: 'EST-STM32',
+    name: 'Embedded Systems & STM32',
+    department: 'Electronics & Computer Engineering',
+    semester: 'S5/S6 B.Tech',
+    credits: 4,
+    regulation: 'KTU 2019 Scheme',
+    faculty: 'Jane Rose | Assistant Professor',
+    description: 'ARM Cortex-M4 microcontroller architecture, bare-metal peripheral drivers, NVIC interrupts, DMA controllers, hardware timers with PWM, and FreeRTOS task scheduling.',
+    icon: 'Radio',
+    gradient: 'from-amber-600 to-orange-600',
+    showcaseUrl: '/subjects/embedded-systems-stm32.html',
+    modules: [
+      {
+        id: 1,
+        moduleNumber: 1,
+        title: 'ARM Cortex-M4 Architecture & Memory Map',
+        description: 'Programmer model, registers, Thumb-2 instruction set, memory alignment, and bus matrix (AHB/APB).',
+        hoursAllocated: 9,
+        keyTopics: ['Cortex-M4 Core Architecture', 'AHB/APB Bus Matrices', 'Reset and Clock Control (RCC)'],
+        resources: []
+      },
+      {
+        id: 2,
+        moduleNumber: 2,
+        title: 'GPIO & Atomic Bit Operations',
+        description: 'GPIO pin modes, MODER, ODR, IDR, atomic BSRR bit-set/reset registers, and external interrupt lines (EXTI).',
+        hoursAllocated: 9,
+        keyTopics: ['GPIO Registers (MODER, BSRR)', 'Atomic Pin Toggling', 'Push-Pull vs Open-Drain'],
+        resources: []
+      },
+      {
+        id: 3,
+        moduleNumber: 3,
+        title: 'NVIC & Exception Handling',
+        description: 'Nested Vectored Interrupt Controller priority grouping, preemption priorities, subpriorities, and ISR latency.',
+        hoursAllocated: 9,
+        keyTopics: ['NVIC Vector Table', 'Interrupt Priority Grouping', 'SysTick Periodic Exceptions'],
+        resources: []
+      },
+      {
+        id: 4,
+        moduleNumber: 4,
+        title: 'Hardware Timers, PWM & DMA',
+        description: 'General-purpose timers, prescaler/ARR frequency generation, PWM generation, and autonomous DMA streams.',
+        hoursAllocated: 10,
+        keyTopics: ['Timer Prescaler & ARR Calculation', 'PWM Duty Cycle Control', 'DMA Circular Buffer Mode'],
+        resources: []
+      },
+      {
+        id: 5,
+        moduleNumber: 5,
+        title: 'Serial Interfaces & Real-Time Kernels',
+        description: 'USART, SPI, I2C communication protocols, FreeRTOS preemptive scheduler, queues, and binary semaphores.',
+        hoursAllocated: 9,
+        keyTopics: ['I2C and SPI Timing', 'FreeRTOS Task Creation', 'Mutexes and Priority Inversion'],
         resources: []
       }
     ],

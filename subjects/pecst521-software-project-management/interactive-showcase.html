@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PECST521: Software Project Management — Interactive 3D Showcase | KTU</title>
+  <link rel="stylesheet" href="../common/showcase-theme.css">
+  <style>
+    .cpm-network-canvas {
+      width: 100%;
+      height: 280px;
+      background: rgba(2, 6, 23, 0.7);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: block;
+    }
+  </style>
+</head>
+<body data-theme="liquid">
+
+  <!-- 3D Particle Canvas -->
+  <canvas id="canvas-3d-bg"></canvas>
+
+  <div class="showcase-container">
+    
+    <!-- Top Header -->
+    <header class="showcase-header">
+      <div class="brand-badge">
+        <span class="code-pill">PECST521</span>
+        <span class="subject-title-header">Software Project Management</span>
+      </div>
+      <div class="header-actions">
+        <select id="theme-select" class="glass-select">
+          <option value="liquid">Liquid Glass</option>
+          <option value="aurora">Aurora Glass</option>
+          <option value="frosted">Frosted Glass</option>
+          <option value="cyber">Neon Cyber Glass</option>
+          <option value="obsidian">Deep Obsidian Glass</option>
+          <option value="holographic">Holographic Glass</option>
+        </select>
+        <a href="../../dashboard/index.html" class="glass-btn glass-btn-primary">← Learning Hub</a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-glass-card">
+        <span class="hero-tag">KTU S5 Computer Science & Engineering Elective</span>
+        <h1 class="hero-h1">Agile Delivery & Critical Path Scheduling</h1>
+        <p class="hero-desc">
+          Master algorithmic software cost estimation (COCOMO I & II, Function Point Analysis), Critical Path Method (CPM) network scheduling, Earned Value Management (EVM), quantitative risk exposure matrices, and enterprise Agile governance.
+        </p>
+        <div class="hero-metrics">
+          <div class="metric-box">
+            <div class="metric-num">46 hrs</div>
+            <div class="metric-label">KTU Teaching Plan</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">COCOMO II</div>
+            <div class="metric-label">Cost Estimation</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">100%</div>
+            <div class="metric-label">Syllabus Coverage</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Schedule Burndown Card -->
+      <div class="visualizer-card">
+        <div class="visualizer-title">
+          <span>Sprint Burndown 3D Trajectory</span>
+          <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan);">Active WebGL</span>
+        </div>
+        <div class="canvas-container">
+          <canvas id="spm-3d-canvas" style="width: 100%; height: 100%; display: block;"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 Pillars Grid -->
+    <div class="showcase-grid">
+
+      <!-- Pillar 1: Real-Time Interactive Demo (CPM Critical Path Simulator) -->
+      <div class="glass-panel col-12">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>⚡</span> Real-Time Interactive Demo: Critical Path Method (CPM) Network</h2>
+          <span class="panel-badge">Schedule Engine</span>
+        </div>
+        <p style="color: var(--text-muted); margin-bottom: 14px;">
+          Adjust the task durations below to observe automatic forward pass (Early Start / Early Finish), backward pass (Late Start / Late Finish), total float, and dynamic <strong>Critical Path highlighting</strong>.
+        </p>
+        <div class="demo-controls" style="align-items: center;">
+          <label style="font-size: 0.88rem; font-family: var(--font-mono);">
+            Task A (Design): <span id="durA-val" style="color: var(--accent-cyan);">3 wks</span>
+            <input type="range" id="durA" min="1" max="6" value="3" oninput="updateCPM()" style="margin-left: 6px;">
+          </label>
+          <label style="font-size: 0.88rem; font-family: var(--font-mono); margin-left: 14px;">
+            Task B (Backend): <span id="durB-val" style="color: var(--accent-purple);">4 wks</span>
+            <input type="range" id="durB" min="2" max="8" value="4" oninput="updateCPM()" style="margin-left: 6px;">
+          </label>
+          <label style="font-size: 0.88rem; font-family: var(--font-mono); margin-left: 14px;">
+            Task C (Frontend): <span id="durC-val" style="color: var(--accent-emerald);">2 wks</span>
+            <input type="range" id="durC" min="1" max="5" value="2" oninput="updateCPM()" style="margin-left: 6px;">
+          </label>
+          <label style="font-size: 0.88rem; font-family: var(--font-mono); margin-left: 14px;">
+            Task D (QA): <span id="durD-val" style="color: var(--accent-amber);">3 wks</span>
+            <input type="range" id="durD" min="1" max="6" value="3" oninput="updateCPM()" style="margin-left: 6px;">
+          </label>
+        </div>
+
+        <canvas id="cpm-canvas" class="cpm-network-canvas"></canvas>
+        <div id="cpm-log" style="margin-top: 10px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-rose); text-align: center;">
+          Critical Path: Start → Task A → Task B → Task D → End (Total Duration: 10 Weeks | Float: 0)
+        </div>
+      </div>
+
+      <!-- Pillar 2: Industrial & Real-World Applications -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>📊</span> Industrial & Enterprise Applications</h2>
+          <span class="panel-badge">Enterprise Governance</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan);">
+            <strong style="color: var(--accent-cyan);">Spotify Squad & Tribe Model (Scaled Agile):</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Cross-functional autonomous squads govern end-to-end feature lifecycles while chapters and guilds maintain shared engineering standards.
+            </p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-purple);">
+            <strong style="color: var(--accent-purple);">Safety-Critical Avionics Compliance (DO-178C):</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Rigorous Software Configuration Management (SCM) tracks bidirectional traceability from high-level system requirements to binary object code.
+            </p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-emerald);">
+            <strong style="color: var(--accent-emerald);">FinTech Core Banking Cloud Migrations:</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Earned Value Analysis tracks multi-million dollar schedule variance (SV) and cost variance (CV) across multi-year multi-vendor delivery pipelines.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Dynamic Knowledge Graph -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🧠</span> Interactive Knowledge Graph</h2>
+          <span class="panel-badge">SPM Knowledge Areas</span>
+        </div>
+        <canvas id="kg-canvas" class="demo-canvas" style="height: 260px;"></canvas>
+        <div id="kg-node-desc" style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); min-height: 38px;">
+          Click any project management discipline above to inspect its inputs, tools, and work breakdown structures.
+        </div>
+      </div>
+
+      <!-- Pillar 4: Numerical Calculation Engine -->
+      <div class="glass-panel col-8">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🔢</span> Numerical Workbench: Basic COCOMO Estimation Engine</h2>
+          <span class="panel-badge">KTU Mathematical Engine</span>
+        </div>
+        <div class="calc-workbench">
+          <div class="calc-inputs">
+            <div class="input-group">
+              <label class="input-label">Project Size in KLOC (Thousand Lines of Code):</label>
+              <input type="number" id="cocomo-kloc" class="glass-input" value="32" min="1" step="5">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Development Mode:</label>
+              <select id="cocomo-mode" class="glass-input">
+                <option value="organic">Organic Mode (Small team, familiar environment)</option>
+                <option value="semidetached">Semi-Detached Mode (Medium team, mixed experience)</option>
+                <option value="embedded">Embedded Mode (Tight constraints, hardware coupling)</option>
+              </select>
+            </div>
+            <button class="glass-btn glass-btn-primary" onclick="calculateCOCOMO()">Compute Effort & Duration</button>
+          </div>
+          <div class="calc-output-box" id="calc-output">
+            <div class="calc-step">
+              <div class="calc-step-title">Formulas (Basic COCOMO):</div>
+              Effort (E) = a × (KLOC)<sup>b</sup> [Person-Months]<br>
+              Development Time (TDEV) = c × (E)<sup>d</sup> [Months]<br>
+              Recommended Team Size (Staff) = E / TDEV
+            </div>
+            <div class="calc-step">
+              <div class="calc-step-title">Output:</div>
+              Click "Compute" to solve step-by-step.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 5: Subject Mini-Game (Agile Velocity Balancer) -->
+      <div class="glass-panel col-4">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🎮</span> Mini-Game: Sprint Balancer</h2>
+          <span class="panel-badge">Agile Capacity</span>
+        </div>
+        <div class="game-container">
+          <div class="game-hud">
+            <span>Points: <strong id="game-points" style="color: var(--accent-cyan);">0 / 30</strong></span>
+            <span>Capacity: <strong id="game-status" style="color: var(--accent-emerald);">Optimal</strong></span>
+          </div>
+          <canvas id="game-canvas" class="game-canvas" style="height: 180px;"></canvas>
+          <div style="margin-top: 12px; display: flex; justify-content: center; gap: 8px;">
+            <button class="glass-btn" onclick="addStory(3)">+3 pt Story</button>
+            <button class="glass-btn" onclick="addStory(5)">+5 pt Story</button>
+            <button class="glass-btn" onclick="addStory(8)">+8 pt Story</button>
+            <button class="glass-btn glass-btn-primary" onclick="resetSprint()">Commit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 6: Interactive Exam Quiz -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>📝</span> KTU Examination Quiz</h2>
+          <span class="panel-badge" id="quiz-score-badge">Score: 0 / 5</span>
+        </div>
+        <div id="quiz-container"></div>
+      </div>
+
+      <!-- Pillar 7: Job Roles & Payscale Guide -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>💼</span> Career Roadmaps & Industry Payscales</h2>
+          <span class="panel-badge">Market Analysis</span>
+        </div>
+        <div class="career-grid">
+          <div class="career-card">
+            <div class="role-title">Technical Program Manager (TPM)</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Orchestrates cross-organizational software releases, dependency roadmaps, and executive stakeholder communications.
+            </p>
+            <div class="payscale-badge">
+              <span class="salary-inr">₹20 - 52 LPA</span>
+              <span class="salary-usd">$140,000 - $225,000</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-dim);">
+              <strong>Hiring:</strong> Google, Microsoft, Meta, Amazon AWS
+            </div>
+          </div>
+          <div class="career-card">
+            <div class="role-title">Agile Delivery Lead / Scrum Master</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Facilitates sprint planning, removes blocking impediments, tracks team velocity, and drives continuous delivery.
+            </p>
+            <div class="payscale-badge">
+              <span class="salary-inr">₹12 - 30 LPA</span>
+              <span class="salary-usd">$105,000 - $165,000</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-dim);">
+              <strong>Hiring:</strong> Atlassian, Target, IBM Global Delivery, Cisco
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 8: Solved Previous Year Question Paper (PYQ) -->
+      <div class="glass-panel col-12">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>📑</span> Solved Previous Year Question Paper: KTU PECST521</h2>
+          <span class="panel-badge">Model Answer Key</span>
+        </div>
+        <div class="pyq-tabs">
+          <button class="pyq-tab-btn active" data-target="all">All Questions</button>
+          <button class="pyq-tab-btn" data-target="part-a">Part A (3 Marks)</button>
+          <button class="pyq-tab-btn" data-target="part-b">Part B (14 Marks)</button>
+        </div>
+
+        <div class="pyq-item" data-category="part-a">
+          <div class="pyq-q-header">
+            <div><strong>Q1.</strong> Define Float (Slack time) in project scheduling. What is the float value for activities on the Critical Path?</div>
+            <span class="pyq-marks">3 Marks</span>
+          </div>
+          <div class="pyq-solution-body">
+            <p><strong>Evaluation Scheme & Solution:</strong></p>
+            <p style="margin: 8px 0; font-size: 0.9rem; color: var(--text-muted);">
+              <strong>Total Float:</strong> The maximum duration by which an activity can be delayed without extending the overall project completion deadline.
+              <br><code>Total Float = Late Start (LS) - Early Start (ES) = Late Finish (LF) - Early Finish (EF)</code>.
+            </p>
+            <p style="margin: 8px 0; font-size: 0.9rem; color: var(--text-muted);">
+              <strong>Critical Path Float:</strong> For all activities lying on the Critical Path, the total float is strictly <strong>Zero (0)</strong>, meaning any delay in these activities immediately delays project delivery.
+            </p>
+          </div>
+        </div>
+
+        <div class="pyq-item" data-category="part-b">
+          <div class="pyq-q-header">
+            <div><strong>Q2.</strong> Explain the Basic and Intermediate COCOMO models. A software system is estimated to have 32 KLOC developed under Organic mode. Calculate the Effort and Development Time.</div>
+            <span class="pyq-marks">14 Marks</span>
+          </div>
+          <div class="pyq-solution-body">
+            <p><strong>Complete Mathematical Solution:</strong></p>
+            <p style="margin: 6px 0; font-size: 0.88rem;"><strong>1. Basic COCOMO Constants for Organic Mode:</strong></p>
+            <p style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-cyan);">
+              a = 2.4, b = 1.05, c = 2.5, d = 0.38
+            </p>
+            <p style="margin: 6px 0; font-size: 0.88rem;"><strong>2. Effort Calculation (E):</strong></p>
+            <p style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-cyan);">
+              E = a × (KLOC)<sup>b</sup> = 2.4 × (32)<sup>1.05</sup><br>
+              E = 2.4 × 38.05 = <strong>91.33 Person-Months (PM)</strong>
+            </p>
+            <p style="margin: 6px 0; font-size: 0.88rem;"><strong>3. Development Time Calculation (TDEV):</strong></p>
+            <p style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-cyan);">
+              TDEV = c × (E)<sup>d</sup> = 2.5 × (91.33)<sup>0.38</sup><br>
+              TDEV = 2.5 × 5.51 = <strong>13.78 Months (~14 Months)</strong>
+            </p>
+            <p style="margin: 6px 0; font-size: 0.88rem;"><strong>4. Average Staff Size:</strong></p>
+            <p style="font-family: var(--font-mono); font-size: 0.82rem; color: #a7f3d0;">
+              Staff = E / TDEV = 91.33 / 13.78 = <strong>6.62 ≈ 7 Engineers</strong>
+            </p>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 8px;">
+              <strong>Mark Distribution:</strong> COCOMO model classification theory (4 Marks) + Formula specification (3 Marks) + Step-by-step substitution (5 Marks) + Final effort, duration, and staff numbers (2 Marks) = <strong>14 Marks</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Official Faculty Branding Footer -->
+    <footer class="faculty-footer">
+      <div class="footer-container">
+        <div class="faculty-badge">
+          <span class="faculty-name">Jane Rose</span>
+          <span class="faculty-title">Assistant Professor</span>
+          <span class="faculty-dept">Department of Computer Science and Engineering (CSE)</span>
+        </div>
+        <p class="copyright-text">
+          KTU Smart Learning Ecosystem © 2026. Academic Open Access & Curriculum Excellence.
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="../common/showcase-engine.js"></script>
+  <script>
+    // 1. Critical Path Method (CPM) Simulator
+    const cCanvas = document.getElementById('cpm-canvas');
+    const cctx = cCanvas.getContext('2d');
+
+    function updateCPM() {
+      const dA = parseInt(document.getElementById('durA').value);
+      const dB = parseInt(document.getElementById('durB').value);
+      const dC = parseInt(document.getElementById('durC').value);
+      const dD = parseInt(document.getElementById('durD').value);
+
+      document.getElementById('durA-val').innerText = `${dA} wks`;
+      document.getElementById('durB-val').innerText = `${dB} wks`;
+      document.getElementById('durC-val').innerText = `${dC} wks`;
+      document.getElementById('durD-val').innerText = `${dD} wks`;
+
+      cCanvas.width = cCanvas.parentElement.clientWidth;
+      cCanvas.height = 280;
+      cctx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+
+      const path1 = dA + dB + dD; // Path via B
+      const path2 = dA + dC + dD; // Path via C
+      const critPath = path1 >= path2 ? 'Path A-B-D' : 'Path A-C-D';
+      const maxDur = Math.max(path1, path2);
+
+      // Node coordinates
+      const nodes = [
+        { id: 'START', x: 70, y: 140, es: 0, ef: 0 },
+        { id: `A (${dA}w)`, x: 200, y: 140, es: 0, ef: dA },
+        { id: `B (${dB}w)`, x: 360, y: 70, es: dA, ef: dA + dB },
+        { id: `C (${dC}w)`, x: 360, y: 210, es: dA, ef: dA + dC },
+        { id: `D (${dD}w)`, x: 520, y: 140, es: Math.max(dA + dB, dA + dC), ef: maxDur },
+        { id: 'END', x: 640, y: 140, es: maxDur, ef: maxDur }
+      ];
+
+      // Draw connections
+      const edges = [
+        { u: 0, v: 1, crit: true },
+        { u: 1, v: 2, crit: path1 >= path2 },
+        { u: 1, v: 3, crit: path2 > path1 },
+        { u: 2, v: 4, crit: path1 >= path2 },
+        { u: 3, v: 4, crit: path2 > path1 },
+        { u: 4, v: 5, crit: true }
+      ];
+
+      for (const e of edges) {
+        cctx.beginPath();
+        cctx.moveTo(nodes[e.u].x, nodes[e.u].y);
+        cctx.lineTo(nodes[e.v].x, nodes[e.v].y);
+        cctx.strokeStyle = e.crit ? '#f43f5e' : 'rgba(255, 255, 255, 0.15)';
+        cctx.lineWidth = e.crit ? 3.5 : 1.5;
+        cctx.stroke();
+      }
+
+      // Draw nodes
+      for (const n of nodes) {
+        cctx.beginPath();
+        cctx.arc(n.x, n.y, 22, 0, Math.PI * 2);
+        cctx.fillStyle = '#0f172a';
+        cctx.fill();
+        cctx.strokeStyle = '#38bdf8';
+        cctx.lineWidth = 2;
+        cctx.stroke();
+
+        cctx.fillStyle = '#ffffff';
+        cctx.font = 'bold 10px Plus Jakarta Sans';
+        cctx.textAlign = 'center';
+        cctx.fillText(n.id, n.x, n.y + 4);
+      }
+
+      document.getElementById('cpm-log').innerText = `Critical Path: ${critPath} | Total Project Schedule: ${maxDur} Weeks (Zero Float)`;
+      sfx.click();
+    }
+
+    // 2. COCOMO Calculator
+    function calculateCOCOMO() {
+      const kloc = parseFloat(document.getElementById('cocomo-kloc').value) || 32;
+      const mode = document.getElementById('cocomo-mode').value;
+
+      let a = 2.4, b = 1.05, c = 2.5, d = 0.38;
+      if (mode === 'semidetached') { a = 3.0; b = 1.12; c = 2.5; d = 0.35; }
+      else if (mode === 'embedded') { a = 3.6; b = 1.20; c = 2.5; d = 0.32; }
+
+      const effort = a * Math.pow(kloc, b);
+      const tdev = c * Math.pow(effort, d);
+      const staff = effort / tdev;
+
+      const out = document.getElementById('calc-output');
+      out.innerHTML = `
+        <div class="calc-step">
+          <div class="calc-step-title">Step 1: Compute Effort (Person-Months)</div>
+          Effort = ${a} × (${kloc})<sup>${b}</sup> = <strong>${effort.toFixed(2)} PM</strong>
+        </div>
+        <div class="calc-step">
+          <div class="calc-step-title">Step 2: Compute Nominal Project Duration</div>
+          TDEV = ${c} × (${effort.toFixed(2)})<sup>${d}</sup> = <strong>${tdev.toFixed(2)} Months (~${Math.ceil(tdev)} mo)</strong>
+        </div>
+        <div class="calc-step">
+          <div class="calc-step-title">Step 3: Average Staff Allocation</div>
+          Team Size = ${effort.toFixed(2)} / ${tdev.toFixed(2)} = <strong>${staff.toFixed(1)} Full-Time Engineers</strong>
+        </div>
+        <div class="calc-result-badge">
+          Cost Baseline: ${(effort * 1.5).toFixed(1)} Lakhs INR (Est. @ 1.5L/PM blended cost)
+        </div>
+      `;
+      sfx.success();
+    }
+
+    // 3. Knowledge Graph
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCPM();
+
+      const nodes = [
+        { id: 1, label: 'Project Charter', x: 100, y: 70, color: '#38bdf8' },
+        { id: 2, label: 'COCOMO Sizing', x: 260, y: 70, color: '#a855f7' },
+        { id: 3, label: 'CPM/PERT Network', x: 420, y: 130, color: '#10b981' },
+        { id: 4, label: 'Risk Exposure', x: 260, y: 200, color: '#f59e0b' },
+        { id: 5, label: 'Earned Value (EVM)', x: 100, y: 200, color: '#f43f5e' }
+      ];
+      const edges = [
+        { source: 1, target: 2, label: 'scope' },
+        { source: 2, target: 3, label: 'schedule' },
+        { source: 3, target: 4, label: 'buffers' },
+        { source: 3, target: 5, label: 'variance' }
+      ];
+      new InteractiveKnowledgeGraph('kg-canvas', nodes, edges);
+
+      // Quiz Questions
+      const questions = [
+        {
+          question: "What is the Schedule Variance (SV) formula in Earned Value Management (EVM)?",
+          options: ["SV = Earned Value (EV) - Planned Value (PV)", "SV = Actual Cost (AC) - Earned Value (EV)", "SV = Planned Value / Actual Cost", "SV = Cost Variance + 1"],
+          answer: 0,
+          explanation: "SV = EV - PV. If SV > 0 the project is ahead of schedule, whereas SV < 0 indicates project schedule delay."
+        },
+        {
+          question: "In the Basic COCOMO model, which category corresponds to projects developed under tight hardware constraints and stringent regulations?",
+          options: ["Organic Mode", "Semi-Detached Mode", "Embedded Mode", "Agile Mode"],
+          answer: 2,
+          explanation: "Embedded mode accounts for complex projects tightly coupled with hardware interfaces where requirements are inflexible (a=3.6, b=1.20)."
+        },
+        {
+          question: "What is the slack time (Total Float) for any activity located on the Critical Path?",
+          options: ["Negative infinity", "Zero (0)", "Equal to task duration", "One week"],
+          answer: 1,
+          explanation: "Critical path activities have zero float (LS = ES and LF = EF); any delay in them causes an equal delay in final project completion."
+        },
+        {
+          question: "In Function Point Analysis (FPA), which component measures transaction inputs supplied by users to modify internal application files?",
+          options: ["External Inputs (EI)", "External Inquiries (EQ)", "Internal Logical Files (ILF)", "External Interface Files (EIF)"],
+          answer: 0,
+          explanation: "External Inputs (EI) process data or control info from outside the boundary that maintains one or more Internal Logical Files."
+        },
+        {
+          question: "Which Scrum ceremony focuses on team inspection and adapting processes for continuous improvement at sprint completion?",
+          options: ["Daily Standup", "Sprint Review (Demo)", "Sprint Retrospective", "Backlog Refinement"],
+          answer: 2,
+          explanation: "The Sprint Retrospective occurs after the Sprint Review to reflect on what went well, what stalled, and commit to process improvements."
+        }
+      ];
+      initQuiz(questions);
+
+      // 3D Canvas Visualizer (Rotating 3D Gantt / Burndown Vector)
+      const spmCanvas = document.getElementById('spm-3d-canvas');
+      if (spmCanvas) {
+        const sctx = spmCanvas.getContext('2d');
+        let angle = 0;
+        function render3DSPM() {
+          spmCanvas.width = spmCanvas.parentElement.clientWidth;
+          spmCanvas.height = spmCanvas.parentElement.clientHeight;
+          const cx = spmCanvas.width / 2;
+          const cy = spmCanvas.height / 2;
+          sctx.clearRect(0, 0, spmCanvas.width, spmCanvas.height);
+          
+          angle += 0.015;
+          const points = [
+            { x: -50, y: -40, z: 0 },
+            { x: -20, y: -20, z: 0 },
+            { x: 10, y: 10, z: 0 },
+            { x: 40, y: 30, z: 0 }
+          ];
+
+          sctx.beginPath();
+          points.forEach((p, idx) => {
+            const rx = p.x * Math.cos(angle);
+            const ry = p.y + Math.sin(angle + idx) * 8;
+            if (idx === 0) sctx.moveTo(cx + rx, cy + ry);
+            else sctx.lineTo(cx + rx, cy + ry);
+          });
+          sctx.strokeStyle = '#38bdf8';
+          sctx.lineWidth = 3;
+          sctx.stroke();
+
+          // Points
+          points.forEach((p, idx) => {
+            const rx = p.x * Math.cos(angle);
+            const ry = p.y + Math.sin(angle + idx) * 8;
+            sctx.beginPath();
+            sctx.arc(cx + rx, cy + ry, 5, 0, Math.PI * 2);
+            sctx.fillStyle = idx === points.length - 1 ? '#10b981' : '#f59e0b';
+            sctx.fill();
+          });
+
+          requestAnimationFrame(render3DSPM);
+        }
+        render3DSPM();
+      }
+    });
+
+    // 4. Mini-game implementation
+    let sprintPoints = 0;
+    function addStory(pts) {
+      sprintPoints += pts;
+      const el = document.getElementById('game-points');
+      const st = document.getElementById('game-status');
+      el.innerText = `${sprintPoints} / 30`;
+
+      if (sprintPoints > 30) {
+        st.innerText = 'OVERLOADED!';
+        st.style.color = '#f43f5e';
+        sfx.error();
+      } else {
+        st.innerText = 'Optimal Capacity';
+        st.style.color = '#10b981';
+        sfx.success();
+      }
+    }
+
+    function resetSprint() {
+      if (sprintPoints >= 24 && sprintPoints <= 30) {
+        alert(`Sprint Committed Successfully! Balanced at ${sprintPoints} story points.`);
+        sfx.success();
+      } else if (sprintPoints > 30) {
+        alert(`Sprint Failure! ${sprintPoints} points exceeds velocity (30 pts max). Team burnt out!`);
+        sfx.error();
+      } else {
+        alert(`Sprint under-allocated! Team capacity unused (${sprintPoints} / 30 pts).`);
+        sfx.click();
+      }
+      sprintPoints = 0;
+      document.getElementById('game-points').innerText = '0 / 30';
+      document.getElementById('game-status').innerText = 'Optimal';
+    }
+  </script>
+</body>
+</html>

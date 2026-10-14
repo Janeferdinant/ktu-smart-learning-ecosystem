@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CST307: Data Mining — Interactive 3D Showcase | KTU</title>
+  <link rel="stylesheet" href="./common/showcase-theme.css">
+  <style>
+    .mining-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 0.88rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .mining-table th {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--accent-cyan);
+      padding: 8px 12px;
+      text-align: left;
+      font-family: var(--font-mono);
+    }
+    .mining-table td {
+      padding: 8px 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+  </style>
+</head>
+<body data-theme="liquid">
+
+  <!-- 3D Particle Canvas -->
+  <canvas id="canvas-3d-bg"></canvas>
+
+  <div class="showcase-container">
+    
+    <!-- Top Header -->
+    <header class="showcase-header">
+      <div class="brand-badge">
+        <span class="code-pill">CST307</span>
+        <span class="subject-title-header">Data Mining & Warehousing</span>
+      </div>
+      <div class="header-actions">
+        <select id="theme-select" class="glass-select">
+          <option value="liquid">Liquid Glass</option>
+          <option value="aurora">Aurora Glass</option>
+          <option value="frosted">Frosted Glass</option>
+          <option value="cyber">Neon Cyber Glass</option>
+          <option value="obsidian">Deep Obsidian Glass</option>
+          <option value="holographic">Holographic Glass</option>
+        </select>
+        <a href="../index.html" class="glass-btn glass-btn-primary">← Learning Hub</a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-glass-card">
+        <span class="hero-tag">KTU S5 Computer Science & Engineering</span>
+        <h1 class="hero-h1">Knowledge Discovery & Pattern Extraction</h1>
+        <p class="hero-desc">
+          Master association rule mining with Apriori & FP-Growth, decision tree classification via ID3/C4.5 Information Gain, K-Means & hierarchical clustering, multi-dimensional OLAP cube analytics, and anomaly detection.
+        </p>
+        <div class="hero-metrics">
+          <div class="metric-box">
+            <div class="metric-num">46 hrs</div>
+            <div class="metric-label">KTU Teaching Plan</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">Apriori / FP</div>
+            <div class="metric-label">Association Rules</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">100%</div>
+            <div class="metric-label">KTU Model Papers</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Cluster Visualizer Card -->
+      <div class="visualizer-card">
+        <div class="visualizer-title">
+          <span>Multi-Dimensional Cluster Cube 3D</span>
+          <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan);">Active WebGL</span>
+        </div>
+        <div class="canvas-container">
+          <canvas id="dm-3d-canvas" style="width: 100%; height: 100%; display: block;"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 Pillars Grid -->
+    <div class="showcase-grid">
+
+      <!-- Pillar 1: Real-Time Interactive Demo (Apriori Frequent Itemset Simulator) -->
+      <div class="glass-panel col-12">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>⚡</span> Real-Time Interactive Demo: Apriori Association Rule Miner</h2>
+          <span class="panel-badge">Interactive Mining Engine</span>
+        </div>
+        <p style="color: var(--text-muted); margin-bottom: 14px;">
+          Adjust the <strong>Minimum Support Threshold</strong> and click <strong>"Mine Frequent Itemsets"</strong> to generate L1, L2, and valid association rules with confidence calculations on the 5-transaction market basket dataset.
+        </p>
+        <div class="demo-controls">
+          <label style="font-size: 0.88rem; display: flex; align-items: center; gap: 8px;">
+            Min Support Count:
+            <input type="range" id="min-sup-range" min="2" max="4" value="2" oninput="updateSupLabel(this.value)">
+            <strong id="sup-label" style="color: var(--accent-cyan);">2 (40%)</strong>
+          </label>
+          <button class="glass-btn glass-btn-primary" onclick="runApriori()">Mine Frequent Itemsets</button>
+          <button class="glass-btn" onclick="resetMining()">Reset Dataset</button>
+        </div>
+        
+        <table class="mining-table">
+          <thead>
+            <tr>
+              <th>TID</th>
+              <th>Items Purchased in Transaction</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>T100</td><td>Bread, Milk</td></tr>
+            <tr><td>T200</td><td>Bread, Diaper, Beer, Eggs</td></tr>
+            <tr><td>T300</td><td>Milk, Diaper, Beer, Cola</td></tr>
+            <tr><td>T400</td><td>Bread, Milk, Diaper, Beer</td></tr>
+            <tr><td>T500</td><td>Bread, Milk, Diaper, Cola</td></tr>
+          </tbody>
+        </table>
+
+        <div id="mining-output" style="margin-top: 16px; font-family: var(--font-mono); font-size: 0.85rem; color: #a7f3d0; background: rgba(0,0,0,0.3); padding: 14px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.08);">
+          Click "Mine Frequent Itemsets" to execute Apriori algorithm pass.
+        </div>
+      </div>
+
+      <!-- Pillar 2: Industrial & Real-World Applications -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🛒</span> Enterprise & Real-World Applications</h2>
+          <span class="panel-badge">Case Studies</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan);">
+            <strong style="color: var(--accent-cyan);">E-Commerce Market Basket Recommenders (Amazon):</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Analyzes billions of checkouts with association rules (Frequent Itemsets) to generate real-time "Customers who bought this also bought" bundles.
+            </p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-purple);">
+            <strong style="color: var(--accent-purple);">Financial Fraud & Anomaly Detection (Visa):</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Isolation Forests and density-based clustering (DBSCAN) flag fraudulent credit card transactions within 50 milliseconds across global terminals.
+            </p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-emerald);">
+            <strong style="color: var(--accent-emerald);">Genomic DNA Sequence Motif Mining:</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Identifies disease-linked genetic mutations and protein binding sites using prefix-projected pattern growth algorithms (PrefixSpan).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Dynamic Knowledge Graph -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🧠</span> Interactive Knowledge Graph</h2>
+          <span class="panel-badge">Data Mining Pipeline</span>
+        </div>
+        <canvas id="kg-canvas" class="demo-canvas" style="height: 260px;"></canvas>
+        <div id="kg-node-desc" style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); min-height: 38px;">
+          Click any phase in the KDD knowledge discovery pipeline to inspect its methodology.
+        </div>
+      </div>
+
+      <!-- Pillar 4: Numerical Calculation Engine -->
+      <div class="glass-panel col-8">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🔢</span> Numerical Workbench: Support, Confidence & Lift Calculator</h2>
+          <span class="panel-badge">KTU Mathematical Engine</span>
+        </div>
+        <div class="calc-workbench">
+          <div class="calc-inputs">
+            <div class="input-group">
+              <label class="input-label">Total Transactions (N):</label>
+              <input type="number" id="total-trans" class="glass-input" value="1000" min="100" step="100">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Transactions Containing Item A:</label>
+              <input type="number" id="count-a" class="glass-input" value="300" min="10">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Transactions Containing Item B:</label>
+              <input type="number" id="count-b" class="glass-input" value="400" min="10">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Transactions Containing BOTH (A ∪ B):</label>
+              <input type="number" id="count-ab" class="glass-input" value="180" min="5">
+            </div>
+            <button class="glass-btn glass-btn-primary" onclick="calculateMiningMetrics()">Compute Association Metrics</button>
+          </div>
+          <div class="calc-output-box" id="calc-output">
+            <div class="calc-step">
+              <div class="calc-step-title">Formulas:</div>
+              Support(A ⇒ B) = P(A ∪ B) = Count(A, B) / N<br>
+              Confidence(A ⇒ B) = P(B | A) = Count(A, B) / Count(A)<br>
+              Lift(A ⇒ B) = Confidence(A ⇒ B) / P(B)
+            </div>
+            <div class="calc-step">
+              <div class="calc-step-title">Result:</div>
+              Click "Compute" to solve step-by-step.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 5: Subject Mini-Game (Cluster Outlier Hunter) -->
+      <div class="glass-panel col-4">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🎮</span> Mini-Game: Outlier Hunter</h2>
+          <span class="panel-badge">Pattern Spotting</span>
+        </div>
+        <div class="game-container">
+          <div class="game-hud">
+            <span>Caught: <strong id="game-score" style="color: var(--accent-cyan);">0</strong></span>
+            <span>Accuracy: <strong id="game-acc" style="color: var(--accent-emerald);">100%</strong></span>
+          </div>
+          <canvas id="game-canvas" class="game-canvas" style="height: 180px;"></canvas>
+          <div style="margin-top: 12px;">
+            <button class="glass-btn glass-btn-primary" id="start-game-btn" onclick="startOutlierGame()">Click the Outlier Dot!</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 6: Interactive Exam Quiz -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>📝</span> KTU Examination Quiz</h2>
+          <span class="panel-badge" id="quiz-score-badge">Score: 0 / 5</span>
+        </div>
+        <div id="quiz-container"></div>
+      </div>
+
+      <!-- Pillar 7: Job Roles & Payscale Guide -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>💼</span> Career Roadmaps & Industry Payscales</h2>
+          <span class="panel-badge">Market Analysis</span>
+        </div>
+        <div class="career-grid">
+          <div class="career-card">
+            <div class="role-title">Principal Data Scientist</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Designs enterprise machine learning pipelines, predictive customer churn engines, and automated feature stores.
+            </p>
+            <div class="payscale-badge">
+              <span class="salary-inr">₹18 - 45 LPA</span>
+              <span class="salary-usd">$135,000 - $215,000</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-dim);">
+              <strong>Hiring:</strong> Netflix, Uber, Target, Walmart Global Tech
+            </div>
+          </div>
+          <div class="career-card">
+            <div class="role-title">Big Data Analytics Architect</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Architects enterprise Snowflake/Databricks data warehouses, Spark ETL pipelines, and real-time streaming analytics.
+            </p>
+            <div class="payscale-badge">
+              <span class="salary-inr">₹14 - 32 LPA</span>
+              <span class="salary-usd">$115,000 - $175,000</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-dim);">
+              <strong>Hiring:</strong> Accenture, Deloitte Analytics, Ernst & Young, TCS
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 8: Solved Previous Year Question Paper (PYQ) -->
+      <div class="glass-panel col-12">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>📑</span> Solved Previous Year Question Paper: KTU CST307</h2>
+          <span class="panel-badge">Model Answer Key</span>
+        </div>
+        <div class="pyq-tabs">
+          <button class="pyq-tab-btn active" data-target="all">All Questions</button>
+          <button class="pyq-tab-btn" data-target="part-a">Part A (3 Marks)</button>
+          <button class="pyq-tab-btn" data-target="part-b">Part B (14 Marks)</button>
+        </div>
+
+        <div class="pyq-item" data-category="part-a">
+          <div class="pyq-q-header">
+            <div><strong>Q1.</strong> State the Apriori Property (Downward Closure Property) and explain how it reduces search space.</div>
+            <span class="pyq-marks">3 Marks</span>
+          </div>
+          <div class="pyq-solution-body">
+            <p><strong>Evaluation Scheme & Solution:</strong></p>
+            <p style="margin: 8px 0; font-size: 0.9rem; color: var(--text-muted);">
+              <strong>Apriori Property:</strong> <em>"All non-empty subsets of a frequent itemset must also be frequent."</em>
+            </p>
+            <p style="margin: 8px 0; font-size: 0.9rem; color: var(--text-muted);">
+              <strong>Search Space Pruning:</strong> Conversely, if an itemset is infrequent, all of its supersets are guaranteed to be infrequent and are pruned immediately without counting candidate support against the database, drastically cutting combinatorial complexity from <code>O(2^d)</code>.
+            </p>
+          </div>
+        </div>
+
+        <div class="pyq-item" data-category="part-b">
+          <div class="pyq-q-header">
+            <div><strong>Q2.</strong> Given a transactional database with 5 transactions, apply the Apriori algorithm with Minimum Support = 2 to find all frequent itemsets and derive association rules with Minimum Confidence = 60%.</div>
+            <span class="pyq-marks">14 Marks</span>
+          </div>
+          <div class="pyq-solution-body">
+            <p><strong>Step-by-Step Model Answer:</strong></p>
+            <p style="margin: 6px 0; font-size: 0.88rem;"><strong>Step 1: Scan DB to generate C1 and L1 (min_sup = 2):</strong></p>
+            <p style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-cyan);">
+              L1 = { {Bread: 4}, {Milk: 4}, {Diaper: 4}, {Beer: 3}, {Cola: 2} } — All items meet min_sup ≥ 2.
+            </p>
+            <p style="margin: 6px 0; font-size: 0.88rem;"><strong>Step 2: Generate Candidate C2 = L1 ⋈ L1 and prune to L2:</strong></p>
+            <p style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-cyan);">
+              L2 = { {Bread, Milk: 3}, {Bread, Diaper: 3}, {Bread, Beer: 2}, {Milk, Diaper: 3}, {Milk, Beer: 2}, {Diaper, Beer: 3} }
+            </p>
+            <p style="margin: 6px 0; font-size: 0.88rem;"><strong>Step 3: Generate C3 = L2 ⋈ L2 and prune to L3:</strong></p>
+            <p style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-cyan);">
+              Candidate {Bread, Milk, Diaper}: Subsets {Bread, Milk}, {Bread, Diaper}, {Milk, Diaper} are all in L2. Support in DB = 2.<br>
+              Candidate {Bread, Diaper, Beer}: Support in DB = 2. Subsets frequent. Hence L3 = { {Bread, Milk, Diaper}, {Bread, Diaper, Beer} }.
+            </p>
+            <p style="margin: 6px 0; font-size: 0.88rem;"><strong>Step 4: Association Rule Derivation:</strong></p>
+            <p style="font-family: var(--font-mono); font-size: 0.82rem; color: #a7f3d0;">
+              Rule: {Beer} ⇒ {Diaper}: Confidence = Support(Beer, Diaper) / Support(Beer) = 3 / 3 = 100% (Valid since ≥ 60%).<br>
+              Rule: {Milk} ⇒ {Bread}: Confidence = Support(Milk, Bread) / Support(Milk) = 3 / 4 = 75% (Valid).
+            </p>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 8px;">
+              <strong>Mark Distribution:</strong> L1 computation (3 Marks) + L2 computation & candidate pruning (4 Marks) + L3 generation (4 Marks) + Association rules with confidence formulas (3 Marks) = <strong>14 Marks</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Official Faculty Branding Footer -->
+    <footer class="faculty-footer">
+      <div class="footer-container">
+        <div class="faculty-badge">
+          <span class="faculty-name">Jane Rose</span>
+          <span class="faculty-title">Assistant Professor</span>
+          <span class="faculty-dept">Department of Computer Science and Engineering (CSE)</span>
+        </div>
+        <p class="copyright-text">
+          KTU Smart Learning Ecosystem © 2026. Academic Open Access & Curriculum Excellence.
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="./common/showcase-engine.js"></script>
+  <script>
+    // 1. Apriori Realtime Simulator
+    function updateSupLabel(val) {
+      document.getElementById('sup-label').innerText = `${val} (${val * 20}%)`;
+    }
+
+    function runApriori() {
+      const minSup = parseInt(document.getElementById('min-sup-range').value) || 2;
+      const out = document.getElementById('mining-output');
+      out.innerHTML = `
+        <strong>[Apriori Pass Initiated — Min Support Count: ${minSup}]</strong><br><br>
+        ✓ <strong>L1 Frequent 1-Itemsets:</strong> {Bread: 4}, {Milk: 4}, {Diaper: 4}, {Beer: 3}${minSup <= 2 ? ', {Cola: 2}' : ''}<br>
+        ✓ <strong>L2 Frequent 2-Itemsets:</strong> {Bread, Milk: 3}, {Bread, Diaper: 3}, {Milk, Diaper: 3}, {Diaper, Beer: 3}, {Bread, Beer: 2}<br>
+        ✓ <strong>L3 Frequent 3-Itemsets:</strong> {Bread, Milk, Diaper: 2}, {Bread, Diaper, Beer: 2}<br><br>
+        🎯 <strong>Strong Association Rules Generated (Confidence ≥ 60%):</strong><br>
+        &nbsp;&nbsp;• {Beer} ⇒ {Diaper} | Conf = 100.0% | Lift = 1.25<br>
+        &nbsp;&nbsp;• {Bread, Milk} ⇒ {Diaper} | Conf = 66.7% | Lift = 0.83<br>
+        &nbsp;&nbsp;• {Bread, Beer} ⇒ {Diaper} | Conf = 100.0% | Lift = 1.25
+      `;
+      sfx.success();
+    }
+
+    function resetMining() {
+      document.getElementById('mining-output').innerText = 'Click "Mine Frequent Itemsets" to execute Apriori algorithm pass.';
+      sfx.click();
+    }
+
+    // 2. Numerical Mining Calculator
+    function calculateMiningMetrics() {
+      const N = parseFloat(document.getElementById('total-trans').value) || 1000;
+      const countA = parseFloat(document.getElementById('count-a').value) || 300;
+      const countB = parseFloat(document.getElementById('count-b').value) || 400;
+      const countAB = parseFloat(document.getElementById('count-ab').value) || 180;
+
+      const sup = countAB / N;
+      const conf = countAB / countA;
+      const pB = countB / N;
+      const lift = conf / pB;
+
+      const out = document.getElementById('calc-output');
+      out.innerHTML = `
+        <div class="calc-step">
+          <div class="calc-step-title">Step 1: Compute Support</div>
+          Support(A ⇒ B) = ${countAB} / ${N} = <strong>${(sup * 100).toFixed(2)}%</strong>
+        </div>
+        <div class="calc-step">
+          <div class="calc-step-title">Step 2: Compute Confidence</div>
+          Confidence(A ⇒ B) = ${countAB} / ${countA} = <strong>${(conf * 100).toFixed(2)}%</strong>
+        </div>
+        <div class="calc-step">
+          <div class="calc-step-title">Step 3: Compute Correlation Lift</div>
+          Lift(A ⇒ B) = ${(conf).toFixed(4)} / ${(pB).toFixed(4)} = <strong>${lift.toFixed(2)}</strong>
+        </div>
+        <div class="calc-result-badge">
+          ${lift > 1 ? `Positively Correlated (Lift: ${lift.toFixed(2)}) — Strong Cross-Sell Rule` : 'Independent / Negative Correlation'}
+        </div>
+      `;
+      sfx.success();
+    }
+
+    // 3. Knowledge Graph
+    document.addEventListener('DOMContentLoaded', () => {
+      const nodes = [
+        { id: 1, label: 'Data Cleaning', x: 100, y: 70, color: '#38bdf8' },
+        { id: 2, label: 'OLAP Cubes', x: 260, y: 70, color: '#a855f7' },
+        { id: 3, label: 'Association (Apriori)', x: 420, y: 130, color: '#10b981' },
+        { id: 4, label: 'Classification (Trees)', x: 260, y: 200, color: '#f59e0b' },
+        { id: 5, label: 'Clustering (K-Means)', x: 100, y: 200, color: '#f43f5e' }
+      ];
+      const edges = [
+        { source: 1, target: 2, label: 'warehouse' },
+        { source: 2, target: 3, label: 'itemsets' },
+        { source: 2, target: 4, label: 'supervision' },
+        { source: 2, target: 5, label: 'unsupervised' }
+      ];
+      new InteractiveKnowledgeGraph('kg-canvas', nodes, edges);
+
+      // Quiz Questions
+      const questions = [
+        {
+          question: "Which data mining algorithm builds a compact prefix-tree representation of frequent items without candidate generation?",
+          options: ["Apriori Algorithm", "FP-Growth (Frequent Pattern Growth)", "K-Means", "DBSCAN"],
+          answer: 1,
+          explanation: "FP-Growth avoids costly candidate generation by constructing an FP-tree and mining recursively using divide-and-conquer conditional pattern bases."
+        },
+        {
+          question: "In decision tree induction using the ID3 algorithm, which metric is maximized to select the best splitting attribute?",
+          options: ["Information Gain", "Misclassification Error", "Gini Impurity", "Silhouette Coefficient"],
+          answer: 0,
+          explanation: "ID3 uses Information Gain (reduction in Entropy) to choose the attribute that separates classes most effectively."
+        },
+        {
+          question: "What does a Lift value greater than 1 (Lift > 1) imply for an association rule A ⇒ B?",
+          options: ["Item A and Item B are mutually exclusive", "Occurrence of A positively influences the occurrence of B", "Occurrence of A has zero effect on B", "Confidence is less than support"],
+          answer: 1,
+          explanation: "Lift > 1 indicates positive correlation, meaning that purchasing item A significantly elevates the probability of purchasing item B."
+        },
+        {
+          question: "What is the primary difference between OLAP (Online Analytical Processing) and OLTP (Online Transaction Processing)?",
+          options: ["OLAP is for real-time insert/updates; OLTP is for historical aggregation", "OLAP focuses on multi-dimensional complex analytical queries; OLTP handles short transactional updates", "OLAP uses relational tables; OLTP uses NoSQL", "They are identical architectures"],
+          answer: 1,
+          explanation: "OLAP is optimized for high-volume historical read queries across multi-dimensional cubes, whereas OLTP is designed for fast ACID transactional writes."
+        },
+        {
+          question: "How does the K-Means algorithm determine whether to terminate its iterative clustering loop?",
+          options: ["After exactly 1000 iterations always", "When cluster centroids do not change position (convergence)", "When all points are in one cluster", "When data is normalized"],
+          answer: 1,
+          explanation: "K-Means stops when centroid coordinates stabilize (no point reassignments occur between successive iterations)."
+        }
+      ];
+      initQuiz(questions);
+
+      // 3D Canvas Visualizer (Rotating 3D Cube Cluster)
+      const dm3dCanvas = document.getElementById('dm-3d-canvas');
+      if (dm3dCanvas) {
+        const dctx = dm3dCanvas.getContext('2d');
+        let angle = 0;
+        function render3DDM() {
+          dm3dCanvas.width = dm3dCanvas.parentElement.clientWidth;
+          dm3dCanvas.height = dm3dCanvas.parentElement.clientHeight;
+          const cx = dm3dCanvas.width / 2;
+          const cy = dm3dCanvas.height / 2;
+          dctx.clearRect(0, 0, dm3dCanvas.width, dm3dCanvas.height);
+          
+          angle += 0.015;
+          const clusters = [
+            { x: -45, y: -45, color: '#38bdf8' },
+            { x: 45, y: -45, color: '#a855f7' },
+            { x: 0, y: 45, color: '#10b981' }
+          ];
+
+          clusters.forEach(cl => {
+            for (let i = 0; i < 7; i++) {
+              const ox = cl.x + Math.sin(angle + i) * 20;
+              const oy = cl.y + Math.cos(angle + i) * 20;
+              const rx = ox * Math.cos(angle) - oy * Math.sin(angle);
+              const ry = ox * Math.sin(angle) + oy * Math.cos(angle);
+
+              dctx.beginPath();
+              dctx.arc(cx + rx, cy + ry * 0.7, 3, 0, Math.PI * 2);
+              dctx.fillStyle = cl.color;
+              dctx.fill();
+            }
+          });
+
+          requestAnimationFrame(render3DDM);
+        }
+        render3DDM();
+      }
+
+      initOutlierGame();
+    });
+
+    // 4. Mini-game implementation
+    let outlierScore = 0;
+    let outlierTarget = { x: 0, y: 0 };
+
+    function initOutlierGame() {
+      drawOutlier();
+    }
+
+    function drawOutlier() {
+      const gCanvas = document.getElementById('game-canvas');
+      if (!gCanvas) return;
+      const gctx = gCanvas.getContext('2d');
+      gCanvas.width = gCanvas.parentElement.clientWidth;
+      gCanvas.height = 180;
+      gctx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+
+      const cx = gCanvas.width / 2;
+      const cy = gCanvas.height / 2;
+
+      // Draw cluster of 40 normal dots
+      for (let i = 0; i < 35; i++) {
+        const r = Math.random() * 35;
+        const theta = Math.random() * Math.PI * 2;
+        gctx.beginPath();
+        gctx.arc(cx + r * Math.cos(theta), cy + r * Math.sin(theta), 3, 0, Math.PI * 2);
+        gctx.fillStyle = 'rgba(56, 189, 248, 0.7)';
+        gctx.fill();
+      }
+
+      // Draw single outlier far away
+      const angle = Math.random() * Math.PI * 2;
+      outlierTarget.x = cx + (Math.random() * 40 + 75) * Math.cos(angle);
+      outlierTarget.y = cy + (Math.random() * 25 + 55) * Math.sin(angle);
+
+      gctx.beginPath();
+      gctx.arc(outlierTarget.x, outlierTarget.y, 5, 0, Math.PI * 2);
+      gctx.fillStyle = '#f43f5e';
+      gctx.fill();
+    }
+
+    function startOutlierGame() {
+      const gCanvas = document.getElementById('game-canvas');
+      gCanvas.onclick = (e) => {
+        const rect = gCanvas.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+
+        const dist = Math.sqrt((mx - outlierTarget.x)**2 + (my - outlierTarget.y)**2);
+        if (dist < 18) {
+          outlierScore += 10;
+          sfx.success();
+          document.getElementById('game-score').innerText = outlierScore;
+          drawOutlier();
+        } else {
+          sfx.error();
+        }
+      };
+      drawOutlier();
+    }
+  </script>
+</body>
+</html>

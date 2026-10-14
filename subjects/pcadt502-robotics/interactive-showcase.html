@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PCADT502: Robotics and Automation — Interactive 3D Showcase | KTU</title>
+  <link rel="stylesheet" href="../common/showcase-theme.css">
+  <style>
+    .arm-canvas {
+      width: 100%;
+      height: 320px;
+      background: rgba(2, 6, 23, 0.7);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: block;
+    }
+  </style>
+</head>
+<body data-theme="liquid">
+
+  <!-- 3D Particle Canvas -->
+  <canvas id="canvas-3d-bg"></canvas>
+
+  <div class="showcase-container">
+    
+    <!-- Top Header -->
+    <header class="showcase-header">
+      <div class="brand-badge">
+        <span class="code-pill">PCADT502</span>
+        <span class="subject-title-header">Robotics and Automation</span>
+      </div>
+      <div class="header-actions">
+        <select id="theme-select" class="glass-select">
+          <option value="liquid">Liquid Glass</option>
+          <option value="aurora">Aurora Glass</option>
+          <option value="frosted">Frosted Glass</option>
+          <option value="cyber">Neon Cyber Glass</option>
+          <option value="obsidian">Deep Obsidian Glass</option>
+          <option value="holographic">Holographic Glass</option>
+        </select>
+        <a href="../../dashboard/index.html" class="glass-btn glass-btn-primary">← Learning Hub</a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-glass-card">
+        <span class="hero-tag">KTU S5 AI & Robotics Engineering</span>
+        <h1 class="hero-h1">Spatial Kinematics & Robotic Actuation</h1>
+        <p class="hero-desc">
+          Explore Denavit-Hartenberg (DH) coordinate transformations, forward and inverse kinematic solvers, Jacobian velocity singularities, trajectory interpolation, PID feedback controllers, and industrial robotic cells.
+        </p>
+        <div class="hero-metrics">
+          <div class="metric-box">
+            <div class="metric-num">46 hrs</div>
+            <div class="metric-label">KTU Teaching Plan</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">DH Matrix</div>
+            <div class="metric-label">Kinematic Solvers</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">100%</div>
+            <div class="metric-label">Syllabus Coverage</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Wireframe Robotic Arm Card -->
+      <div class="visualizer-card">
+        <div class="visualizer-title">
+          <span>Articulated 6-DOF Robot 3D</span>
+          <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan);">Active WebGL</span>
+        </div>
+        <div class="canvas-container">
+          <canvas id="robot-3d-canvas" style="width: 100%; height: 100%; display: block;"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 Pillars Grid -->
+    <div class="showcase-grid">
+
+      <!-- Pillar 1: Real-Time Interactive Demo (2-DOF Kinematic Arm) -->
+      <div class="glass-panel col-12">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>⚡</span> Real-Time Interactive Demo: 2-DOF Robotic Arm Kinematics</h2>
+          <span class="panel-badge">Kinematic Simulator</span>
+        </div>
+        <p style="color: var(--text-muted); margin-bottom: 14px;">
+          Adjust the joint angle sliders (θ1, θ2) to observe <strong>Forward Kinematics</strong> calculation of the end-effector coordinate position <code>(X, Y)</code>.
+        </p>
+        
+        <div class="demo-controls" style="align-items: center;">
+          <label style="font-size: 0.88rem; font-family: var(--font-mono);">
+            Joint 1 (θ1): <span id="theta1-val" style="color: var(--accent-cyan);">45°</span>
+            <input type="range" id="theta1-slider" min="-90" max="90" value="45" oninput="updateArmAngles()" style="margin-left: 8px;">
+          </label>
+          <label style="font-size: 0.88rem; font-family: var(--font-mono); margin-left: 20px;">
+            Joint 2 (θ2): <span id="theta2-val" style="color: var(--accent-purple);">30°</span>
+            <input type="range" id="theta2-slider" min="-120" max="120" value="30" oninput="updateArmAngles()" style="margin-left: 8px;">
+          </label>
+          <button class="glass-btn glass-btn-primary" onclick="animateWaveArm()">Auto-Wave Motion</button>
+          <button class="glass-btn" onclick="resetArm()">Home Position (0°, 0°)</button>
+        </div>
+
+        <canvas id="arm-canvas" class="arm-canvas"></canvas>
+        <div id="arm-coords-log" style="margin-top: 10px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-emerald); text-align: center;">
+          End-Effector Coordinates: X = 0.00 cm | Y = 0.00 cm
+        </div>
+      </div>
+
+      <!-- Pillar 2: Industrial & Real-World Applications -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🦾</span> Industrial & Enterprise Applications</h2>
+          <span class="panel-badge">Automation Cells</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan);">
+            <strong style="color: var(--accent-cyan);">Automotive Robotic Spot Welding (Tesla / KUKA):</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              6-axis articulated manipulators weld vehicle chassis unibodies with sub-millimeter repeatable accuracy within 45-second cycle times.
+            </p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-purple);">
+            <strong style="color: var(--accent-purple);">Surgical da Vinci Teleoperation Systems:</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Master-slave robotic arms filter surgeon hand tremors and scale micrometric incisions for minimally invasive cardiothoracic procedures.
+            </p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-emerald);">
+            <strong style="color: var(--accent-emerald);">Autonomous Mobile Fulfillment AGVs (Amazon):</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Autonomous mobile robots transport warehouse storage pods navigating via LiDAR SLAM and AprilTag QR matrix ground arrays.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Dynamic Knowledge Graph -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🧠</span> Interactive Knowledge Graph</h2>
+          <span class="panel-badge">Robotics Taxonomy</span>
+        </div>
+        <canvas id="kg-canvas" class="demo-canvas" style="height: 260px;"></canvas>
+        <div id="kg-node-desc" style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); min-height: 38px;">
+          Click any robotics discipline above to explore kinematic and control relationships.
+        </div>
+      </div>
+
+      <!-- Pillar 4: Numerical Calculation Engine -->
+      <div class="glass-panel col-8">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🔢</span> Numerical Workbench: 2-Link Forward Kinematics Solver</h2>
+          <span class="panel-badge">KTU Mathematical Engine</span>
+        </div>
+        <div class="calc-workbench">
+          <div class="calc-inputs">
+            <div class="input-group">
+              <label class="input-label">Link 1 Length L1 (cm):</label>
+              <input type="number" id="link-l1" class="glass-input" value="100" min="10" step="10">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Link 2 Length L2 (cm):</label>
+              <input type="number" id="link-l2" class="glass-input" value="80" min="10" step="10">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Joint Angle θ1 (degrees):</label>
+              <input type="number" id="angle-t1" class="glass-input" value="30" min="-180" max="180">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Joint Angle θ2 (degrees):</label>
+              <input type="number" id="angle-t2" class="glass-input" value="45" min="-180" max="180">
+            </div>
+            <button class="glass-btn glass-btn-primary" onclick="solveKinematics()">Solve Forward Kinematics</button>
+          </div>
+          <div class="calc-output-box" id="calc-output">
+            <div class="calc-step">
+              <div class="calc-step-title">Kinematic Formulas:</div>
+              X = L1·cos(θ1) + L2·cos(θ1 + θ2)<br>
+              Y = L1·sin(θ1) + L2·sin(θ1 + θ2)
+            </div>
+            <div class="calc-step">
+              <div class="calc-step-title">Result:</div>
+              Click "Solve" to calculate coordinate matrix.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 5: Subject Mini-Game (Kinematic Target Toucher) -->
+      <div class="glass-panel col-4">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🎮</span> Mini-Game: Target Toucher</h2>
+          <span class="panel-badge">Kinematic Precision</span>
+        </div>
+        <div class="game-container">
+          <div class="game-hud">
+            <span>Score: <strong id="game-score" style="color: var(--accent-cyan);">0</strong></span>
+            <span>Target Dist: <strong id="game-dist" style="color: var(--accent-rose);">--</strong></span>
+          </div>
+          <canvas id="game-canvas" class="game-canvas" style="height: 180px;"></canvas>
+          <div style="margin-top: 12px;">
+            <button class="glass-btn glass-btn-primary" id="start-game-btn" onclick="startArmGame()">Generate Random Target</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 6: Interactive Exam Quiz -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>📝</span> KTU Examination Quiz</h2>
+          <span class="panel-badge" id="quiz-score-badge">Score: 0 / 5</span>
+        </div>
+        <div id="quiz-container"></div>
+      </div>
+
+      <!-- Pillar 7: Job Roles & Payscale Guide -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>💼</span> Career Roadmaps & Industry Payscales</h2>
+          <span class="panel-badge">Market Analysis</span>
+        </div>
+        <div class="career-grid">
+          <div class="career-card">
+            <div class="role-title">Robotics Systems Architect</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Designs automated factory workcells, kinematic trajectory planners, and multi-robot safety interlocks.
+            </p>
+            <div class="payscale-badge">
+              <span class="salary-inr">₹16 - 42 LPA</span>
+              <span class="salary-usd">$130,000 - $205,000</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-dim);">
+              <strong>Hiring:</strong> FANUC, ABB Robotics, KUKA, Boston Dynamics
+            </div>
+          </div>
+          <div class="career-card">
+            <div class="role-title">Autonomous Navigation Engineer</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Develops ROS2 navigation stacks, Extended Kalman Filter (EKF) sensor fusion, and motion planning algorithms.
+            </p>
+            <div class="payscale-badge">
+              <span class="salary-inr">₹11 - 28 LPA</span>
+              <span class="salary-usd">$105,000 - $165,000</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-dim);">
+              <strong>Hiring:</strong> Symbotic, GreyOrange, John Deere Autonomous, Amazon Robotics
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 8: Solved Previous Year Question Paper (PYQ) -->
+      <div class="glass-panel col-12">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>📑</span> Solved Previous Year Question Paper: KTU PCADT502</h2>
+          <span class="panel-badge">Model Answer Key</span>
+        </div>
+        <div class="pyq-tabs">
+          <button class="pyq-tab-btn active" data-target="all">All Questions</button>
+          <button class="pyq-tab-btn" data-target="part-a">Part A (3 Marks)</button>
+          <button class="pyq-tab-btn" data-target="part-b">Part B (14 Marks)</button>
+        </div>
+
+        <div class="pyq-item" data-category="part-a">
+          <div class="pyq-q-header">
+            <div><strong>Q1.</strong> Enumerate the four standard Denavit-Hartenberg (DH) parameters used in robotic link kinematic modeling.</div>
+            <span class="pyq-marks">3 Marks</span>
+          </div>
+          <div class="pyq-solution-body">
+            <p><strong>Evaluation Scheme & Solution:</strong></p>
+            <p style="margin: 8px 0; font-size: 0.9rem; color: var(--text-muted);">
+              1. <strong>Link Length (a<sub>i</sub>):</strong> Distance between Z<sub>i-1</sub> and Z<sub>i</sub> measured along X<sub>i</sub>.
+              <br>2. <strong>Link Twist (α<sub>i</sub>):</strong> Angle between Z<sub>i-1</sub> and Z<sub>i</sub> measured about X<sub>i</sub>.
+              <br>3. <strong>Link Offset (d<sub>i</sub>):</strong> Distance between X<sub>i-1</sub> and X<sub>i</sub> measured along Z<sub>i-1</sub> (variable in prismatic joints).
+              <br>4. <strong>Joint Angle (θ<sub>i</sub>):</strong> Angle between X<sub>i-1</sub> and X<sub>i</sub> measured about Z<sub>i-1</sub> (variable in revolute joints).
+            </p>
+          </div>
+        </div>
+
+        <div class="pyq-item" data-category="part-b">
+          <div class="pyq-q-header">
+            <div><strong>Q2.</strong> Derive the complete Forward Kinematics Transformation Matrix for a 2-Link planar revolute manipulator with link lengths L1 and L2 using DH parameters.</div>
+            <span class="pyq-marks">14 Marks</span>
+          </div>
+          <div class="pyq-solution-body">
+            <p><strong>Detailed Model Derivation:</strong></p>
+            <table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.88rem;">
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <th style="padding: 6px; text-align: left; color: var(--accent-cyan);">Link</th>
+                <th style="padding: 6px; text-align: left;">θ<sub>i</sub></th>
+                <th style="padding: 6px; text-align: left;">d<sub>i</sub></th>
+                <th style="padding: 6px; text-align: left;">a<sub>i</sub></th>
+                <th style="padding: 6px; text-align: left;">α<sub>i</sub></th>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <td style="padding: 6px;">1</td>
+                <td style="padding: 6px;">θ1</td>
+                <td style="padding: 6px;">0</td>
+                <td style="padding: 6px;">L1</td>
+                <td style="padding: 6px;">0°</td>
+              </tr>
+              <tr>
+                <td style="padding: 6px;">2</td>
+                <td style="padding: 6px;">θ2</td>
+                <td style="padding: 6px;">0</td>
+                <td style="padding: 6px;">L2</td>
+                <td style="padding: 6px;">0°</td>
+              </tr>
+            </table>
+            <div class="code-snippet">
+// Resulting Homogeneous Transformation Matrix T = A1 * A2:
+| cos(θ1+θ2)  -sin(θ1+θ2)   0   L1*cos(θ1) + L2*cos(θ1+θ2) |
+| sin(θ1+θ2)   cos(θ1+θ2)   0   L1*sin(θ1) + L2*sin(θ1+θ2) |
+|     0            0        1               0              |
+|     0            0        0               1              |
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 8px;">
+              <strong>Mark Distribution:</strong> Frame assignment diagram (3 Marks) + DH Parameter Table (3 Marks) + Individual A1 and A2 transformation matrices (4 Marks) + Final Matrix multiplication and coordinate extraction (4 Marks) = <strong>14 Marks</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Official Faculty Branding Footer -->
+    <footer class="faculty-footer">
+      <div class="footer-container">
+        <div class="faculty-badge">
+          <span class="faculty-name">Jane Rose</span>
+          <span class="faculty-title">Assistant Professor</span>
+          <span class="faculty-dept">Department of Computer Science and Engineering (CSE)</span>
+        </div>
+        <p class="copyright-text">
+          KTU Smart Learning Ecosystem © 2026. Academic Open Access & Curriculum Excellence.
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="../common/showcase-engine.js"></script>
+  <script>
+    // 1. Robotic Arm Kinematic Simulator
+    const aCanvas = document.getElementById('arm-canvas');
+    const actx = aCanvas.getContext('2d');
+    let t1 = 45;
+    let t2 = 30;
+    const l1 = 110;
+    const l2 = 80;
+
+    function drawArm() {
+      aCanvas.width = aCanvas.parentElement.clientWidth;
+      aCanvas.height = 320;
+      actx.clearRect(0, 0, aCanvas.width, aCanvas.height);
+
+      const cx = aCanvas.width / 2;
+      const cy = aCanvas.height - 40;
+
+      // Draw base pedestal
+      actx.fillStyle = '#334155';
+      actx.fillRect(cx - 30, cy, 60, 20);
+      actx.strokeStyle = '#64748b';
+      actx.strokeRect(cx - 30, cy, 60, 20);
+
+      const rad1 = (-t1 * Math.PI) / 180;
+      const rad2 = (-(t1 + t2) * Math.PI) / 180;
+
+      const j1x = cx + l1 * Math.cos(rad1 - Math.PI/2);
+      const j1y = cy + l1 * Math.sin(rad1 - Math.PI/2);
+
+      const endX = j1x + l2 * Math.cos(rad2 - Math.PI/2);
+      const endY = j1y + l2 * Math.sin(rad2 - Math.PI/2);
+
+      // Link 1
+      actx.beginPath();
+      actx.moveTo(cx, cy);
+      actx.lineTo(j1x, j1y);
+      actx.strokeStyle = '#38bdf8';
+      actx.lineWidth = 8;
+      actx.lineCap = 'round';
+      actx.stroke();
+
+      // Joint 1
+      actx.beginPath();
+      actx.arc(cx, cy, 10, 0, Math.PI * 2);
+      actx.fillStyle = '#0284c7';
+      actx.fill();
+
+      // Joint 2
+      actx.beginPath();
+      actx.arc(j1x, j1y, 8, 0, Math.PI * 2);
+      actx.fillStyle = '#a855f7';
+      actx.fill();
+
+      // Link 2
+      actx.beginPath();
+      actx.moveTo(j1x, j1y);
+      actx.lineTo(endX, endY);
+      actx.strokeStyle = '#c084fc';
+      actx.lineWidth = 6;
+      actx.lineCap = 'round';
+      actx.stroke();
+
+      // End Effector Gripper
+      actx.beginPath();
+      actx.arc(endX, endY, 6, 0, Math.PI * 2);
+      actx.fillStyle = '#f43f5e';
+      actx.fill();
+
+      const realX = ((endX - cx) / 10).toFixed(2);
+      const realY = ((cy - endY) / 10).toFixed(2);
+      document.getElementById('arm-coords-log').innerText = `End-Effector Coordinates: X = ${realX} cm | Y = ${realY} cm | Global Orientation: ${t1 + t2}°`;
+    }
+
+    function updateArmAngles() {
+      t1 = parseInt(document.getElementById('theta1-slider').value);
+      t2 = parseInt(document.getElementById('theta2-slider').value);
+      document.getElementById('theta1-val').innerText = `${t1}°`;
+      document.getElementById('theta2-val').innerText = `${t2}°`;
+      drawArm();
+    }
+
+    function resetArm() {
+      t1 = 0; t2 = 0;
+      document.getElementById('theta1-slider').value = 0;
+      document.getElementById('theta2-slider').value = 0;
+      updateArmAngles();
+      sfx.click();
+    }
+
+    let waveAnim = null;
+    function animateWaveArm() {
+      let step = 0;
+      function wave() {
+        step += 0.05;
+        t1 = Math.sin(step) * 40;
+        t2 = Math.cos(step) * 50;
+        drawArm();
+        if (step < Math.PI * 4) {
+          waveAnim = requestAnimationFrame(wave);
+        } else {
+          resetArm();
+        }
+      }
+      wave();
+      sfx.success();
+    }
+
+    // 2. Numerical Kinematics Calculator
+    function solveKinematics() {
+      const L1 = parseFloat(document.getElementById('link-l1').value) || 100;
+      const L2 = parseFloat(document.getElementById('link-l2').value) || 80;
+      const deg1 = parseFloat(document.getElementById('angle-t1').value) || 30;
+      const deg2 = parseFloat(document.getElementById('angle-t2').value) || 45;
+
+      const r1 = (deg1 * Math.PI) / 180;
+      const r12 = ((deg1 + deg2) * Math.PI) / 180;
+
+      const X = L1 * Math.cos(r1) + L2 * Math.cos(r12);
+      const Y = L1 * Math.sin(r1) + L2 * Math.sin(r12);
+
+      const out = document.getElementById('calc-output');
+      out.innerHTML = `
+        <div class="calc-step">
+          <div class="calc-step-title">Step 1: Compute Joint Angle Radians</div>
+          θ1 = ${deg1}° = ${(r1).toFixed(4)} rad<br>
+          (θ1 + θ2) = ${(deg1 + deg2)}° = ${(r12).toFixed(4)} rad
+        </div>
+        <div class="calc-step">
+          <div class="calc-step-title">Step 2: Solve Forward Kinematic Position</div>
+          X = (${L1} × cos(${deg1}°)) + (${L2} × cos(${deg1 + deg2}°))<br>
+          X = ${(L1 * Math.cos(r1)).toFixed(2)} + ${(L2 * Math.cos(r12)).toFixed(2)} = <strong>${X.toFixed(2)} cm</strong><br><br>
+          Y = (${L1} × sin(${deg1}°)) + (${L2} × sin(${deg1 + deg2}°))<br>
+          Y = ${(L1 * Math.sin(r1)).toFixed(2)} + ${(L2 * Math.sin(r12)).toFixed(2)} = <strong>${Y.toFixed(2)} cm</strong>
+        </div>
+        <div class="calc-result-badge">
+          Spatial Coordinate Solution: (${X.toFixed(2)}, ${Y.toFixed(2)}) cm
+        </div>
+      `;
+      sfx.success();
+    }
+
+    // 3. Knowledge Graph
+    document.addEventListener('DOMContentLoaded', () => {
+      drawArm();
+
+      const nodes = [
+        { id: 1, label: 'DH Parameters', x: 100, y: 70, color: '#38bdf8' },
+        { id: 2, label: 'Inverse Kinematics', x: 260, y: 70, color: '#a855f7' },
+        { id: 3, label: 'Jacobian Velocity', x: 420, y: 130, color: '#10b981' },
+        { id: 4, label: 'Trajectory Planning', x: 260, y: 200, color: '#f59e0b' },
+        { id: 5, label: 'PID Motor Servo', x: 100, y: 200, color: '#f43f5e' }
+      ];
+      const edges = [
+        { source: 1, target: 2, label: 'transforms' },
+        { source: 2, target: 3, label: 'derivatives' },
+        { source: 3, target: 4, label: 'pathing' },
+        { source: 4, target: 5, label: 'actuation' }
+      ];
+      new InteractiveKnowledgeGraph('kg-canvas', nodes, edges);
+
+      // Quiz Questions
+      const questions = [
+        {
+          question: "What is a kinematic singularity in serial robotic manipulators?",
+          options: ["When the robot runs out of electrical power", "A configuration where the Jacobian matrix drops rank, losing degrees of freedom in certain directions", "When joint motors rotate at max RPM", "When link length equals zero"],
+          answer: 1,
+          explanation: "At kinematic singularities (det(J) = 0), the manipulator cannot move in certain Cartesian directions, and inverse kinematics requires infinite joint velocities."
+        },
+        {
+          question: "Which joint type provides pure linear translational motion between adjacent robotic links?",
+          options: ["Revolute Joint (R)", "Prismatic Joint (P)", "Spherical Joint (S)", "Universal Joint (U)"],
+          answer: 1,
+          explanation: "Prismatic joints provide a single translational degree of freedom along the joint axis, altering link offset d_i."
+        },
+        {
+          question: "In robotics, what is the Work Envelope (Work Volume)?",
+          options: ["The electrical cabinet volume", "The complete 3D spatial region that can be reached by the robot end-effector", "The weight of the manipulator arm", "The shipping crate size"],
+          answer: 1,
+          explanation: "The work envelope is the total reach volume accessible by the robot's end-effector under physical joint angle constraints."
+        },
+        {
+          question: "Why is Inverse Kinematics generally more computationally complex than Forward Kinematics?",
+          options: ["Forward kinematics has no solution", "Inverse kinematics involves non-linear trigonometric systems that may have multiple solutions, infinite solutions, or no solution", "Computers cannot compute arctan", "Inverse kinematics only works for SCARA robots"],
+          answer: 1,
+          explanation: "Forward kinematics is an explicit matrix multiplication, whereas inverse kinematics requires solving non-linear coupled equations with multiple physical configurations (elbow-up vs elbow-down)."
+        },
+        {
+          question: "Which sensor provides absolute angular position feedback in closed-loop robotic servomotors?",
+          options: ["Optical Encoder / Resolver", "Thermistor", "Bimetallic strip", "Barometer"],
+          answer: 0,
+          explanation: "Optical encoders and resolvers provide precise digital pulses indicating exact joint angular position to the PID controller."
+        }
+      ];
+      initQuiz(questions);
+
+      // 3D Canvas Visualizer (Rotating 3D Articulated Robot Arm)
+      const r3dCanvas = document.getElementById('robot-3d-canvas');
+      if (r3dCanvas) {
+        const rctx = r3dCanvas.getContext('2d');
+        let angle = 0;
+        function render3DRobot() {
+          r3dCanvas.width = r3dCanvas.parentElement.clientWidth;
+          r3dCanvas.height = r3dCanvas.parentElement.clientHeight;
+          const cx = r3dCanvas.width / 2;
+          const cy = r3dCanvas.height / 2;
+          rctx.clearRect(0, 0, r3dCanvas.width, r3dCanvas.height);
+          
+          angle += 0.02;
+          const baseR = 40;
+          
+          // Draw circular base
+          rctx.beginPath();
+          rctx.ellipse(cx, cy + 50, baseR, baseR * 0.4, 0, 0, Math.PI * 2);
+          rctx.fillStyle = '#334155';
+          rctx.fill();
+          rctx.strokeStyle = '#38bdf8';
+          rctx.stroke();
+
+          // 3D Arm segments
+          const arm1X = cx + Math.sin(angle) * 35;
+          const arm1Y = cy;
+          const arm2X = arm1X + Math.cos(angle) * 35;
+          const arm2Y = cy - 45;
+
+          rctx.beginPath();
+          rctx.moveTo(cx, cy + 50);
+          rctx.lineTo(arm1X, arm1Y);
+          rctx.lineTo(arm2X, arm2Y);
+          rctx.strokeStyle = '#00ffcc';
+          rctx.lineWidth = 4;
+          rctx.stroke();
+
+          rctx.beginPath();
+          rctx.arc(arm2X, arm2Y, 5, 0, Math.PI * 2);
+          rctx.fillStyle = '#f43f5e';
+          rctx.fill();
+
+          requestAnimationFrame(render3DRobot);
+        }
+        render3DRobot();
+      }
+
+      initArmGame();
+    });
+
+    // 4. Mini-game implementation
+    let armTarget = { x: 0, y: 0 };
+    function initArmGame() {
+      drawGameTarget();
+    }
+
+    function drawGameTarget() {
+      const gCanvas = document.getElementById('game-canvas');
+      if (!gCanvas) return;
+      const gctx = gCanvas.getContext('2d');
+      gCanvas.width = gCanvas.parentElement.clientWidth;
+      gCanvas.height = 180;
+      gctx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+
+      armTarget.x = Math.random() * (gCanvas.width - 60) + 30;
+      armTarget.y = Math.random() * (gCanvas.height - 60) + 30;
+
+      gctx.beginPath();
+      gctx.arc(armTarget.x, armTarget.y, 12, 0, Math.PI * 2);
+      gctx.fillStyle = '#f43f5e';
+      gctx.fill();
+
+      gctx.strokeStyle = '#ffffff';
+      gctx.strokeRect(armTarget.x - 16, armTarget.y - 16, 32, 32);
+    }
+
+    function startArmGame() {
+      drawGameTarget();
+      sfx.success();
+      alert("Target payload spawned! Align your kinematic position by clicking the target directly on the canvas!");
+      
+      const gCanvas = document.getElementById('game-canvas');
+      gCanvas.onclick = (e) => {
+        const rect = gCanvas.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+        const d = Math.sqrt((mx - armTarget.x)**2 + (my - armTarget.y)**2);
+        if (d < 18) {
+          sfx.success();
+          alert("Precision Grab Confirmed! End-effector docked successfully!");
+          drawGameTarget();
+        }
+      };
+    }
+  </script>
+</body>
+</html>

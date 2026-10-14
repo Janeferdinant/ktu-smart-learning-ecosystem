@@ -54,4 +54,5 @@ export interface Subject {
   modules: SubjectModule[];
   questionPapers: QuestionPaper[];
   answerKeys: AnswerKeyScheme[];
+  showcaseUrl?: string;
 }

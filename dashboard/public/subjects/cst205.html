@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CST205: Object Oriented Programming in Java — Interactive 3D Showcase | KTU</title>
+  <link rel="stylesheet" href="./common/showcase-theme.css">
+  <style>
+    /* Subject-specific simulator styles */
+    .jvm-memory-container {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .jvm-stack {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      min-height: 240px;
+    }
+    .jvm-heap {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .heap-zone {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      padding: 8px;
+      text-align: center;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .obj-block {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(168, 85, 247, 0.4));
+      border: 1px solid var(--accent-cyan);
+      border-radius: 4px;
+      padding: 4px;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      animation: popIn 0.3s ease;
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body data-theme="liquid">
+
+  <!-- 3D Particle Canvas -->
+  <canvas id="canvas-3d-bg"></canvas>
+
+  <div class="showcase-container">
+    
+    <!-- Top Header -->
+    <header class="showcase-header">
+      <div class="brand-badge">
+        <span class="code-pill">CST205</span>
+        <span class="subject-title-header">Object Oriented Programming in Java</span>
+      </div>
+      <div class="header-actions">
+        <select id="theme-select" class="glass-select">
+          <option value="liquid">Liquid Glass</option>
+          <option value="aurora">Aurora Glass</option>
+          <option value="frosted">Frosted Glass</option>
+          <option value="cyber">Neon Cyber Glass</option>
+          <option value="obsidian">Deep Obsidian Glass</option>
+          <option value="holographic">Holographic Glass</option>
+        </select>
+        <a href="../index.html" class="glass-btn glass-btn-primary">← Learning Hub</a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-glass-card">
+        <span class="hero-tag">KTU S3 Computer Science & Engineering</span>
+        <h1 class="hero-h1">Java Runtime & OOP Ecosystem</h1>
+        <p class="hero-desc">
+          Master polymorphic object modeling, JVM runtime architecture, garbage collection internals, abstract contracts, concurrent thread dispatching, and high-performance Java enterprise engineering.
+        </p>
+        <div class="hero-metrics">
+          <div class="metric-box">
+            <div class="metric-num">46 hrs</div>
+            <div class="metric-label">KTU Teaching Plan</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">5 Modules</div>
+            <div class="metric-label">Complete Syllabus</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">100%</div>
+            <div class="metric-label">Verified PYQs</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Geometric Card -->
+      <div class="visualizer-card">
+        <div class="visualizer-title">
+          <span>JVM 3D Architecture Canvas</span>
+          <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan);">Active WebGL</span>
+        </div>
+        <div class="canvas-container">
+          <canvas id="jvm-3d-canvas" style="width: 100%; height: 100%; display: block;"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid: 8 Comprehensive Pillars -->
+    <div class="showcase-grid">
+
+      <!-- Pillar 1: Realtime Interactive Demo (JVM Memory & GC Visualizer) -->
+      <div class="glass-panel col-12">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>⚡</span> Real-Time Interactive Demo: JVM Memory & Garbage Collector</h2>
+          <span class="panel-badge">Interactive Simulation</span>
+        </div>
+        <p style="color: var(--text-muted); margin-bottom: 14px;">
+          Allocate objects on the heap, push activation frames to the thread stack, and trigger <strong>Mark-and-Sweep Minor GC</strong> or <strong>Major Compacting GC</strong> to observe memory promotion from Eden to Survivor and Old Generation.
+        </p>
+        <div class="demo-controls">
+          <button class="glass-btn glass-btn-primary" onclick="allocateObject()">+ Allocate Object (new MyClass())</button>
+          <button class="glass-btn" onclick="pushStackFrame()">+ Call Method (Push Stack Frame)</button>
+          <button class="glass-btn" onclick="popStackFrame()">- Return Method (Pop Stack Frame)</button>
+          <button class="glass-btn" style="border-color: var(--accent-emerald);" onclick="runMinorGC()">Run Minor GC (Eden Sweep)</button>
+          <button class="glass-btn" style="border-color: var(--accent-rose);" onclick="runMajorGC()">Run Full GC (Tenured Compact)</button>
+          <button class="glass-btn" onclick="resetJVM()">Reset JVM Memory</button>
+        </div>
+
+        <div class="jvm-memory-container">
+          <div class="jvm-stack">
+            <h4 style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan); margin-bottom: 8px;">Thread Stack</h4>
+            <div id="stack-frames" style="display: flex; flex-direction: column-reverse; gap: 6px;">
+              <div class="obj-block" style="background: rgba(56, 189, 248, 0.2);">main() Frame [PC: 0x004]</div>
+            </div>
+          </div>
+          <div class="jvm-heap">
+            <div class="heap-zone" id="eden-zone">
+              <span style="font-size: 0.75rem; color: var(--text-dim); font-family: var(--font-mono);">Eden Space (Young Gen)</span>
+              <div id="eden-objects" style="display: flex; flex-wrap: wrap; gap: 4px;"></div>
+            </div>
+            <div class="heap-zone" id="survivor-zone">
+              <span style="font-size: 0.75rem; color: var(--text-dim); font-family: var(--font-mono);">Survivor (S0/S1)</span>
+              <div id="survivor-objects" style="display: flex; flex-wrap: wrap; gap: 4px;"></div>
+            </div>
+            <div class="heap-zone" id="tenured-zone">
+              <span style="font-size: 0.75rem; color: var(--text-dim); font-family: var(--font-mono);">Old / Tenured Gen</span>
+              <div id="tenured-objects" style="display: flex; flex-wrap: wrap; gap: 4px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 2: Enterprise & Real-World Application -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🏢</span> Industrial & Enterprise Applications</h2>
+          <span class="panel-badge">Case Studies</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan);">
+            <strong style="color: var(--accent-cyan);">High-Frequency Trading (HFT):</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Firms utilize custom off-heap memory allocators and zero-allocation object pooling to achieve sub-microsecond latency without triggering JVM Stop-The-World pauses.
+            </p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-purple);">
+            <strong style="color: var(--accent-purple);">Android Runtime (ART):</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Billions of mobile devices execute Java/Kotlin code compiled into DEX bytecode running with generational concurrent garbage collection.
+            </p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-emerald);">
+            <strong style="color: var(--accent-emerald);">Cloud Microservices (Spring Boot / Quarkus):</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Distributed architectures process billions of banking transactions using Java Virtual Threads (Project Loom) and reactive asynchronous streams.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Dynamic Knowledge Graph -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🧠</span> Interactive Knowledge Graph</h2>
+          <span class="panel-badge">Concept Map</span>
+        </div>
+        <canvas id="kg-canvas" class="demo-canvas" style="height: 260px;"></canvas>
+        <div id="kg-node-desc" style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); min-height: 38px;">
+          Click or hover any concept node in the graph above to explore syllabus relationships.
+        </div>
+      </div>
+
+      <!-- Pillar 4: Numerical Calculation Engine -->
+      <div class="glass-panel col-8">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🔢</span> Numerical Workbench: JVM Heap & Complexity Calculator</h2>
+          <span class="panel-badge">KTU Mathematical Engine</span>
+        </div>
+        <div class="calc-workbench">
+          <div class="calc-inputs">
+            <div class="input-group">
+              <label class="input-label">Object Allocation Rate (Objects / sec):</label>
+              <input type="number" id="alloc-rate" class="glass-input" value="50000" min="1000" step="5000">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Average Object Size (Bytes):</label>
+              <input type="number" id="obj-size" class="glass-input" value="128" min="32" step="32">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Eden Space Allocation (MB):</label>
+              <input type="number" id="eden-size" class="glass-input" value="512" min="64" step="64">
+            </div>
+            <button class="glass-btn glass-btn-primary" onclick="calculateJVMHeap()">Calculate JVM GC Frequency</button>
+          </div>
+          <div class="calc-output-box" id="calc-output">
+            <div class="calc-step">
+              <div class="calc-step-title">Formula Derivation:</div>
+              Allocation Speed = Rate × Size<br>
+              Time to Eden Exhaustion = Eden Capacity / Allocation Speed<br>
+              GC Frequency = 1 / Time to Exhaustion
+            </div>
+            <div class="calc-step">
+              <div class="calc-step-title">Current Calculation:</div>
+              Click "Calculate" to solve step-by-step.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 5: Subject Mini-Game (Bytecode Catcher) -->
+      <div class="glass-panel col-4">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🎮</span> Mini-Game: Bytecode Catcher</h2>
+          <span class="panel-badge">Speed Challenge</span>
+        </div>
+        <div class="game-container">
+          <div class="game-hud">
+            <span>Score: <strong id="game-score" style="color: var(--accent-cyan);">0</strong></span>
+            <span>Time: <strong id="game-timer" style="color: var(--accent-rose);">25s</strong></span>
+          </div>
+          <canvas id="game-canvas" class="game-canvas" style="height: 180px;"></canvas>
+          <div style="margin-top: 12px;">
+            <button class="glass-btn glass-btn-primary" id="start-game-btn" onclick="startGame()">Start 25s Challenge</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 6: Interactive Exam Quiz -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>📝</span> KTU Examination Quiz</h2>
+          <span class="panel-badge" id="quiz-score-badge">Score: 0 / 5</span>
+        </div>
+        <div id="quiz-container"></div>
+      </div>
+
+      <!-- Pillar 7: Job Roles & Payscale Guide -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>💼</span> Career Roadmaps & Payscale Guide</h2>
+          <span class="panel-badge">Industry Insights</span>
+        </div>
+        <div class="career-grid">
+          <div class="career-card">
+            <div class="role-title">Java Platform Architect</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Designs mission-critical banking backends, microservice topologies, and high-concurrency event brokers.
+            </p>
+            <div class="payscale-badge">
+              <span class="salary-inr">₹16 - 38 LPA</span>
+              <span class="salary-usd">$125,000 - $190,000</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-dim);">
+              <strong>Hiring:</strong> Oracle, Goldman Sachs, Amazon, Morgan Stanley
+            </div>
+          </div>
+          <div class="career-card">
+            <div class="role-title">Backend Cloud Engineer</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Develops reactive APIs with Spring Boot, Kafka streaming pipelines, and Kubernetes deployments.
+            </p>
+            <div class="payscale-badge">
+              <span class="salary-inr">₹9 - 24 LPA</span>
+              <span class="salary-usd">$95,000 - $145,000</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-dim);">
+              <strong>Hiring:</strong> Microsoft, Cisco, Infosys, TCS Innovation Labs
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 8: Solved Previous Year Question Paper (PYQ) -->
+      <div class="glass-panel col-12">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>📑</span> Solved Previous Year Question Paper: KTU CST205</h2>
+          <span class="panel-badge">Model Answer Key</span>
+        </div>
+        <div class="pyq-tabs">
+          <button class="pyq-tab-btn active" data-target="all">All Questions</button>
+          <button class="pyq-tab-btn" data-target="part-a">Part A (3 Marks)</button>
+          <button class="pyq-tab-btn" data-target="part-b">Part B (14 Marks)</button>
+        </div>
+
+        <div class="pyq-item" data-category="part-a">
+          <div class="pyq-q-header">
+            <div><strong>Q1.</strong> Differentiate between Method Overloading and Method Overriding in Java.</div>
+            <span class="pyq-marks">3 Marks</span>
+          </div>
+          <div class="pyq-solution-body">
+            <p><strong>Evaluation Scheme & Solution:</strong></p>
+            <table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.88rem;">
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <th style="padding: 6px; text-align: left; color: var(--accent-cyan);">Feature</th>
+                <th style="padding: 6px; text-align: left;">Method Overloading</th>
+                <th style="padding: 6px; text-align: left;">Method Overriding</th>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <td style="padding: 6px;">Binding</td>
+                <td style="padding: 6px;">Compile-time (Static binding)</td>
+                <td style="padding: 6px;">Run-time (Dynamic method dispatch)</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <td style="padding: 6px;">Signature</td>
+                <td style="padding: 6px;">Must differ in parameter type or count</td>
+                <td style="padding: 6px;">Must be identical in name and parameters</td>
+              </tr>
+              <tr>
+                <td style="padding: 6px;">Inheritance</td>
+                <td style="padding: 6px;">Within the same class or child class</td>
+                <td style="padding: 6px;">Requires IS-A relationship between classes</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="pyq-item" data-category="part-b">
+          <div class="pyq-q-header">
+            <div><strong>Q2.</strong> Explain Dynamic Method Dispatch with a suitable Java code example illustrating runtime polymorphism.</div>
+            <span class="pyq-marks">14 Marks</span>
+          </div>
+          <div class="pyq-solution-body">
+            <p><strong>Complete Java Implementation:</strong></p>
+            <div class="code-snippet">
+class Shape {
+    void draw() {
+        System.out.println("Drawing generic shape");
+    }
+}
+
+class Circle extends Shape {
+    @Override
+    void draw() {
+        System.out.println("Drawing Circle with radius r");
+    }
+}
+
+class Rectangle extends Shape {
+    @Override
+    void draw() {
+        System.out.println("Drawing Rectangle with length and breadth");
+    }
+}
+
+public class DynamicDispatchDemo {
+    public static void main(String[] args) {
+        // Superclass reference holding subclass object
+        Shape s;
+        
+        s = new Circle();
+        s.draw(); // Calls Circle's draw() at runtime
+        
+        s = new Rectangle();
+        s.draw(); // Calls Rectangle's draw() at runtime
+    }
+}
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 8px;">
+              <strong>Mark Distribution:</strong> Concept explanation (4 Marks) + Class hierarchy with inheritance (4 Marks) + Main method dispatch demonstration (4 Marks) + Output (2 Marks) = <strong>14 Marks</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Official Faculty Branding Footer -->
+    <footer class="faculty-footer">
+      <div class="footer-container">
+        <div class="faculty-badge">
+          <span class="faculty-name">Jane Rose</span>
+          <span class="faculty-title">Assistant Professor</span>
+          <span class="faculty-dept">Department of Computer Science and Engineering (CSE)</span>
+        </div>
+        <p class="copyright-text">
+          KTU Smart Learning Ecosystem © 2026. Academic Open Access & Curriculum Excellence.
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="./common/showcase-engine.js"></script>
+  <script>
+    // 1. JVM Realtime Simulation Engine
+    let objectId = 1;
+    function allocateObject() {
+      const eden = document.getElementById('eden-objects');
+      if (!eden) return;
+      const obj = document.createElement('div');
+      obj.className = 'obj-block';
+      obj.innerText = `Obj#${objectId++}`;
+      eden.appendChild(obj);
+      sfx.click();
+
+      if (eden.children.length > 8) {
+        runMinorGC();
+      }
+    }
+
+    function pushStackFrame() {
+      const stack = document.getElementById('stack-frames');
+      const frame = document.createElement('div');
+      frame.className = 'obj-block';
+      frame.innerText = `method${stack.children.length}() Frame`;
+      stack.appendChild(frame);
+      sfx.click();
+    }
+
+    function popStackFrame() {
+      const stack = document.getElementById('stack-frames');
+      if (stack.children.length > 1) {
+        stack.removeChild(stack.lastChild);
+        sfx.click();
+      }
+    }
+
+    function runMinorGC() {
+      const eden = document.getElementById('eden-objects');
+      const survivor = document.getElementById('survivor-objects');
+      while (eden.firstChild) {
+        const item = eden.firstChild;
+        if (Math.random() > 0.4) {
+          survivor.appendChild(item);
+        } else {
+          eden.removeChild(item); // Garbage collected
+        }
+      }
+      sfx.success();
+      if (survivor.children.length > 12) runMajorGC();
+    }
+
+    function runMajorGC() {
+      const survivor = document.getElementById('survivor-objects');
+      const tenured = document.getElementById('tenured-objects');
+      while (survivor.firstChild) {
+        tenured.appendChild(survivor.firstChild);
+      }
+      sfx.success();
+    }
+
+    function resetJVM() {
+      document.getElementById('eden-objects').innerHTML = '';
+      document.getElementById('survivor-objects').innerHTML = '';
+      document.getElementById('tenured-objects').innerHTML = '';
+      sfx.click();
+    }
+
+    // 2. Numerical Calculator
+    function calculateJVMHeap() {
+      const rate = parseFloat(document.getElementById('alloc-rate').value) || 50000;
+      const size = parseFloat(document.getElementById('obj-size').value) || 128;
+      const edenMB = parseFloat(document.getElementById('eden-size').value) || 512;
+
+      const bytesPerSec = rate * size;
+      const mbPerSec = bytesPerSec / (1024 * 1024);
+      const secondsToFill = edenMB / mbPerSec;
+      const gcFreqPerMin = 60 / secondsToFill;
+
+      const out = document.getElementById('calc-output');
+      out.innerHTML = `
+        <div class="calc-step">
+          <div class="calc-step-title">Step 1: Compute Allocation Bandwidth</div>
+          Bandwidth = ${rate.toLocaleString()} objs/s × ${size} B = <strong>${mbPerSec.toFixed(2)} MB/s</strong>
+        </div>
+        <div class="calc-step">
+          <div class="calc-step-title">Step 2: Calculate Eden Exhaustion Interval</div>
+          T = ${edenMB} MB / ${mbPerSec.toFixed(2)} MB/s = <strong>${secondsToFill.toFixed(2)} seconds</strong>
+        </div>
+        <div class="calc-step">
+          <div class="calc-step-title">Step 3: Minor GC Event Frequency</div>
+          Frequency = 60 / ${secondsToFill.toFixed(2)} s = <strong>${gcFreqPerMin.toFixed(2)} Minor GCs / minute</strong>
+        </div>
+        <div class="calc-result-badge">
+          Recommended Eden Sizing: ${gcFreqPerMin > 10 ? 'Increase to 1024MB (Too Frequent GC)' : 'Optimal Configuration'}
+        </div>
+      `;
+      sfx.success();
+    }
+
+    // 3. Knowledge Graph Nodes & Edges
+    document.addEventListener('DOMContentLoaded', () => {
+      const nodes = [
+        { id: 1, label: 'Object', x: 80, y: 130, color: '#38bdf8' },
+        { id: 2, label: 'Class', x: 180, y: 70, color: '#a855f7' },
+        { id: 3, label: 'Inheritance', x: 280, y: 70, color: '#38bdf8' },
+        { id: 4, label: 'Interface', x: 180, y: 190, color: '#10b981' },
+        { id: 5, label: 'Polymorphism', x: 380, y: 130, color: '#f59e0b' },
+        { id: 6, label: 'Threads', x: 480, y: 190, color: '#f43f5e' }
+      ];
+      const edges = [
+        { source: 1, target: 2, label: 'instances' },
+        { source: 2, target: 3, label: 'extends' },
+        { source: 2, target: 4, label: 'implements' },
+        { source: 3, target: 5, label: 'dispatches' },
+        { source: 4, target: 5, label: 'enforces' },
+        { source: 5, target: 6, label: 'concurrency' }
+      ];
+      new InteractiveKnowledgeGraph('kg-canvas', nodes, edges);
+
+      // Quiz Questions
+      const questions = [
+        {
+          question: "Which of the following JVM memory areas is shared among all threads?",
+          options: ["Program Counter (PC) Register", "Java Virtual Machine Stack", "Heap Memory", "Native Method Stack"],
+          answer: 2,
+          explanation: "Heap memory and Method Area (Metaspace) are shared among all JVM threads, while stacks and PC registers are allocated per-thread."
+        },
+        {
+          question: "Can an abstract class in Java contain non-abstract methods and constructors?",
+          options: ["No, only pure abstract methods", "Yes, abstract classes can have constructors and concrete methods", "Constructors are strictly forbidden", "Only static methods are allowed"],
+          answer: 1,
+          explanation: "Unlike interfaces (prior to default methods), abstract classes can have complete instance state, constructors, and concrete methods."
+        },
+        {
+          question: "What exception is thrown when an application attempts to use null where an object is required?",
+          options: ["IllegalArgumentException", "NullPointerException", "IllegalStateException", "ClassNotFoundException"],
+          answer: 1,
+          explanation: "NullPointerException (NPE) is an unchecked RuntimeException thrown when accessing members of a null reference."
+        },
+        {
+          question: "Which Java keyword ensures thread visibility by preventing cached register values?",
+          options: ["transient", "synchronized", "volatile", "strictfp"],
+          answer: 2,
+          explanation: "volatile guarantees reads and writes directly to main memory across threads under the Java Memory Model (JMM)."
+        },
+        {
+          question: "What is the return type of the hashCode() method defined in java.lang.Object?",
+          options: ["long", "int", "short", "byte"],
+          answer: 1,
+          explanation: "public int hashCode() returns a 32-bit signed integer representing the object hash."
+        }
+      ];
+      initQuiz(questions);
+
+      // 3D Canvas Visualizer (Geometric Cube Rotation)
+      const jvmCanvas = document.getElementById('jvm-3d-canvas');
+      if (jvmCanvas) {
+        const jctx = jvmCanvas.getContext('2d');
+        let angle = 0;
+        function render3D() {
+          jvmCanvas.width = jvmCanvas.parentElement.clientWidth;
+          jvmCanvas.height = jvmCanvas.parentElement.clientHeight;
+          const cx = jvmCanvas.width / 2;
+          const cy = jvmCanvas.height / 2;
+          jctx.clearRect(0, 0, jvmCanvas.width, jvmCanvas.height);
+          
+          angle += 0.02;
+          const size = 65;
+          const cos = Math.cos(angle);
+          const sin = Math.sin(angle);
+
+          // Draw rotating isometric wireframe cube
+          const points = [
+            [-size, -size, -size], [size, -size, -size], [size, size, -size], [-size, size, -size],
+            [-size, -size, size], [size, -size, size], [size, size, size], [-size, size, size]
+          ].map(([x, y, z]) => {
+            const rx = x * cos - z * sin;
+            const rz = x * sin + z * cos;
+            return [cx + rx, cy + y + rz * 0.3];
+          });
+
+          const edges = [
+            [0,1],[1,2],[2,3],[3,0],
+            [4,5],[5,6],[6,7],[7,4],
+            [0,4],[1,5],[2,6],[3,7]
+          ];
+
+          jctx.strokeStyle = '#38bdf8';
+          jctx.lineWidth = 1.5;
+          for (const [p1, p2] of edges) {
+            jctx.beginPath();
+            jctx.moveTo(points[p1][0], points[p1][1]);
+            jctx.lineTo(points[p2][0], points[p2][1]);
+            jctx.stroke();
+          }
+
+          requestAnimationFrame(render3D);
+        }
+        render3D();
+      }
+    });
+
+    // 4. Mini-game implementation
+    let gameTimer = 25;
+    let gameScore = 0;
+    let gameRunning = false;
+    let gameInterval = null;
+
+    function startGame() {
+      if (gameRunning) return;
+      gameRunning = true;
+      gameScore = 0;
+      gameTimer = 25;
+      document.getElementById('game-score').innerText = '0';
+      document.getElementById('game-timer').innerText = '25s';
+      document.getElementById('start-game-btn').disabled = true;
+
+      const gCanvas = document.getElementById('game-canvas');
+      const gctx = gCanvas.getContext('2d');
+      gCanvas.width = gCanvas.parentElement.clientWidth;
+      gCanvas.height = 180;
+
+      let items = [];
+      const keywords = ['public', 'class', 'static', 'void', 'final', 'interface', 'synchronized'];
+      const errors = ['goto_bad', 'def_fail', 'ptr_null', 'segfault'];
+
+      function spawn() {
+        if (!gameRunning) return;
+        const isGood = Math.random() > 0.3;
+        items.push({
+          x: Math.random() * (gCanvas.width - 60) + 30,
+          y: -10,
+          speed: Math.random() * 2 + 1.5,
+          text: isGood ? keywords[Math.floor(Math.random() * keywords.length)] : errors[Math.floor(Math.random() * errors.length)],
+          good: isGood
+        });
+        setTimeout(spawn, 700);
+      }
+      spawn();
+
+      gCanvas.onclick = (e) => {
+        if (!gameRunning) return;
+        const rect = gCanvas.getBoundingClientRect();
+        const cx = e.clientX - rect.left;
+        const cy = e.clientY - rect.top;
+
+        items.forEach((item, idx) => {
+          if (Math.abs(cx - item.x) < 40 && Math.abs(cy - item.y) < 20) {
+            if (item.good) {
+              gameScore += 10;
+              sfx.success();
+            } else {
+              gameScore = Math.max(0, gameScore - 15);
+              sfx.error();
+            }
+            items.splice(idx, 1);
+            document.getElementById('game-score').innerText = gameScore;
+          }
+        });
+      };
+
+      function updateGame() {
+        if (!gameRunning) return;
+        gctx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+
+        items.forEach((item, idx) => {
+          item.y += item.speed;
+          gctx.fillStyle = item.good ? '#38bdf8' : '#f43f5e';
+          gctx.font = '12px JetBrains Mono';
+          gctx.fillText(item.text, item.x - 20, item.y);
+
+          if (item.y > gCanvas.height) items.splice(idx, 1);
+        });
+
+        requestAnimationFrame(updateGame);
+      }
+      updateGame();
+
+      gameInterval = setInterval(() => {
+        gameTimer--;
+        document.getElementById('game-timer').innerText = `${gameTimer}s`;
+        if (gameTimer <= 0) {
+          clearInterval(gameInterval);
+          gameRunning = false;
+          document.getElementById('start-game-btn').disabled = false;
+          alert(`Game Over! You caught ${gameScore} bytecode points!`);
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

@@ -32,6 +32,8 @@ The **KTU Smart Learning Ecosystem** transforms academic engineering repositorie
 
 | Feature | Description |
 |---|---|
+| **📜 Master Prompt Blueprint** | Comprehensive architecture specification documented in [`MASTER_PROMPT.md`](file:///c:/Users/Asus/Downloads/ktu/MASTER_PROMPT.md). |
+| **🚀 3D Animated Subject Showcases** | Standalone HD/4K interactive showcases for every subject code with realtime demos, applications, quizzes, knowledge graphs, minigames, career & payscale guides, numerical solvers, and solved KTU PYQs. |
 | **🎨 10 Selectable Liquid Glass Themes** | Light/Dark mode with 10 customizable glass styles (*Light Liquid Glass, Dark Liquid Glass, Iridescent, Frosted, Crystal, Aurora, Soft Pastel, Burgundy, Ocean, Minimal Academic*). |
 | **📊 Validated 46-Hour Teaching Plans** | Exact 46-hour session breakdown, interactive completion tracker, and SheetJS Excel spreadsheet generator. |
 | **📑 Light-Theme PowerPoint Slides** | Editable `.pptx` presentations generated client-side via PptxGenJS with strict Light Theme enforcement. |

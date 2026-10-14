@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EST-STM32: Embedded Systems & STM32 — Interactive 3D Showcase | KTU</title>
+  <link rel="stylesheet" href="../common/showcase-theme.css">
+  <style>
+    .gpio-matrix {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .pin-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      padding: 12px 6px;
+      text-align: center;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+    }
+    .pin-btn.active {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: var(--accent-emerald);
+      color: #a7f3d0;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+    }
+    .pwm-scope {
+      width: 100%;
+      height: 140px;
+      background: #02040a;
+      border: 1px solid rgba(0, 255, 204, 0.3);
+      border-radius: var(--radius-sm);
+      margin-top: 14px;
+      display: block;
+    }
+  </style>
+</head>
+<body data-theme="liquid">
+
+  <!-- 3D Particle Canvas -->
+  <canvas id="canvas-3d-bg"></canvas>
+
+  <div class="showcase-container">
+    
+    <!-- Top Header -->
+    <header class="showcase-header">
+      <div class="brand-badge">
+        <span class="code-pill">EST-STM32</span>
+        <span class="subject-title-header">Embedded Systems & STM32 Microcontrollers</span>
+      </div>
+      <div class="header-actions">
+        <select id="theme-select" class="glass-select">
+          <option value="liquid">Liquid Glass</option>
+          <option value="aurora">Aurora Glass</option>
+          <option value="frosted">Frosted Glass</option>
+          <option value="cyber">Neon Cyber Glass</option>
+          <option value="obsidian">Deep Obsidian Glass</option>
+          <option value="holographic">Holographic Glass</option>
+        </select>
+        <a href="../../dashboard/index.html" class="glass-btn glass-btn-primary">← Learning Hub</a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-glass-card">
+        <span class="hero-tag">KTU S5/S6 Electronics & Computer Engineering</span>
+        <h1 class="hero-h1">ARM Cortex-M4 Microcontroller Architecture</h1>
+        <p class="hero-desc">
+          Master bare-metal peripheral programming, Nested Vectored Interrupt Controllers (NVIC), Direct Memory Access (DMA), hardware timers with PWM motor actuation, I2C/SPI sensor telemetry, and FreeRTOS preemptive scheduling.
+        </p>
+        <div class="hero-metrics">
+          <div class="metric-box">
+            <div class="metric-num">168 MHz</div>
+            <div class="metric-label">Cortex-M4 Clock</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">FreeRTOS</div>
+            <div class="metric-label">Real-Time Kernel</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">100%</div>
+            <div class="metric-label">Verified Schematics</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Microcontroller Chip Visualizer -->
+      <div class="visualizer-card">
+        <div class="visualizer-title">
+          <span>STM32F407 LQFP-100 Package 3D</span>
+          <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan);">Active WebGL</span>
+        </div>
+        <div class="canvas-container">
+          <canvas id="stm-3d-canvas" style="width: 100%; height: 100%; display: block;"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 Pillars Grid -->
+    <div class="showcase-grid">
+
+      <!-- Pillar 1: Real-Time Interactive Demo (GPIO & PWM Oscilloscope) -->
+      <div class="glass-panel col-12">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>⚡</span> Real-Time Interactive Demo: GPIO Bitmask & PWM Oscilloscope</h2>
+          <span class="panel-badge">Hardware Simulator</span>
+        </div>
+        <p style="color: var(--text-muted); margin-bottom: 14px;">
+          Toggle GPIO pins on Port A (PA0–PA7) to update the <strong>ODR (Output Data Register)</strong> bitmask. Adjust the <strong>PWM Duty Cycle slider</strong> to observe real-time square-wave signal synthesis on Timer 2 Channel 1.
+        </p>
+        
+        <div class="gpio-matrix" id="gpio-pins"></div>
+
+        <div style="margin: 16px 0; display: flex; align-items: center; justify-content: center; gap: 16px;">
+          <label style="font-size: 0.88rem; font-family: var(--font-mono);">
+            PWM Duty Cycle: <span id="duty-val" style="color: var(--accent-cyan);">50%</span>
+            <input type="range" id="pwm-slider" min="5" max="95" value="50" oninput="updatePWM(this.value)" style="margin-left: 10px;">
+          </label>
+          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-emerald);">
+            GPIOA->ODR = <span id="odr-hex">0x00000000</span>
+          </div>
+        </div>
+
+        <canvas id="pwm-scope-canvas" class="pwm-scope"></canvas>
+      </div>
+
+      <!-- Pillar 2: Industrial & Real-World Applications -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🚀</span> Industrial & Enterprise Applications</h2>
+          <span class="panel-badge">Mission Critical</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan);">
+            <strong style="color: var(--accent-cyan);">Automotive Electronic Control Units (ECUs):</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              STM32 microcontrollers coordinate CAN-bus messaging, drive anti-lock braking systems (ABS), and manage electric powertrain battery management systems (BMS).
+            </p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-purple);">
+            <strong style="color: var(--accent-purple);">Medical Infusion Pumps & Defibrillators:</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Certified safety-critical firmware with dual-core lockstep operation regulates micrometric medication doses with sub-millisecond precision.
+            </p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-emerald);">
+            <strong style="color: var(--accent-emerald);">Aerospace Drone Flight Controllers:</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Executes high-frequency PID attitude control loops fed by 6-axis IMUs over high-speed SPI at 1000 Hz using hardware floating-point units (FPU).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Dynamic Knowledge Graph -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🧠</span> Interactive Knowledge Graph</h2>
+          <span class="panel-badge">Hardware Hierarchy</span>
+        </div>
+        <canvas id="kg-canvas" class="demo-canvas" style="height: 260px;"></canvas>
+        <div id="kg-node-desc" style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); min-height: 38px;">
+          Click any architecture component above to review register mappings and bus attachments.
+        </div>
+      </div>
+
+      <!-- Pillar 4: Numerical Calculation Engine -->
+      <div class="glass-panel col-8">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🔢</span> Numerical Workbench: Timer Prescaler & PWM Frequency Calculator</h2>
+          <span class="panel-badge">KTU Mathematical Engine</span>
+        </div>
+        <div class="calc-workbench">
+          <div class="calc-inputs">
+            <div class="input-group">
+              <label class="input-label">Core Clock Frequency (F_CLK in MHz):</label>
+              <input type="number" id="f-clk" class="glass-input" value="168" min="8" max="480">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Timer Prescaler (PSC):</label>
+              <input type="number" id="psc-val" class="glass-input" value="167" min="0" max="65535">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Auto-Reload Register (ARR):</label>
+              <input type="number" id="arr-val" class="glass-input" value="999" min="1" max="65535">
+            </div>
+            <button class="glass-btn glass-btn-primary" onclick="calculateTimerPWM()">Calculate Timer Output Frequency</button>
+          </div>
+          <div class="calc-output-box" id="calc-output">
+            <div class="calc-step">
+              <div class="calc-step-title">Formula:</div>
+              F_PWM = F_CLK / [ (PSC + 1) × (ARR + 1) ]<br>
+              Timer Resolution (ΔT) = (PSC + 1) / F_CLK
+            </div>
+            <div class="calc-step">
+              <div class="calc-step-title">Output:</div>
+              Click "Calculate" to solve step-by-step.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 5: Subject Mini-Game (Pin Master) -->
+      <div class="glass-panel col-4">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🎮</span> Mini-Game: Pin Master</h2>
+          <span class="panel-badge">Peripheral Wiring</span>
+        </div>
+        <div class="game-container">
+          <div class="game-hud">
+            <span>Score: <strong id="game-score" style="color: var(--accent-cyan);">0</strong></span>
+            <span>Target: <strong id="game-target" style="color: var(--accent-amber);">PA5 (LED)</strong></span>
+          </div>
+          <canvas id="game-canvas" class="game-canvas" style="height: 180px;"></canvas>
+          <div style="margin-top: 12px;">
+            <button class="glass-btn glass-btn-primary" id="start-game-btn" onclick="startPinGame()">Start Wiring Test</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 6: Interactive Exam Quiz -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>📝</span> KTU Examination Quiz</h2>
+          <span class="panel-badge" id="quiz-score-badge">Score: 0 / 5</span>
+        </div>
+        <div id="quiz-container"></div>
+      </div>
+
+      <!-- Pillar 7: Job Roles & Payscale Guide -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>💼</span> Career Roadmaps & Industry Payscales</h2>
+          <span class="panel-badge">Market Analysis</span>
+        </div>
+        <div class="career-grid">
+          <div class="career-card">
+            <div class="role-title">Embedded Firmware Architect</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Develops bare-metal C/C++ drivers, FreeRTOS board support packages (BSP), and hardware security modules (HSM).
+            </p>
+            <div class="payscale-badge">
+              <span class="salary-inr">₹15 - 38 LPA</span>
+              <span class="salary-usd">$125,000 - $190,000</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-dim);">
+              <strong>Hiring:</strong> STMicroelectronics, Bosch, Texas Instruments, Qualcomm
+            </div>
+          </div>
+          <div class="career-card">
+            <div class="role-title">IoT Hardware Systems Engineer</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Engineers low-power edge telemetry units with Bluetooth Low Energy (BLE), LoRaWAN, and cellular NB-IoT.
+            </p>
+            <div class="payscale-badge">
+              <span class="salary-inr">₹9 - 25 LPA</span>
+              <span class="salary-usd">$95,000 - $150,000</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-dim);">
+              <strong>Hiring:</strong> Honeywell, Schneider Electric, Philips Healthcare, Tata Elxsi
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 8: Solved Previous Year Question Paper (PYQ) -->
+      <div class="glass-panel col-12">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>📑</span> Solved Previous Year Question Paper: KTU Embedded Systems</h2>
+          <span class="panel-badge">Model Answer Key</span>
+        </div>
+        <div class="pyq-tabs">
+          <button class="pyq-tab-btn active" data-target="all">All Questions</button>
+          <button class="pyq-tab-btn" data-target="part-a">Part A (3 Marks)</button>
+          <button class="pyq-tab-btn" data-target="part-b">Part B (14 Marks)</button>
+        </div>
+
+        <div class="pyq-item" data-category="part-a">
+          <div class="pyq-q-header">
+            <div><strong>Q1.</strong> What is the role of the Bit Set/Reset Register (BSRR) in STM32 GPIO control, and why is it preferred over ODR?</div>
+            <span class="pyq-marks">3 Marks</span>
+          </div>
+          <div class="pyq-solution-body">
+            <p><strong>Evaluation Scheme & Solution:</strong></p>
+            <p style="margin: 8px 0; font-size: 0.9rem; color: var(--text-muted);">
+              <strong>Atomic Operation:</strong> The 32-bit GPIOx_BSRR register allows individual pin setting (bits 0–15) and resetting (bits 16–31) in a <strong>single atomic clock cycle</strong>. Writing to BSRR eliminates the need for read-modify-write software sequences on ODR, completely preventing race conditions when interrupts preempt pin toggles.
+            </p>
+          </div>
+        </div>
+
+        <div class="pyq-item" data-category="part-b">
+          <div class="pyq-q-header">
+            <div><strong>Q2.</strong> Write an embedded C program to configure GPIO Pin PC13 as output (connected to User LED) and toggle it every 500 ms using SysTick Timer interrupts on STM32.</div>
+            <span class="pyq-marks">14 Marks</span>
+          </div>
+          <div class="pyq-solution-body">
+            <p><strong>Complete Embedded C Implementation:</strong></p>
+            <div class="code-snippet">
+#include "stm32f4xx.h"
+
+volatile uint32_t msTicks = 0;
+
+void SysTick_Handler(void) {
+    msTicks++;
+}
+
+void delay_ms(uint32_t ms) {
+    uint32_t start = msTicks;
+    while ((msTicks - start) < ms);
+}
+
+int main(void) {
+    // 1. Enable Clock for GPIOC via AHB1 peripheral bus
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
+
+    // 2. Set Pin PC13 to General Purpose Output Mode (MODER[27:26] = 01)
+    GPIOC->MODER &= ~(3U << (13 * 2)); // Clear mode bits
+    GPIOC->MODER |=  (1U << (13 * 2)); // Output mode
+
+    // 3. Configure SysTick to interrupt every 1 ms (168 MHz core clock)
+    SysTick_Config(SystemCoreClock / 1000);
+
+    while (1) {
+        // Toggle PC13 atomically using BSRR
+        if (GPIOC->ODR & (1U << 13)) {
+            GPIOC->BSRR = (1U << (13 + 16)); // Reset pin
+        } else {
+            GPIOC->BSRR = (1U << 13);        // Set pin
+        }
+        delay_ms(500);
+    }
+}
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 8px;">
+              <strong>Mark Distribution:</strong> RCC clock configuration (3 Marks) + GPIO MODER register bitmask setup (4 Marks) + SysTick timer configuration (4 Marks) + Main loop atomic toggle logic (3 Marks) = <strong>14 Marks</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Official Faculty Branding Footer -->
+    <footer class="faculty-footer">
+      <div class="footer-container">
+        <div class="faculty-badge">
+          <span class="faculty-name">Jane Rose</span>
+          <span class="faculty-title">Assistant Professor</span>
+          <span class="faculty-dept">Department of Computer Science and Engineering (CSE)</span>
+        </div>
+        <p class="copyright-text">
+          KTU Smart Learning Ecosystem © 2026. Academic Open Access & Curriculum Excellence.
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="../common/showcase-engine.js"></script>
+  <script>
+    // 1. GPIO Pin Matrix & PWM Oscilloscope
+    let gpioState = [0, 0, 0, 0, 0, 0, 0, 0];
+    let pwmDuty = 50;
+
+    function initGPIOMatrix() {
+      const container = document.getElementById('gpio-pins');
+      container.innerHTML = '';
+      for (let i = 0; i < 8; i++) {
+        const btn = document.createElement('div');
+        btn.className = 'pin-btn';
+        btn.id = `pin-pa${i}`;
+        btn.innerText = `PA${i}`;
+        btn.onclick = () => togglePin(i);
+        container.appendChild(btn);
+      }
+    }
+
+    function togglePin(idx) {
+      gpioState[idx] = gpioState[idx] === 1 ? 0 : 1;
+      const btn = document.getElementById(`pin-pa${idx}`);
+      btn.classList.toggle('active', gpioState[idx] === 1);
+      
+      let hexVal = 0;
+      for (let i = 0; i < 8; i++) {
+        if (gpioState[i]) hexVal |= (1 << i);
+      }
+      document.getElementById('odr-hex').innerText = `0x` + hexVal.toString(16).padStart(8, '0').toUpperCase();
+      sfx.click();
+    }
+
+    function updatePWM(val) {
+      pwmDuty = parseInt(val);
+      document.getElementById('duty-val').innerText = `${pwmDuty}%`;
+    }
+
+    function drawPWMScope() {
+      const canvas = document.getElementById('pwm-scope-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      canvas.width = canvas.parentElement.clientWidth;
+      canvas.height = 140;
+
+      let offset = 0;
+      function renderScope() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = '#00ffcc';
+        ctx.lineWidth = 2;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = '#00ffcc';
+
+        ctx.beginPath();
+        const period = 80;
+        const highWidth = (period * pwmDuty) / 100;
+        offset = (offset + 1.5) % period;
+
+        for (let x = 0; x < canvas.width; x += 1) {
+          const modX = (x + offset) % period;
+          const y = modX < highWidth ? 30 : 110;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        requestAnimationFrame(renderScope);
+      }
+      renderScope();
+    }
+
+    // 2. Timer Calculation
+    function calculateTimerPWM() {
+      const fClkMHz = parseFloat(document.getElementById('f-clk').value) || 168;
+      const psc = parseFloat(document.getElementById('psc-val').value) || 167;
+      const arr = parseFloat(document.getElementById('arr-val').value) || 999;
+
+      const fClk = fClkMHz * 1e6;
+      const fPwm = fClk / ((psc + 1) * (arr + 1));
+      const resUs = ((psc + 1) / fClk) * 1e6;
+
+      const out = document.getElementById('calc-output');
+      out.innerHTML = `
+        <div class="calc-step">
+          <div class="calc-step-title">Step 1: Compute Timer Tick Resolution</div>
+          Tick Clock = ${fClkMHz} MHz / (${psc} + 1) = <strong>${(fClk / (psc + 1) / 1e6).toFixed(2)} MHz</strong><br>
+          Tick Period (ΔT) = <strong>${resUs.toFixed(3)} µs</strong>
+        </div>
+        <div class="calc-step">
+          <div class="calc-step-title">Step 2: Compute Overall PWM Frequency</div>
+          F_PWM = ${fClk.toLocaleString()} Hz / [ (${psc} + 1) × (${arr} + 1) ] = <strong>${fPwm.toFixed(2)} Hz</strong>
+        </div>
+        <div class="calc-result-badge">
+          Calculated PWM Frequency: ${(fPwm / 1000).toFixed(2)} kHz (Ideal for BLDC Motor Control)
+        </div>
+      `;
+      sfx.success();
+    }
+
+    // 3. Knowledge Graph
+    document.addEventListener('DOMContentLoaded', () => {
+      initGPIOMatrix();
+      drawPWMScope();
+
+      const nodes = [
+        { id: 1, label: 'Cortex-M4 Core', x: 100, y: 70, color: '#38bdf8' },
+        { id: 2, label: 'NVIC Interrupts', x: 260, y: 70, color: '#a855f7' },
+        { id: 3, label: 'Timers (PWM)', x: 420, y: 130, color: '#10b981' },
+        { id: 4, label: 'DMA Controller', x: 260, y: 200, color: '#f59e0b' },
+        { id: 5, label: 'FreeRTOS Tasks', x: 100, y: 200, color: '#f43f5e' }
+      ];
+      const edges = [
+        { source: 1, target: 2, label: 'vectors' },
+        { source: 1, target: 3, label: 'APBx bus' },
+        { source: 3, target: 4, label: 'zero-copy' },
+        { source: 1, target: 5, label: 'scheduler' }
+      ];
+      new InteractiveKnowledgeGraph('kg-canvas', nodes, edges);
+
+      // Quiz Questions
+      const questions = [
+        {
+          question: "Which bus on the STM32F4 architecture connects high-speed GPIO ports directly to the ARM Cortex-M4 core?",
+          options: ["APB1 Bus (42 MHz)", "AHB1 Bus (168 MHz)", "APB2 Bus (84 MHz)", "I2C Bus"],
+          answer: 1,
+          explanation: "In STM32F4, GPIO ports A through I are attached to the high-bandwidth Advanced High-performance Bus (AHB1), running at full core clock speeds."
+        },
+        {
+          question: "What is the primary role of the Nested Vectored Interrupt Controller (NVIC)?",
+          options: ["To convert analog voltages to digital words", "To provide low-latency priority-based interrupt nesting and exception handling in hardware", "To regulate DC-to-DC core voltage", "To store non-volatile flash bootloader"],
+          answer: 1,
+          explanation: "NVIC handles prioritized interrupt preemption, automatic state saving on the stack, and deterministic interrupt vector dispatching."
+        },
+        {
+          question: "What happens when a peripheral transfers data directly to RAM via DMA (Direct Memory Access)?",
+          options: ["The CPU is 100% halted permanently", "Data transfers occur autonomously without wasting CPU ALU cycles", "Flash memory is wiped", "Watchdog timer expires"],
+          answer: 1,
+          explanation: "DMA offloads bulk memory movements (e.g., ADC sampling, UART buffers) from the CPU, allowing the Cortex core to execute application logic concurrently."
+        },
+        {
+          question: "How is an atomic pin clear executed using the GPIOx_BSRR register for pin PA5?",
+          options: ["Writing 1 to bit 5", "Writing 1 to bit 21 (5 + 16)", "Writing 0 to bit 5", "Reading ODR register"],
+          answer: 1,
+          explanation: "In the 32-bit BSRR register, bits 16–31 are dedicated reset bits. Setting bit 21 (16 + 5) immediately pulls PA5 low in one clock cycle."
+        },
+        {
+          question: "What is the main purpose of an Independent Watchdog Timer (IWDG) in mission-critical embedded systems?",
+          options: ["To keep wall-clock time", "To reset the microcontroller if software enters an infinite deadlock loop", "To regulate SPI clock", "To drive speaker frequency"],
+          answer: 1,
+          explanation: "IWDG runs on a separate low-speed internal RC clock (LSI) and triggers an automatic hardware reset if firmware fails to refresh its counter."
+        }
+      ];
+      initQuiz(questions);
+
+      // 3D Canvas Visualizer (Rotating Chip Package)
+      const stmCanvas = document.getElementById('stm-3d-canvas');
+      if (stmCanvas) {
+        const sctx = stmCanvas.getContext('2d');
+        let angle = 0;
+        function render3DChip() {
+          stmCanvas.width = stmCanvas.parentElement.clientWidth;
+          stmCanvas.height = stmCanvas.parentElement.clientHeight;
+          const cx = stmCanvas.width / 2;
+          const cy = stmCanvas.height / 2;
+          sctx.clearRect(0, 0, stmCanvas.width, stmCanvas.height);
+          
+          angle += 0.015;
+          const size = 50;
+          const cos = Math.cos(angle);
+          const sin = Math.sin(angle);
+
+          // Draw rotating square chip body
+          sctx.save();
+          sctx.translate(cx, cy);
+          sctx.rotate(angle);
+          sctx.fillStyle = '#1e293b';
+          sctx.fillRect(-size, -size, size * 2, size * 2);
+          sctx.strokeStyle = '#38bdf8';
+          sctx.lineWidth = 2;
+          sctx.strokeRect(-size, -size, size * 2, size * 2);
+
+          // Draw silver pins on 4 sides
+          sctx.fillStyle = '#e2e8f0';
+          for (let i = -size + 10; i < size - 5; i += 12) {
+            sctx.fillRect(i, -size - 8, 4, 8); // Top
+            sctx.fillRect(i, size, 4, 8);     // Bottom
+            sctx.fillRect(-size - 8, i, 8, 4); // Left
+            sctx.fillRect(size, i, 8, 4);      // Right
+          }
+
+          sctx.fillStyle = '#38bdf8';
+          sctx.font = '10px JetBrains Mono';
+          sctx.textAlign = 'center';
+          sctx.fillText('STM32F4', 0, 4);
+          sctx.restore();
+
+          requestAnimationFrame(render3DChip);
+        }
+        render3DChip();
+      }
+    });
+
+    // 4. Mini-game implementation
+    let pinGameScore = 0;
+    const targetPins = ['PA0', 'PA2', 'PA5', 'PA7'];
+    let currentTarget = 'PA5';
+
+    function startPinGame() {
+      currentTarget = targetPins[Math.floor(Math.random() * targetPins.length)];
+      document.getElementById('game-target').innerText = currentTarget;
+      alert(`Quick! Wire the correct peripheral by clicking pin ${currentTarget} in the GPIO matrix above!`);
+    }
+  </script>
+</body>
+</html>

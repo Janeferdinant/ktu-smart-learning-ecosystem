@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CST303: Computer Networks — Interactive 3D Showcase | KTU</title>
+  <link rel="stylesheet" href="./common/showcase-theme.css">
+  <style>
+    .router-net-canvas {
+      width: 100%;
+      height: 280px;
+      background: rgba(2, 6, 23, 0.7);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: block;
+    }
+  </style>
+</head>
+<body data-theme="liquid">
+
+  <!-- 3D Spatial Canvas -->
+  <canvas id="canvas-3d-bg"></canvas>
+
+  <div class="showcase-container">
+    
+    <!-- Top Header -->
+    <header class="showcase-header">
+      <div class="brand-badge">
+        <span class="code-pill">CST303</span>
+        <span class="subject-title-header">Computer Networks</span>
+      </div>
+      <div class="header-actions">
+        <select id="theme-select" class="glass-select">
+          <option value="liquid">Liquid Glass</option>
+          <option value="aurora">Aurora Glass</option>
+          <option value="frosted">Frosted Glass</option>
+          <option value="cyber">Neon Cyber Glass</option>
+          <option value="obsidian">Deep Obsidian Glass</option>
+          <option value="holographic">Holographic Glass</option>
+        </select>
+        <a href="../index.html" class="glass-btn glass-btn-primary">← Learning Hub</a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-glass-card">
+        <span class="hero-tag">KTU S5 Computer Science & Engineering</span>
+        <h1 class="hero-h1">Distributed Networking & Routing Protocols</h1>
+        <p class="hero-desc">
+          Explore packet transmission dynamics, link-state OSPF algorithms, distance-vector Bellman-Ford convergence, TCP flow & congestion control, CIDR subnetting, and enterprise multi-cloud architectures.
+        </p>
+        <div class="hero-metrics">
+          <div class="metric-box">
+            <div class="metric-num">46 hrs</div>
+            <div class="metric-label">KTU Teaching Plan</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">12 QPs</div>
+            <div class="metric-label">Solved Exam Archives</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">100%</div>
+            <div class="metric-label">Syllabus Coverage</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Geometric Card -->
+      <div class="visualizer-card">
+        <div class="visualizer-title">
+          <span>Global Network Topology 3D</span>
+          <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan);">Active Mesh</span>
+        </div>
+        <div class="canvas-container">
+          <canvas id="net-3d-canvas" style="width: 100%; height: 100%; display: block;"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 Integrated Pillars Grid -->
+    <div class="showcase-grid">
+
+      <!-- Pillar 1: Real-Time Interactive Demo (Dijkstra Shortest Path Packet Router) -->
+      <div class="glass-panel col-12">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>⚡</span> Real-Time Interactive Demo: Dijkstra OSPF Packet Router</h2>
+          <span class="panel-badge">Packet Simulator</span>
+        </div>
+        <p style="color: var(--text-muted); margin-bottom: 14px;">
+          Send packets between nodes in this 5-router autonomous system. The simulator evaluates Dijkstra's shortest path algorithm dynamically based on link metric costs.
+        </p>
+        <div class="demo-controls">
+          <button class="glass-btn glass-btn-primary" onclick="sendPacket('R1', 'R4')">Send Packet: R1 → R4</button>
+          <button class="glass-btn" onclick="sendPacket('R2', 'R5')">Send Packet: R2 → R5</button>
+          <button class="glass-btn" style="border-color: var(--accent-rose);" onclick="simulateLinkFailure()">Toggle Link Congestion (R1-R3)</button>
+          <button class="glass-btn" onclick="resetNetworkSim()">Reset Network</button>
+        </div>
+        <canvas id="router-canvas" class="router-net-canvas"></canvas>
+        <div id="routing-log" style="margin-top: 10px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-cyan);">
+          System Ready. Select a packet transmission route above.
+        </div>
+      </div>
+
+      <!-- Pillar 2: Enterprise & Real-World Applications -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🌐</span> Industrial & Enterprise Applications</h2>
+          <span class="panel-badge">Architectures</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan);">
+            <strong style="color: var(--accent-cyan);">Cloud Virtual Private Clouds (VPCs):</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              AWS and Azure orchestrate multi-tier subnetting, route tables, and NAT gateways across Availability Zones using software-defined overlay networks (Geneve / VXLAN).
+            </p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-purple);">
+            <strong style="color: var(--accent-purple);">BGP Anycast CDNs (Cloudflare / Akamai):</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Single IP addresses announced worldwide route user HTTP requests to the nearest edge datacenter via Border Gateway Protocol metrics.
+            </p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-emerald);">
+            <strong style="color: var(--accent-emerald);">5G Telecommunication Network Slicing:</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Virtualizes physical 5G radio and core networks into dedicated low-latency slices for autonomous vehicular safety and industrial IoT.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Dynamic Knowledge Graph -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🧠</span> Interactive Knowledge Graph</h2>
+          <span class="panel-badge">Protocol Stack</span>
+        </div>
+        <canvas id="kg-canvas" class="demo-canvas" style="height: 260px;"></canvas>
+        <div id="kg-node-desc" style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); min-height: 38px;">
+          Click any protocol node above to review its OSI layer and standard specifications.
+        </div>
+      </div>
+
+      <!-- Pillar 4: Numerical Calculation Engine (Subnet & CRC Calculator) -->
+      <div class="glass-panel col-8">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🔢</span> Numerical Workbench: CIDR Subnet & Usable Hosts Calculator</h2>
+          <span class="panel-badge">KTU Mathematical Solver</span>
+        </div>
+        <div class="calc-workbench">
+          <div class="calc-inputs">
+            <div class="input-group">
+              <label class="input-label">IPv4 Address (e.g., 192.168.10.0):</label>
+              <input type="text" id="ip-address" class="glass-input" value="192.168.10.0">
+            </div>
+            <div class="input-group">
+              <label class="input-label">CIDR Prefix Length (/N):</label>
+              <input type="number" id="cidr-prefix" class="glass-input" value="26" min="8" max="30">
+            </div>
+            <button class="glass-btn glass-btn-primary" onclick="calculateSubnet()">Compute Subnetting Parameters</button>
+          </div>
+          <div class="calc-output-box" id="calc-output">
+            <div class="calc-step">
+              <div class="calc-step-title">Formula Breakdown:</div>
+              Host Bits (H) = 32 - CIDR Prefix<br>
+              Total IP Addresses = 2<sup>H</sup><br>
+              Usable Host Addresses = 2<sup>H</sup> - 2 (Minus Network & Broadcast IP)
+            </div>
+            <div class="calc-step">
+              <div class="calc-step-title">Output:</div>
+              Click "Compute" to calculate subnet mask, network IP, broadcast IP, and usable range.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 5: Subject Mini-Game (Packet Router Defense) -->
+      <div class="glass-panel col-4">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🎮</span> Mini-Game: Router Buffer Defense</h2>
+          <span class="panel-badge">Action Game</span>
+        </div>
+        <div class="game-container">
+          <div class="game-hud">
+            <span>Routed: <strong id="game-score" style="color: var(--accent-cyan);">0</strong></span>
+            <span>Buffer Health: <strong id="game-health" style="color: var(--accent-emerald);">100%</strong></span>
+          </div>
+          <canvas id="game-canvas" class="game-canvas" style="height: 180px;"></canvas>
+          <div style="margin-top: 12px;">
+            <button class="glass-btn glass-btn-primary" id="start-game-btn" onclick="startNetGame()">Start Defense</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 6: Interactive Exam Quiz -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>📝</span> KTU Examination Quiz</h2>
+          <span class="panel-badge" id="quiz-score-badge">Score: 0 / 5</span>
+        </div>
+        <div id="quiz-container"></div>
+      </div>
+
+      <!-- Pillar 7: Job Roles & Payscale Guide -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>💼</span> Career Opportunities & Payscale Guide</h2>
+          <span class="panel-badge">Industry Salaries</span>
+        </div>
+        <div class="career-grid">
+          <div class="career-card">
+            <div class="role-title">Cloud Network Architect</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Engineers multi-region cloud interconnects, SD-WAN topologies, and zero-trust edge perimeters.
+            </p>
+            <div class="payscale-badge">
+              <span class="salary-inr">₹18 - 42 LPA</span>
+              <span class="salary-usd">$135,000 - $210,000</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-dim);">
+              <strong>Hiring:</strong> Google Cloud, Cisco, Juniper, AWS Infrastructure
+            </div>
+          </div>
+          <div class="career-card">
+            <div class="role-title">Network Security Engineer</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Deploys next-gen firewalls, IPS/IDS sensors, IPsec VPN tunnels, and automated DDoS mitigation.
+            </p>
+            <div class="payscale-badge">
+              <span class="salary-inr">₹10 - 26 LPA</span>
+              <span class="salary-usd">$100,000 - $160,000</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-dim);">
+              <strong>Hiring:</strong> Palo Alto Networks, Fortinet, KPMG, IBM Security
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 8: Solved Previous Year Question Paper (PYQ) -->
+      <div class="glass-panel col-12">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>📑</span> Solved Previous Year Question Paper: KTU CST303</h2>
+          <span class="panel-badge">Model Answer Key</span>
+        </div>
+        <div class="pyq-tabs">
+          <button class="pyq-tab-btn active" data-target="all">All Questions</button>
+          <button class="pyq-tab-btn" data-target="part-a">Part A (3 Marks)</button>
+          <button class="pyq-tab-btn" data-target="part-b">Part B (14 Marks)</button>
+        </div>
+
+        <div class="pyq-item" data-category="part-a">
+          <div class="pyq-q-header">
+            <div><strong>Q1.</strong> What is the "Count to Infinity" problem in Distance Vector Routing? Mention two solutions.</div>
+            <span class="pyq-marks">3 Marks</span>
+          </div>
+          <div class="pyq-solution-body">
+            <p><strong>Evaluation Scheme & Solution:</strong></p>
+            <p style="margin: 8px 0; font-size: 0.9rem; color: var(--text-muted);">
+              <strong>Definition:</strong> In Distance Vector Routing (Bellman-Ford), when a link breaks, neighboring routers take iterations to realize unreachable nodes, gradually incrementing their hop counts up to infinity (defined as 16 in RIP).
+            </p>
+            <p style="margin: 8px 0; font-size: 0.9rem; color: var(--text-muted);">
+              <strong>Remedies:</strong>
+              <br>1. <strong>Split Horizon:</strong> Do not advertise a route back to the neighbor from which it was learned.
+              <br>2. <strong>Poison Reverse:</strong> Advertise broken links with an infinite metric (∞) to immediately purge routing loops.
+            </p>
+          </div>
+        </div>
+
+        <div class="pyq-item" data-category="part-b">
+          <div class="pyq-q-header">
+            <div><strong>Q2.</strong> Explain the Leaky Bucket and Token Bucket traffic shaping algorithms with diagrams and compare their burst handling capabilities.</div>
+            <span class="pyq-marks">14 Marks</span>
+          </div>
+          <div class="pyq-solution-body">
+            <p><strong>Detailed Model Answer:</strong></p>
+            <table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.88rem;">
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <th style="padding: 6px; text-align: left; color: var(--accent-cyan);">Attribute</th>
+                <th style="padding: 6px; text-align: left;">Leaky Bucket Algorithm</th>
+                <th style="padding: 6px; text-align: left;">Token Bucket Algorithm</th>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <td style="padding: 6px;">Output Rate</td>
+                <td style="padding: 6px;">Strictly Constant (No bursts allowed)</td>
+                <td style="padding: 6px;">Allows controlled bursts up to token limit</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <td style="padding: 6px;">Packet Dropping</td>
+                <td style="padding: 6px;">Drops excess packets when buffer overflows</td>
+                <td style="padding: 6px;">Discards tokens, retaining packets in queue</td>
+              </tr>
+              <tr>
+                <td style="padding: 6px;">Ideal Use Case</td>
+                <td style="padding: 6px;">ATM constant-bitrate audio/video streams</td>
+                <td style="padding: 6px;">Bursty IP web traffic and interactive games</td>
+              </tr>
+            </table>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 8px;">
+              <strong>Mark Distribution:</strong> Leaky bucket principle & diagram (5 Marks) + Token bucket principle & burst rate formula S = C / (M - r) (5 Marks) + Comprehensive comparison table (4 Marks) = <strong>14 Marks</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Official Faculty Branding Footer -->
+    <footer class="faculty-footer">
+      <div class="footer-container">
+        <div class="faculty-badge">
+          <span class="faculty-name">Jane Rose</span>
+          <span class="faculty-title">Assistant Professor</span>
+          <span class="faculty-dept">Department of Computer Science and Engineering (CSE)</span>
+        </div>
+        <p class="copyright-text">
+          KTU Smart Learning Ecosystem © 2026. Academic Open Access & Curriculum Excellence.
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="./common/showcase-engine.js"></script>
+  <script>
+    // 1. Dijkstra Network Simulation
+    const rCanvas = document.getElementById('router-canvas');
+    const rctx = rCanvas.getContext('2d');
+    let highCostR1R3 = false;
+    let packetAnim = null;
+
+    const routers = [
+      { id: 'R1', x: 80, y: 140 },
+      { id: 'R2', x: 220, y: 60 },
+      { id: 'R3', x: 220, y: 220 },
+      { id: 'R4', x: 420, y: 140 },
+      { id: 'R5', x: 560, y: 140 }
+    ];
+
+    function drawNetwork(activePath = []) {
+      rCanvas.width = rCanvas.parentElement.clientWidth;
+      rCanvas.height = 280;
+      rctx.clearRect(0, 0, rCanvas.width, rCanvas.height);
+
+      const links = [
+        { u: 'R1', v: 'R2', cost: 2 },
+        { u: 'R1', v: 'R3', cost: highCostR1R3 ? 15 : 3 },
+        { u: 'R2', v: 'R4', cost: 4 },
+        { u: 'R3', v: 'R4', cost: 2 },
+        { u: 'R4', v: 'R5', cost: 1 }
+      ];
+
+      // Draw links
+      for (const link of links) {
+        const uNode = routers.find(r => r.id === link.u);
+        const vNode = routers.find(r => r.id === link.v);
+        const isPath = activePath.includes(link.u) && activePath.includes(link.v);
+
+        rctx.beginPath();
+        rctx.moveTo(uNode.x, uNode.y);
+        rctx.lineTo(vNode.x, vNode.y);
+        rctx.strokeStyle = isPath ? '#38bdf8' : 'rgba(255, 255, 255, 0.15)';
+        rctx.lineWidth = isPath ? 3.5 : 1.5;
+        rctx.stroke();
+
+        // Metric label
+        const midX = (uNode.x + vNode.x) / 2;
+        const midY = (uNode.y + vNode.y) / 2;
+        rctx.fillStyle = isPath ? '#38bdf8' : '#94a3b8';
+        rctx.font = '11px JetBrains Mono';
+        rctx.fillText(`cost: ${link.cost}`, midX, midY - 6);
+      }
+
+      // Draw router nodes
+      for (const node of routers) {
+        const isPath = activePath.includes(node.id);
+        rctx.beginPath();
+        rctx.arc(node.x, node.y, 18, 0, Math.PI * 2);
+        rctx.fillStyle = isPath ? '#0284c7' : '#0f172a';
+        rctx.fill();
+        rctx.lineWidth = 2;
+        rctx.strokeStyle = isPath ? '#38bdf8' : 'rgba(255, 255, 255, 0.4)';
+        rctx.stroke();
+
+        rctx.fillStyle = '#ffffff';
+        rctx.font = 'bold 11px Plus Jakarta Sans';
+        rctx.textAlign = 'center';
+        rctx.fillText(node.id, node.x, node.y + 4);
+      }
+    }
+
+    function sendPacket(src, dest) {
+      let path = [];
+      if (src === 'R1' && dest === 'R4') {
+        path = highCostR1R3 ? ['R1', 'R2', 'R4'] : ['R1', 'R3', 'R4'];
+      } else if (src === 'R2' && dest === 'R5') {
+        path = ['R2', 'R4', 'R5'];
+      }
+      drawNetwork(path);
+      sfx.success();
+      const log = document.getElementById('routing-log');
+      log.innerText = `[Dijkstra SPF Computed] Route: ${path.join(' -> ')} | Status: Forwarded without packet drop.`;
+    }
+
+    function simulateLinkFailure() {
+      highCostR1R3 = !highCostR1R3;
+      drawNetwork();
+      sfx.click();
+      const log = document.getElementById('routing-log');
+      log.innerText = highCostR1R3 ? `Link R1-R3 degraded (Cost raised to 15). OSPF rerouting via R2!` : `Link R1-R3 restored to nominal cost (3).`;
+    }
+
+    function resetNetworkSim() {
+      highCostR1R3 = false;
+      drawNetwork();
+      sfx.click();
+      document.getElementById('routing-log').innerText = 'System reset. Ready.';
+    }
+
+    // 2. Subnet Calculator
+    function calculateSubnet() {
+      const ip = document.getElementById('ip-address').value.trim();
+      const cidr = parseInt(document.getElementById('cidr-prefix').value) || 24;
+
+      const hostBits = 32 - cidr;
+      const totalHosts = Math.pow(2, hostBits);
+      const usableHosts = Math.max(0, totalHosts - 2);
+
+      // Subnet mask calculation
+      let mask = [];
+      let bitsLeft = cidr;
+      for (let i = 0; i < 4; i++) {
+        if (bitsLeft >= 8) {
+          mask.push(255);
+          bitsLeft -= 8;
+        } else if (bitsLeft > 0) {
+          mask.push(256 - Math.pow(2, 8 - bitsLeft));
+          bitsLeft = 0;
+        } else {
+          mask.push(0);
+        }
+      }
+      const maskStr = mask.join('.');
+
+      const out = document.getElementById('calc-output');
+      out.innerHTML = `
+        <div class="calc-step">
+          <div class="calc-step-title">Step 1: Subnet Mask & Host Bits</div>
+          Subnet Mask = <strong>${maskStr}</strong><br>
+          Host Bits (H) = 32 - ${cidr} = <strong>${hostBits} bits</strong>
+        </div>
+        <div class="calc-step">
+          <div class="calc-step-title">Step 2: Capacity Metrics</div>
+          Total IP Blocks in Subnet = 2<sup>${hostBits}</sup> = <strong>${totalHosts.toLocaleString()}</strong><br>
+          Usable Client IP Addresses = 2<sup>${hostBits}</sup> - 2 = <strong>${usableHosts.toLocaleString()}</strong>
+        </div>
+        <div class="calc-result-badge">
+          Subnet Type: ${cidr >= 24 ? 'Class C Subdivided / LAN Segment' : 'Enterprise WAN / Core Supernet'}
+        </div>
+      `;
+      sfx.success();
+    }
+
+    // 3. Knowledge Graph Setup
+    document.addEventListener('DOMContentLoaded', () => {
+      drawNetwork();
+      const nodes = [
+        { id: 1, label: 'Application (HTTP/DNS)', x: 100, y: 70, color: '#38bdf8' },
+        { id: 2, label: 'Transport (TCP/UDP)', x: 260, y: 70, color: '#a855f7' },
+        { id: 3, label: 'Network (IP/OSPF)', x: 420, y: 130, color: '#10b981' },
+        { id: 4, label: 'Data Link (Ethernet)', x: 260, y: 200, color: '#f59e0b' },
+        { id: 5, label: 'Physical (Bits/Fiber)', x: 100, y: 200, color: '#f43f5e' }
+      ];
+      const edges = [
+        { source: 1, target: 2, label: 'segments' },
+        { source: 2, target: 3, label: 'packets' },
+        { source: 3, target: 4, label: 'frames' },
+        { source: 4, target: 5, label: 'signals' }
+      ];
+      new InteractiveKnowledgeGraph('kg-canvas', nodes, edges);
+
+      // Quiz Questions
+      const questions = [
+        {
+          question: "Which transport layer protocol provides reliable, connection-oriented byte-stream delivery with congestion control?",
+          options: ["User Datagram Protocol (UDP)", "Transmission Control Protocol (TCP)", "Internet Control Message Protocol (ICMP)", "Address Resolution Protocol (ARP)"],
+          answer: 1,
+          explanation: "TCP handles reliable transmission using 3-way handshakes, sequence numbers, checksums, and congestion window scaling (Tahoe/Reno)."
+        },
+        {
+          question: "What is the primary algorithm utilized by the OSPF (Open Shortest Path First) routing protocol?",
+          options: ["Bellman-Ford Algorithm", "Dijkstra's Shortest Path Algorithm", "Floyd-Warshall Algorithm", "Kruskal's Minimum Spanning Tree"],
+          answer: 1,
+          explanation: "OSPF is a Link-State routing protocol that constructs a link-state database and runs Dijkstra's algorithm to generate the shortest path tree."
+        },
+        {
+          question: "How many bits are in an IPv6 address compared to an IPv4 address?",
+          options: ["32 bits vs 16 bits", "64 bits vs 32 bits", "128 bits vs 32 bits", "256 bits vs 64 bits"],
+          answer: 2,
+          explanation: "IPv6 uses 128-bit addresses (allowing 3.4 × 10^38 unique addresses), whereas IPv4 uses 32-bit addresses."
+        },
+        {
+          question: "In the TCP 3-way handshake, what is the exact flag sequence exchanged between client and server?",
+          options: ["ACK -> SYN -> ACK", "SYN -> SYN-ACK -> ACK", "SYN -> ACK-FIN -> ACK", "RST -> SYN -> ACK"],
+          answer: 1,
+          explanation: "The connection initiation begins with SYN from client, server replies with SYN-ACK, and client completes with ACK."
+        },
+        {
+          question: "Which of the following port numbers is conventionally assigned to DNS (Domain Name System)?",
+          options: ["Port 22", "Port 53", "Port 80", "Port 443"],
+          answer: 1,
+          explanation: "DNS operates primarily over UDP/TCP Port 53."
+        }
+      ];
+      initQuiz(questions);
+
+      // 3D Visualizer Canvas (Network Orb)
+      const net3dCanvas = document.getElementById('net-3d-canvas');
+      if (net3dCanvas) {
+        const nctx = net3dCanvas.getContext('2d');
+        let angle = 0;
+        function render3DNet() {
+          net3dCanvas.width = net3dCanvas.parentElement.clientWidth;
+          net3dCanvas.height = net3dCanvas.parentElement.clientHeight;
+          const cx = net3dCanvas.width / 2;
+          const cy = net3dCanvas.height / 2;
+          nctx.clearRect(0, 0, net3dCanvas.width, net3dCanvas.height);
+          
+          angle += 0.015;
+          const r = 70;
+          const nodes = 14;
+
+          for (let i = 0; i < nodes; i++) {
+            const theta = (i / nodes) * Math.PI * 2 + angle;
+            const phi = Math.sin(angle + i) * Math.PI;
+            const x = cx + r * Math.cos(theta);
+            const y = cy + r * Math.sin(theta) * Math.cos(phi) * 0.5;
+
+            nctx.beginPath();
+            nctx.arc(x, y, 3.5, 0, Math.PI * 2);
+            nctx.fillStyle = i % 2 === 0 ? '#38bdf8' : '#a855f7';
+            nctx.fill();
+
+            // Interconnect
+            for (let j = i + 1; j < nodes; j++) {
+              if (Math.abs(i - j) === 1 || Math.abs(i - j) === 4) {
+                const theta2 = (j / nodes) * Math.PI * 2 + angle;
+                const phi2 = Math.sin(angle + j) * Math.PI;
+                const x2 = cx + r * Math.cos(theta2);
+                const y2 = cy + r * Math.sin(theta2) * Math.cos(phi2) * 0.5;
+
+                nctx.beginPath();
+                nctx.moveTo(x, y);
+                nctx.lineTo(x2, y2);
+                nctx.strokeStyle = 'rgba(56, 189, 248, 0.2)';
+                nctx.lineWidth = 1;
+                nctx.stroke();
+              }
+            }
+          }
+
+          requestAnimationFrame(render3DNet);
+        }
+        render3DNet();
+      }
+    });
+
+    // 4. Mini-game implementation
+    let netGameScore = 0;
+    let netGameHealth = 100;
+    let netGameRunning = false;
+
+    function startNetGame() {
+      if (netGameRunning) return;
+      netGameRunning = true;
+      netGameScore = 0;
+      netGameHealth = 100;
+      document.getElementById('game-score').innerText = '0';
+      document.getElementById('game-health').innerText = '100%';
+      document.getElementById('start-game-btn').disabled = true;
+
+      const gCanvas = document.getElementById('game-canvas');
+      const gctx = gCanvas.getContext('2d');
+      gCanvas.width = gCanvas.parentElement.clientWidth;
+      gCanvas.height = 180;
+
+      let packets = [];
+
+      function spawnPackets() {
+        if (!netGameRunning) return;
+        const isMalicious = Math.random() > 0.6;
+        packets.push({
+          x: Math.random() * (gCanvas.width - 60) + 30,
+          y: -10,
+          speed: Math.random() * 2 + 1.8,
+          type: isMalicious ? 'SYN_FLOOD' : 'HTTP_GET',
+          malicious: isMalicious
+        });
+        setTimeout(spawnPackets, 600);
+      }
+      spawnPackets();
+
+      gCanvas.onclick = (e) => {
+        if (!netGameRunning) return;
+        const rect = gCanvas.getBoundingClientRect();
+        const cx = e.clientX - rect.left;
+        const cy = e.clientY - rect.top;
+
+        packets.forEach((p, idx) => {
+          if (Math.abs(cx - p.x) < 40 && Math.abs(cy - p.y) < 20) {
+            if (p.malicious) {
+              netGameScore += 10;
+              sfx.success();
+            } else {
+              netGameHealth = Math.max(0, netGameHealth - 15);
+              sfx.error();
+            }
+            packets.splice(idx, 1);
+            document.getElementById('game-score').innerText = netGameScore;
+            document.getElementById('game-health').innerText = `${netGameHealth}%`;
+          }
+        });
+      };
+
+      function updateNetGame() {
+        if (!netGameRunning) return;
+        gctx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+
+        packets.forEach((p, idx) => {
+          p.y += p.speed;
+          gctx.fillStyle = p.malicious ? '#f43f5e' : '#38bdf8';
+          gctx.font = 'bold 11px JetBrains Mono';
+          gctx.fillText(p.type, p.x - 20, p.y);
+
+          // If malicious packet hits router buffer
+          if (p.y > gCanvas.height) {
+            if (p.malicious) {
+              netGameHealth = Math.max(0, netGameHealth - 10);
+              document.getElementById('game-health').innerText = `${netGameHealth}%`;
+              sfx.error();
+            }
+            packets.splice(idx, 1);
+          }
+        });
+
+        if (netGameHealth <= 0) {
+          netGameRunning = false;
+          document.getElementById('start-game-btn').disabled = false;
+          alert(`Buffer Overflow! DDoS overwhelmed router. Final Score: ${netGameScore}`);
+          return;
+        }
+
+        requestAnimationFrame(updateNetGame);
+      }
+      updateNetGame();
+    }
+  </script>
+</body>
+</html>

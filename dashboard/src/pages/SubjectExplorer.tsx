@@ -176,6 +176,16 @@ export const SubjectExplorer: React.FC<SubjectExplorerProps> = ({
               </div>
 
               <div className="flex items-center gap-2">
+                {subject.showcaseUrl && (
+                  <a
+                    href={subject.showcaseUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/20 flex items-center gap-1.5 transition-all transform hover:-translate-y-0.5"
+                  >
+                    <span>⚡ 3D Showcase</span>
+                  </a>
+                )}
                 <button
                   onClick={() => {
                     onSelectSubject(subject);

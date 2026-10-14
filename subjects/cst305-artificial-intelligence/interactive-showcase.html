@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CST305: Artificial Intelligence — Interactive 3D Showcase | KTU</title>
+  <link rel="stylesheet" href="../common/showcase-theme.css">
+  <style>
+    .grid-pathfinder {
+      display: grid;
+      grid-template-columns: repeat(16, 1fr);
+      gap: 3px;
+      background: rgba(2, 6, 23, 0.7);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    .grid-cell {
+      aspect-ratio: 1;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .grid-cell:hover { background: rgba(56, 189, 248, 0.2); }
+    .grid-cell.wall { background: #334155 !important; border-color: #64748b; }
+    .grid-cell.start { background: #10b981 !important; box-shadow: 0 0 8px #10b981; }
+    .grid-cell.goal { background: #f43f5e !important; box-shadow: 0 0 8px #f43f5e; }
+    .grid-cell.visited { background: rgba(56, 189, 248, 0.25); }
+    .grid-cell.path { background: #facc15 !important; box-shadow: 0 0 8px #facc15; }
+  </style>
+</head>
+<body data-theme="liquid">
+
+  <!-- 3D Particle Canvas -->
+  <canvas id="canvas-3d-bg"></canvas>
+
+  <div class="showcase-container">
+    
+    <!-- Top Header -->
+    <header class="showcase-header">
+      <div class="brand-badge">
+        <span class="code-pill">CST305</span>
+        <span class="subject-title-header">Artificial Intelligence</span>
+      </div>
+      <div class="header-actions">
+        <select id="theme-select" class="glass-select">
+          <option value="liquid">Liquid Glass</option>
+          <option value="aurora">Aurora Glass</option>
+          <option value="frosted">Frosted Glass</option>
+          <option value="cyber">Neon Cyber Glass</option>
+          <option value="obsidian">Deep Obsidian Glass</option>
+          <option value="holographic">Holographic Glass</option>
+        </select>
+        <a href="../../dashboard/index.html" class="glass-btn glass-btn-primary">← Learning Hub</a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-glass-card">
+        <span class="hero-tag">KTU S5 Computer Science & Engineering</span>
+        <h1 class="hero-h1">Intelligent Agents & Heuristic Reasoning</h1>
+        <p class="hero-desc">
+          Unravel the principles of state-space search algorithms (A*, AO*), adversarial Minimax game trees with Alpha-Beta pruning, first-order logic resolution refutation, probabilistic Bayes networks, and deep neural architectures.
+        </p>
+        <div class="hero-metrics">
+          <div class="metric-box">
+            <div class="metric-num">46 hrs</div>
+            <div class="metric-label">KTU Teaching Plan</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">A* & Minimax</div>
+            <div class="metric-label">Core Algorithms</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-num">100%</div>
+            <div class="metric-label">Syllabus Coverage</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Neural Wireframe Card -->
+      <div class="visualizer-card">
+        <div class="visualizer-title">
+          <span>3D Neural Net Decision Space</span>
+          <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan);">Active WebGL</span>
+        </div>
+        <div class="canvas-container">
+          <canvas id="ai-3d-canvas" style="width: 100%; height: 100%; display: block;"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 Pillars Grid -->
+    <div class="showcase-grid">
+
+      <!-- Pillar 1: Real-Time Interactive Demo (A* Grid Pathfinder) -->
+      <div class="glass-panel col-12">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>⚡</span> Real-Time Interactive Demo: A* Heuristic Grid Pathfinder</h2>
+          <span class="panel-badge">Search Simulator</span>
+        </div>
+        <p style="color: var(--text-muted); margin-bottom: 14px;">
+          Click grid cells to place obstacles (walls). Then click <strong>"Run A* Search"</strong> to compute optimal path minimizing cost <code>f(n) = g(n) + h(n)</code> using Manhattan distance heuristic.
+        </p>
+        <div class="demo-controls">
+          <button class="glass-btn glass-btn-primary" onclick="runAStar()">Run A* Heuristic Search</button>
+          <button class="glass-btn" onclick="addRandomObstacles()">Randomize Obstacles</button>
+          <button class="glass-btn" onclick="resetGrid()">Clear Grid</button>
+        </div>
+        <div id="grid-container" class="grid-pathfinder"></div>
+        <div id="astar-log" style="margin-top: 10px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-cyan); text-align: center;">
+          Click cells to toggle walls. Start: Green (0,0), Goal: Red (15,9).
+        </div>
+      </div>
+
+      <!-- Pillar 2: Industrial & Real-World Applications -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🤖</span> Industrial & Enterprise Applications</h2>
+          <span class="panel-badge">Case Studies</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan);">
+            <strong style="color: var(--accent-cyan);">Autonomous Vehicles (Tesla / Waymo):</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Path planners employ continuous-space hybrid A* and rapid-exploring random trees (RRT) for lane-switching, obstacle evasion, and trajectory tracking at 60 FPS.
+            </p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-purple);">
+            <strong style="color: var(--accent-purple);">Foundation LLMs & Transformer Reasoning:</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Modern generative AI applies Monte Carlo Tree Search (MCTS) combined with value/policy networks to perform multi-step mathematical reasoning.
+            </p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.03); padding: 14px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-emerald);">
+            <strong style="color: var(--accent-emerald);">Healthcare & Clinical Diagnostic AI:</strong>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Bayesian belief networks and causal inference models calculate conditional probabilities for early pathology diagnosis from multi-modal sensor inputs.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Dynamic Knowledge Graph -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🧠</span> Interactive Knowledge Graph</h2>
+          <span class="panel-badge">AI Taxonomy</span>
+        </div>
+        <canvas id="kg-canvas" class="demo-canvas" style="height: 260px;"></canvas>
+        <div id="kg-node-desc" style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); min-height: 38px;">
+          Click any concept node above to explore AI branches and algorithm prerequisites.
+        </div>
+      </div>
+
+      <!-- Pillar 4: Numerical Calculation Engine -->
+      <div class="glass-panel col-8">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🔢</span> Numerical Workbench: Bayes' Theorem & Posterior Probability</h2>
+          <span class="panel-badge">KTU Mathematical Engine</span>
+        </div>
+        <div class="calc-workbench">
+          <div class="calc-inputs">
+            <div class="input-group">
+              <label class="input-label">Prior Probability P(Disease A):</label>
+              <input type="number" id="prior-a" class="glass-input" value="0.01" step="0.005" min="0.001" max="1.0">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Sensitivity P(Positive | Disease A):</label>
+              <input type="number" id="sens-b-a" class="glass-input" value="0.95" step="0.01" min="0" max="1.0">
+            </div>
+            <div class="input-group">
+              <label class="input-label">False Positive Rate P(Positive | No Disease):</label>
+              <input type="number" id="false-pos" class="glass-input" value="0.05" step="0.01" min="0" max="1.0">
+            </div>
+            <button class="glass-btn glass-btn-primary" onclick="calculateBayes()">Compute Posterior P(A | Positive)</button>
+          </div>
+          <div class="calc-output-box" id="calc-output">
+            <div class="calc-step">
+              <div class="calc-step-title">Bayes' Law Formulation:</div>
+              P(A | B) = [P(B | A) × P(A)] / P(B)<br>
+              where P(B) = P(B | A)P(A) + P(B | ¬A)P(¬A)
+            </div>
+            <div class="calc-step">
+              <div class="calc-step-title">Result:</div>
+              Click "Compute" to solve step-by-step.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 5: Subject Mini-Game (Heuristic Maze) -->
+      <div class="glass-panel col-4">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>🎮</span> Mini-Game: Heuristic Maze</h2>
+          <span class="panel-badge">Agent Navigation</span>
+        </div>
+        <div class="game-container">
+          <div class="game-hud">
+            <span>Steps: <strong id="game-steps" style="color: var(--accent-cyan);">0</strong></span>
+            <span>Heuristic h(n): <strong id="game-h" style="color: var(--accent-amber);">--</strong></span>
+          </div>
+          <canvas id="game-canvas" class="game-canvas" style="height: 180px;"></canvas>
+          <div style="margin-top: 12px; display: flex; justify-content: center; gap: 8px;">
+            <button class="glass-btn" onclick="moveAgent('UP')">▲</button>
+            <button class="glass-btn" onclick="moveAgent('DOWN')">▼</button>
+            <button class="glass-btn" onclick="moveAgent('LEFT')">◀</button>
+            <button class="glass-btn" onclick="moveAgent('RIGHT')">▶</button>
+            <button class="glass-btn glass-btn-primary" onclick="initMazeGame()">Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 6: Interactive Exam Quiz -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>📝</span> KTU Examination Quiz</h2>
+          <span class="panel-badge" id="quiz-score-badge">Score: 0 / 5</span>
+        </div>
+        <div id="quiz-container"></div>
+      </div>
+
+      <!-- Pillar 7: Job Roles & Payscale Guide -->
+      <div class="glass-panel col-6">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>💼</span> Career Roadmaps & Industry Payscales</h2>
+          <span class="panel-badge">Market Analysis</span>
+        </div>
+        <div class="career-grid">
+          <div class="career-card">
+            <div class="role-title">AI / Machine Learning Scientist</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Develops novel neural architectures, reinforcement learning algorithms, and multimodal foundation models.
+            </p>
+            <div class="payscale-badge">
+              <span class="salary-inr">₹20 - 48 LPA</span>
+              <span class="salary-usd">$140,000 - $225,000</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-dim);">
+              <strong>Hiring:</strong> Google DeepMind, OpenAI, Microsoft Research, NVIDIA
+            </div>
+          </div>
+          <div class="career-card">
+            <div class="role-title">Computer Vision Engineer</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Builds real-time object detection pipelines (YOLO), SLAM 3D reconstructions, and robotic perception sensors.
+            </p>
+            <div class="payscale-badge">
+              <span class="salary-inr">₹12 - 30 LPA</span>
+              <span class="salary-usd">$115,000 - $170,000</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-dim);">
+              <strong>Hiring:</strong> Apple, Qualcomm, Bosch Autonomous Systems, Intel
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 8: Solved Previous Year Question Paper (PYQ) -->
+      <div class="glass-panel col-12">
+        <div class="panel-header">
+          <h2 class="panel-title"><span>📑</span> Solved Previous Year Question Paper: KTU CST305</h2>
+          <span class="panel-badge">Model Answer Key</span>
+        </div>
+        <div class="pyq-tabs">
+          <button class="pyq-tab-btn active" data-target="all">All Questions</button>
+          <button class="pyq-tab-btn" data-target="part-a">Part A (3 Marks)</button>
+          <button class="pyq-tab-btn" data-target="part-b">Part B (14 Marks)</button>
+        </div>
+
+        <div class="pyq-item" data-category="part-a">
+          <div class="pyq-q-header">
+            <div><strong>Q1.</strong> Define an Admissible Heuristic and a Consistent (Monotonic) Heuristic in A* Search.</div>
+            <span class="pyq-marks">3 Marks</span>
+          </div>
+          <div class="pyq-solution-body">
+            <p><strong>Evaluation Scheme & Solution:</strong></p>
+            <p style="margin: 8px 0; font-size: 0.9rem; color: var(--text-muted);">
+              <strong>1. Admissible Heuristic:</strong> A heuristic function <code>h(n)</code> is admissible if it never overestimates the true cost to reach the goal from node <code>n</code>, i.e., <code>h(n) ≤ h*(n)</code> where <code>h*(n)</code> is the true optimal cost. Admissibility guarantees that A* tree search returns an optimal solution.
+            </p>
+            <p style="margin: 8px 0; font-size: 0.9rem; color: var(--text-muted);">
+              <strong>2. Consistent Heuristic:</strong> A heuristic is consistent if for every node <code>n</code> and every successor <code>n'</code> generated by action <code>a</code> with step cost <code>c(n, a, n')</code>, it satisfies the triangle inequality: <code>h(n) ≤ c(n, a, n') + h(n')</code>. Consistency guarantees optimal graph search without re-opening visited nodes.
+            </p>
+          </div>
+        </div>
+
+        <div class="pyq-item" data-category="part-b">
+          <div class="pyq-q-header">
+            <div><strong>Q2.</strong> Explain the Alpha-Beta Pruning algorithm on game trees with cutoff conditions, illustrating an example with marked α and β values.</div>
+            <span class="pyq-marks">14 Marks</span>
+          </div>
+          <div class="pyq-solution-body">
+            <p><strong>Detailed Model Answer:</strong></p>
+            <p style="margin: 8px 0; font-size: 0.9rem; color: var(--text-muted);">
+              <strong>Alpha-Beta Parameters:</strong>
+              <br>• <strong>α (Alpha):</strong> The best (highest-value) choice found so far at any choice point along the path for the MAX player. Initialized to <code>-∞</code>.
+              <br>• <strong>β (Beta):</strong> The best (lowest-value) choice found so far at any choice point along the path for the MIN player. Initialized to <code>+∞</code>.
+              <br>• <strong>Pruning Cutoff Condition:</strong> If at any point <code>α ≥ β</code>, the subtree beneath the current node can be immediately pruned, because the opponent would never allow play to reach that node.
+            </p>
+            <div class="code-snippet">
+function ALPHA-BETA-SEARCH(state) returns an action
+    v = MAX-VALUE(state, -∞, +∞)
+    return action with value v
+
+function MAX-VALUE(state, α, β) returns a utility value
+    if TERMINAL-TEST(state) then return UTILITY(state)
+    v = -∞
+    for each a in ACTIONS(state) do
+        v = MAX(v, MIN-VALUE(RESULT(state, a), α, β))
+        if v ≥ β then return v    // Beta cutoff
+        α = MAX(α, v)
+    return v
+
+function MIN-VALUE(state, α, β) returns a utility value
+    if TERMINAL-TEST(state) then return UTILITY(state)
+    v = +∞
+    for each a in ACTIONS(state) do
+        v = MIN(v, MAX-VALUE(RESULT(state, a), α, β))
+        if v ≤ α then return v    // Alpha cutoff
+        β = MIN(β, v)
+    return v
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 8px;">
+              <strong>Mark Distribution:</strong> Alpha & Beta definitions (4 Marks) + Algorithmic pseudocode (4 Marks) + Worked numerical tree with pruned branches (4 Marks) + Complexity reduction proof O(b^(d/2)) (2 Marks) = <strong>14 Marks</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Official Faculty Branding Footer -->
+    <footer class="faculty-footer">
+      <div class="footer-container">
+        <div class="faculty-badge">
+          <span class="faculty-name">Jane Rose</span>
+          <span class="faculty-title">Assistant Professor</span>
+          <span class="faculty-dept">Department of Computer Science and Engineering (CSE)</span>
+        </div>
+        <p class="copyright-text">
+          KTU Smart Learning Ecosystem © 2026. Academic Open Access & Curriculum Excellence.
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="../common/showcase-engine.js"></script>
+  <script>
+    // 1. A* Grid Pathfinder Simulator
+    const COLS = 16;
+    const ROWS = 10;
+    let grid = [];
+    const startNode = { x: 0, y: 0 };
+    const goalNode = { x: 15, y: 9 };
+
+    function initGrid() {
+      const container = document.getElementById('grid-container');
+      container.innerHTML = '';
+      grid = [];
+
+      for (let y = 0; y < ROWS; y++) {
+        grid[y] = [];
+        for (let x = 0; x < COLS; x++) {
+          const cell = document.createElement('div');
+          cell.className = 'grid-cell';
+          if (x === startNode.x && y === startNode.y) cell.classList.add('start');
+          if (x === goalNode.x && y === goalNode.y) cell.classList.add('goal');
+
+          cell.onclick = () => {
+            if ((x === startNode.x && y === startNode.y) || (x === goalNode.x && y === goalNode.y)) return;
+            cell.classList.toggle('wall');
+            grid[y][x].wall = cell.classList.contains('wall');
+            sfx.click();
+          };
+
+          container.appendChild(cell);
+          grid[y][x] = { x, y, wall: false, el: cell };
+        }
+      }
+    }
+
+    function addRandomObstacles() {
+      resetGrid();
+      for (let y = 0; y < ROWS; y++) {
+        for (let x = 0; x < COLS; x++) {
+          if ((x === startNode.x && y === startNode.y) || (x === goalNode.x && y === goalNode.y)) continue;
+          if (Math.random() < 0.22) {
+            grid[y][x].wall = true;
+            grid[y][x].el.classList.add('wall');
+          }
+        }
+      }
+      sfx.click();
+    }
+
+    function resetGrid() {
+      initGrid();
+      sfx.click();
+      document.getElementById('astar-log').innerText = 'Grid cleared. Ready for search.';
+    }
+
+    function heuristic(a, b) {
+      return Math.abs(a.x - b.x) + Math.abs(a.y - b.y); // Manhattan distance
+    }
+
+    function runAStar() {
+      // Clear previous path/visited
+      for (let y = 0; y < ROWS; y++) {
+        for (let x = 0; x < COLS; x++) {
+          grid[y][x].el.classList.remove('visited', 'path');
+        }
+      }
+
+      let openSet = [{ ...startNode, g: 0, f: heuristic(startNode, goalNode), parent: null }];
+      let closedSet = new Set();
+      let cameFrom = new Map();
+
+      function stepSearch() {
+        if (openSet.length === 0) {
+          document.getElementById('astar-log').innerText = 'No Path Exists! Goal is unreachable.';
+          sfx.error();
+          return;
+        }
+
+        // Sort by lowest f
+        openSet.sort((a, b) => a.f - b.f);
+        let current = openSet.shift();
+        const key = `${current.x},${current.y}`;
+
+        if (current.x === goalNode.x && current.y === goalNode.y) {
+          // Reconstruct path
+          let curr = current;
+          let pathLen = 0;
+          while (curr) {
+            if (!(curr.x === startNode.x && curr.y === startNode.y) && !(curr.x === goalNode.x && curr.y === goalNode.y)) {
+              grid[curr.y][curr.x].el.classList.add('path');
+            }
+            curr = curr.parent;
+            pathLen++;
+          }
+          document.getElementById('astar-log').innerText = `A* Path Found! Total Optimal Steps: ${pathLen - 1}`;
+          sfx.success();
+          return;
+        }
+
+        closedSet.add(key);
+        if (!(current.x === startNode.x && current.y === startNode.y)) {
+          grid[current.y][current.x].el.classList.add('visited');
+        }
+
+        const neighbors = [
+          { x: current.x + 1, y: current.y },
+          { x: current.x - 1, y: current.y },
+          { x: current.x, y: current.y + 1 },
+          { x: current.x, y: current.y - 1 }
+        ];
+
+        for (const n of neighbors) {
+          if (n.x < 0 || n.x >= COLS || n.y < 0 || n.y >= ROWS) continue;
+          if (grid[n.y][n.x].wall) continue;
+          const nKey = `${n.x},${n.y}`;
+          if (closedSet.has(nKey)) continue;
+
+          const tentativeG = current.g + 1;
+          let existing = openSet.find(o => o.x === n.x && o.y === n.y);
+
+          if (!existing) {
+            openSet.push({ x: n.x, y: n.y, g: tentativeG, f: tentativeG + heuristic(n, goalNode), parent: current });
+          } else if (tentativeG < existing.g) {
+            existing.g = tentativeG;
+            existing.f = tentativeG + heuristic(n, goalNode);
+            existing.parent = current;
+          }
+        }
+
+        setTimeout(stepSearch, 15);
+      }
+      stepSearch();
+    }
+
+    // 2. Numerical Bayes Calculator
+    function calculateBayes() {
+      const prior = parseFloat(document.getElementById('prior-a').value) || 0.01;
+      const sens = parseFloat(document.getElementById('sens-b-a').value) || 0.95;
+      const falsePos = parseFloat(document.getElementById('false-pos').value) || 0.05;
+
+      const priorNoA = 1 - prior;
+      const pPositive = (sens * prior) + (falsePos * priorNoA);
+      const posterior = (sens * prior) / pPositive;
+
+      const out = document.getElementById('calc-output');
+      out.innerHTML = `
+        <div class="calc-step">
+          <div class="calc-step-title">Step 1: Compute Total Probability P(Positive)</div>
+          P(Pos) = (${sens} × ${prior}) + (${falsePos} × ${priorNoA.toFixed(4)})<br>
+          P(Pos) = ${(sens * prior).toFixed(5)} + ${(falsePos * priorNoA).toFixed(5)} = <strong>${pPositive.toFixed(5)}</strong>
+        </div>
+        <div class="calc-step">
+          <div class="calc-step-title">Step 2: Apply Bayes' Theorem</div>
+          P(Disease | Pos) = ${(sens * prior).toFixed(5)} / ${pPositive.toFixed(5)} = <strong>${(posterior * 100).toFixed(2)}%</strong>
+        </div>
+        <div class="calc-result-badge">
+          Calculated Posterior Probability: ${(posterior * 100).toFixed(2)}%
+        </div>
+      `;
+      sfx.success();
+    }
+
+    // 3. Knowledge Graph
+    document.addEventListener('DOMContentLoaded', () => {
+      initGrid();
+
+      const nodes = [
+        { id: 1, label: 'Search (A*/AO*)', x: 100, y: 70, color: '#38bdf8' },
+        { id: 2, label: 'Games (Minimax)', x: 260, y: 70, color: '#a855f7' },
+        { id: 3, label: 'Logic & Resolution', x: 420, y: 130, color: '#10b981' },
+        { id: 4, label: 'Bayesian Nets', x: 260, y: 200, color: '#f59e0b' },
+        { id: 5, label: 'Neural Networks', x: 100, y: 200, color: '#f43f5e' }
+      ];
+      const edges = [
+        { source: 1, target: 2, label: 'heuristics' },
+        { source: 2, target: 3, label: 'evaluates' },
+        { source: 3, target: 4, label: 'uncertainty' },
+        { source: 4, target: 5, label: 'learning' }
+      ];
+      new InteractiveKnowledgeGraph('kg-canvas', nodes, edges);
+
+      // Quiz Questions
+      const questions = [
+        {
+          question: "Under what condition is the A* graph search algorithm guaranteed to return an optimal path without re-opening nodes?",
+          options: ["Heuristic is admissible only", "Heuristic is consistent (monotonic)", "Branching factor is finite only", "Step costs are all 1"],
+          answer: 1,
+          explanation: "Consistency (monotonicity) guarantees that f(n) non-decreases along any path, ensuring optimal node expansion on the first visit in graph search."
+        },
+        {
+          question: "In Minimax search with Alpha-Beta pruning, when does a beta cutoff occur at a MIN node?",
+          options: ["When alpha is greater than or equal to beta (alpha >= beta)", "When beta equals zero", "When alpha is negative", "When search depth exceeds 10"],
+          answer: 0,
+          explanation: "Whenever alpha >= beta, the parent node will never select this branch, enabling immediate subtree pruning."
+        },
+        {
+          question: "Which proof technique does Propositional Logic Resolution use to deduce that knowledge base KB entails alpha?",
+          options: ["Proof by Induction", "Refutation by asserting KB ∧ ¬alpha is unsatisfiable", "Truth table enumeration only", "Forward chaining without unification"],
+          answer: 1,
+          explanation: "Resolution refutation shows that KB ∧ ¬alpha leads to an empty clause (contradiction), establishing KB ⊨ alpha."
+        },
+        {
+          question: "What is the primary advantage of the Iterative Deepening Depth-First Search (IDDFS) algorithm?",
+          options: ["Requires O(b^d) memory", "Combines BFS completeness/optimality with DFS O(bd) space complexity", "Faster than BFS without node re-generation", "Requires no heuristic function"],
+          answer: 1,
+          explanation: "IDDFS visits nodes iteratively, achieving the optimality of BFS while only keeping O(bd) nodes in memory."
+        },
+        {
+          question: "In a Bayesian Network with variables A, B, and C where A → B → C, are A and C conditionally independent given B?",
+          options: ["No, they are always dependent", "Yes, B d-separates A and C (Markov blanket property)", "Only if P(B) = 1", "Depends on prior of A"],
+          answer: 1,
+          explanation: "In a linear causal chain A → B → C, evidence at intermediate node B blocks the path, rendering A and C conditionally independent."
+        }
+      ];
+      initQuiz(questions);
+
+      // 3D Canvas Visualizer (Rotating Neural Sphere)
+      const ai3dCanvas = document.getElementById('ai-3d-canvas');
+      if (ai3dCanvas) {
+        const actx = ai3dCanvas.getContext('2d');
+        let angle = 0;
+        function render3DAI() {
+          ai3dCanvas.width = ai3dCanvas.parentElement.clientWidth;
+          ai3dCanvas.height = ai3dCanvas.parentElement.clientHeight;
+          const cx = ai3dCanvas.width / 2;
+          const cy = ai3dCanvas.height / 2;
+          actx.clearRect(0, 0, ai3dCanvas.width, ai3dCanvas.height);
+          
+          angle += 0.018;
+          const layers = [3, 5, 5, 2];
+          const spacingX = 55;
+          const startX = cx - ((layers.length - 1) * spacingX) / 2;
+
+          let prevNodes = [];
+          layers.forEach((cnt, lIdx) => {
+            const lx = startX + lIdx * spacingX;
+            const startY = cy - ((cnt - 1) * 32) / 2;
+            let currentNodes = [];
+
+            for (let i = 0; i < cnt; i++) {
+              const ly = startY + i * 32 + Math.sin(angle + lIdx) * 6;
+              currentNodes.push({ x: lx, y: ly });
+
+              actx.beginPath();
+              actx.arc(lx, ly, 4.5, 0, Math.PI * 2);
+              actx.fillStyle = lIdx === 0 ? '#10b981' : (lIdx === layers.length - 1 ? '#f43f5e' : '#38bdf8');
+              actx.fill();
+            }
+
+            if (prevNodes.length > 0) {
+              for (const p of prevNodes) {
+                for (const c of currentNodes) {
+                  actx.beginPath();
+                  actx.moveTo(p.x, p.y);
+                  actx.lineTo(c.x, c.y);
+                  actx.strokeStyle = 'rgba(56, 189, 248, 0.12)';
+                  actx.lineWidth = 0.8;
+                  actx.stroke();
+                }
+              }
+            }
+            prevNodes = currentNodes;
+          });
+
+          requestAnimationFrame(render3DAI);
+        }
+        render3DAI();
+      }
+
+      initMazeGame();
+    });
+
+    // 4. Mini-game implementation (Agent Maze)
+    let agentX = 1, agentY = 1;
+    let goalX = 5, goalY = 5;
+    let agentSteps = 0;
+    const mazeDim = 7;
+
+    function initMazeGame() {
+      agentX = 1; agentY = 1;
+      agentSteps = 0;
+      document.getElementById('game-steps').innerText = '0';
+      drawMaze();
+    }
+
+    function drawMaze() {
+      const gCanvas = document.getElementById('game-canvas');
+      if (!gCanvas) return;
+      const gctx = gCanvas.getContext('2d');
+      gCanvas.width = gCanvas.parentElement.clientWidth;
+      gCanvas.height = 180;
+      gctx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+
+      const cellSize = 22;
+      const startLeft = (gCanvas.width - mazeDim * cellSize) / 2;
+      const startTop = (gCanvas.height - mazeDim * cellSize) / 2;
+
+      for (let y = 0; y < mazeDim; y++) {
+        for (let x = 0; x < mazeDim; x++) {
+          const px = startLeft + x * cellSize;
+          const py = startTop + y * cellSize;
+          gctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+          gctx.strokeRect(px, py, cellSize, cellSize);
+
+          if (x === goalX && y === goalY) {
+            gctx.fillStyle = '#f43f5e';
+            gctx.fillRect(px + 2, py + 2, cellSize - 4, cellSize - 4);
+          }
+          if (x === agentX && y === agentY) {
+            gctx.fillStyle = '#38bdf8';
+            gctx.beginPath();
+            gctx.arc(px + cellSize / 2, py + cellSize / 2, 8, 0, Math.PI * 2);
+            gctx.fill();
+          }
+        }
+      }
+
+      const h = Math.abs(agentX - goalX) + Math.abs(agentY - goalY);
+      document.getElementById('game-h').innerText = `${h}`;
+      document.getElementById('game-steps').innerText = `${agentSteps}`;
+    }
+
+    function moveAgent(dir) {
+      if (dir === 'UP' && agentY > 0) agentY--;
+      if (dir === 'DOWN' && agentY < mazeDim - 1) agentY++;
+      if (dir === 'LEFT' && agentX > 0) agentX--;
+      if (dir === 'RIGHT' && agentX < mazeDim - 1) agentX++;
+      agentSteps++;
+      sfx.click();
+      drawMaze();
+
+      if (agentX === goalX && agentY === goalY) {
+        sfx.success();
+        alert(`Goal Reached! Agent completed maze in ${agentSteps} optimal steps!`);
+      }
+    }
+  </script>
+</body>
+</html>
